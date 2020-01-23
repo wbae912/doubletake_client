@@ -1,11 +1,22 @@
 import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 import Login from '../../Components/Login/Login';
+import Register from '../../Components/Register/Register';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <Login />
+      <Switch>
+        <Route 
+          path={'/register'}
+          component={Register}
+        />
+        <Route
+          path={'/login'}
+          component={Login}
+        />
+      </Switch>
     </div>
   );
 }
