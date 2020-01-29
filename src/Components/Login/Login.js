@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import TokenService from '../../services/token-service';
 import AuthApiService from '../../services/auth-api-service';
 import UserContext from '../../Context/UserContext';
@@ -30,7 +31,7 @@ export default class Login extends Component {
         TokenService.saveAuthToken(res.authToken);
       })
       .catch(res => {
-        return this.context.setError(res.error);
+        return this.context.setError(res.error); // DOUBLE CHECK IF RETURN NEEDS TO BE HERE LATER
       })
   }
   
@@ -46,13 +47,12 @@ export default class Login extends Component {
             <input type="password" autoComplete="on" className="login-input" id="password" />
           </div>
           <div className="login_buttons">
-            <button>Login</button>
-            <button>Clear</button>
+            <button type="submit" className="login-button">Login</button>
+            <button type="button" className="back-button">Back</button>
           </div>
           <div className="to-register"> 
             <p className="to-register-p">New to DoubleTake?&nbsp;
-              <a href="placeholder" className="to-register-link">Create an account.</a>
-              <p>CHANGE "CREATE AN ACCOUNT" TO A LINK INSTEAD OF A LATER...UNLESS I WANT TO USE PROPS.HISTORY</p>
+              <Link to='/register'>Create an account.</Link>
             </p>
           </div>
         </form>

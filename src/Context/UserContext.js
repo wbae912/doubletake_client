@@ -4,7 +4,8 @@ const UserContext = React.createContext({
   user: {
     email: '',
     username: '',
-    password: ''
+    password: '',
+    passwordVerify: ''
   },
   error: null,
   setError: () => {},
@@ -12,7 +13,8 @@ const UserContext = React.createContext({
   setUser: () => {},
   setEmail: () => {},
   setUsername: () => {},
-  setPassword: () => {}
+  setPassword: () => {},
+  setPasswordVerify: () => {}
 });
 
 export default UserContext;
@@ -22,7 +24,12 @@ export class UserProvider extends Component {
     super(props)
   
     this.state = {
-      user: {},
+      user: {
+        email: '',
+        username: '',
+        password: '',
+        passwordVerify: ''
+      },
       error: null
     };
   }
@@ -52,6 +59,10 @@ export class UserProvider extends Component {
     this.setState( {...this.state.user, password} );
   }
 
+  setPasswordVerify = passwordVerify => {
+    this.setState( {...this.state.user, passwordVerify} )
+  }
+
   render() {
     const value = {
       user: this.state.user,
@@ -61,7 +72,8 @@ export class UserProvider extends Component {
       setUser: this.setUser,
       setEmail: this.setEmail,
       setUsername: this.setUsername,
-      setPassword: this.setPassword
+      setPassword: this.setPassword,
+      setPasswordVerify: this.setPasswordVerify
     };
 
     return (
