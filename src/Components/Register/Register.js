@@ -22,8 +22,9 @@ export default class Register extends Component {
          email: false,
          username: false,
          password: false,
-         passwordVerify: false
-       }
+         passwordVerify: false,
+       },
+       showPassword: false
     };
   }
 
@@ -54,6 +55,12 @@ export default class Register extends Component {
         [name]: true
       }
     }))
+  }
+
+  toggleShowPassword = e => {
+    this.setState({
+      showPassword: !this.state.showPassword
+    })
   }
 
   validateEmail = () => {
@@ -121,11 +128,14 @@ export default class Register extends Component {
     let passwordError = this.validatePassword();
     let passwordVerifyError = this.validatePasswordVerify();
 
+    console.log(this.state.showPassword)
+
     return (
       <section className="register-section">
         <h2 className="register-h2">Register</h2>
         <form className="register-form" onSubmit={this.handleSubmit}>
-          <div className="register_inputs-labels">
+        {!this.state.showPassword 
+        ? <div className="register_inputs-labels">
             <label className="register-label" htmlFor="email">Email</label>
             <input 
               type="email" 
@@ -170,6 +180,61 @@ export default class Register extends Component {
               onChange={(e) => {this.handleNonNestedChange(e); this.handleTouchedChange(e)}}
             />
             {this.state.touched.passwordVerify && <FormValidation message={passwordVerifyError} />}
+          </div>
+        : <div className="register_inputs-labels">
+          <label className="register-label" htmlFor="email">Email</label>
+          <input 
+            type="email" 
+            name="email"
+            className="register-input" 
+            id="email" 
+            placeholder="example@email.com"
+            required
+            onChange={(e) => {this.handleCredentialsChange(e); this.handleTouchedChange(e);}}
+          />
+          {this.state.touched.email && <FormValidation message={emailError} />}
+          <label className="register-label" htmlFor="username">Username</label>
+          <input
+            type="text"
+            name="username"
+            className="register-input"
+            id="username"
+            placeholder="user123"
+            required
+            onChange={(e) => {this.handleCredentialsChange(e); this.handleTouchedChange(e)}}
+          />
+          {this.state.touched.username && <FormValidation message={usernameError} />}
+          <label className="register-label" htmlFor="password">Password</label>
+          <input 
+            type="text"
+            name="password"
+            className="register-input"
+            id="password"
+            required
+            onChange={(e) => {this.handleCredentialsChange(e); this.handleTouchedChange(e); this.validatePassword();}}
+          />
+          {this.state.touched.password && <FormValidation message={passwordError} />}
+          <label className="register-label" htmlFor="password-again">Re-Enter Password</label>
+          <input 
+            type="text"
+            name="passwordVerify"
+            className="register-input" 
+            id="password-again"
+            required
+            onChange={(e) => {this.handleNonNestedChange(e); this.handleTouchedChange(e)}}
+          />
+          {this.state.touched.passwordVerify && <FormValidation message={passwordVerifyError} />}
+          </div>
+        }
+          <div className="div-checkbox">
+            <input 
+              type="checkbox"
+              name="showPassword" 
+              id="password-show" 
+              className="check-input" 
+              onClick={this.toggleShowPassword}
+            />
+            <label htmlFor="password-show" className="check-label">Show password</label>
           </div>
           <div className="register-buttons">
             <button type="submit" className="register-button" disabled={emailError || usernameError || passwordError || passwordVerifyError}>Register</button>
