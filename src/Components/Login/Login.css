@@ -1,0 +1,33 @@
+.login-section {
+  text-align: center;
+}
+
+.login-form {
+  margin: 0 auto 0 auto;
+}
+
+.login_labels-inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-buttons {
+  margin-top: 2em;
+}
+
+.login-button, .back-button {
+  margin: 0 1em 0 0;
+  width: 80px;
+  color: black;
+  background-color: white;
+  border: 1.5px solid black;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: ease 0.4s;
+}
+
+.login-button:hover, .back-button:hover {
+  color:white;
+  background-color: black;
+}

@@ -128,8 +128,6 @@ export default class Register extends Component {
     let passwordError = this.validatePassword();
     let passwordVerifyError = this.validatePasswordVerify();
 
-    console.log(this.state.showPassword)
-
     return (
       <section className="register-section">
         <h2 className="register-h2">Register</h2>

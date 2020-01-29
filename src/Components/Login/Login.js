@@ -12,23 +12,35 @@ export default class Login extends Component {
     super(props)
   
     this.state = {
-       password: '',
-       username: ''  
+      credentials: {
+        username: '',
+        password: ''
+      }
     }
+  }
+
+  handleInputChange = e => {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    this.setState(prevState => ({
+      credentials: {
+        ...prevState.credentials,
+        [name]: value
+      }
+    }))
   }
 
   handleSubmitJwtAuth = e => {
     e.preventDefault();
     const { username, password } = e.target;
 
-    AuthApiService.postLogin({
-      username: username.value,
-      password: password.value
-    })
+    AuthApiService.postLogin(this.state.credentials)
       .then(res => {
         username.value = '';
         password.value = '';
         TokenService.saveAuthToken(res.authToken);
+        // Do a this.props.history.push to PAGE WE WANT USER TO BE DIRECTED TO UPON SUCCESSFUL LOGIN...USE withROUTER
       })
       .catch(res => {
         return this.context.setError(res.error); // DOUBLE CHECK IF RETURN NEEDS TO BE HERE LATER
@@ -42,11 +54,24 @@ export default class Login extends Component {
         <form className="login-form" onSubmit={this.handleSubmitJwtAuth}>
           <div className="login_labels-inputs">
             <label className="login-label" htmlFor="username">Username</label>
-            <input type="text" className="login-input" id="username" />
+            <input 
+              type="text" 
+              name="username"
+              className="login-input" 
+              id="login-username" 
+              onChange={this.handleInputChange}
+            />
             <label className="login-label" htmlFor="password">Password</label>
-            <input type="password" autoComplete="on" className="login-input" id="password" />
+            <input 
+              type="password" 
+              name="password"
+              autoComplete="on" 
+              className="login-input" 
+              id="password-login" 
+              onChange={this.handleInputChange}
+            />
           </div>
-          <div className="login_buttons">
+          <div className="login-buttons">
             <button type="submit" className="login-button">Login</button>
             <button type="button" className="back-button">Back</button>
           </div>
