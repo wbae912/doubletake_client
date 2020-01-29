@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Login from '../../Components/Login/Login';
 import Register from '../../Components/Register/Register';
+import GeneralCheckList from '../../Components/GeneralCheckList/GeneralCheckList';
 import './App.css';
 
 function App() {
@@ -15,6 +16,10 @@ function App() {
         <Route
           path={'/login'}
           component={Login}
+        />
+        <Route 
+          path={'/general'}
+          component={GeneralCheckList}
         />
       </Switch>
     </div>
