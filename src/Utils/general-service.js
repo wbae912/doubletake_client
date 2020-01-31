@@ -50,8 +50,7 @@ const GeneralService = {
     return fetch(`http://localhost:8000/api/general/${id}`, {
       method: 'DELETE',
       headers: {
-        'content-type': 'application/json',
-        'authorization': `bearer ${TokenService.getAuthToken()}`
+        'authorization': `bearer ${TokenService.getAuthToken()}` // Pretty sure that we don't need content-type for DELETE request.
       }
     })
     .then(res => {
