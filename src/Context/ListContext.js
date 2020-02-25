@@ -20,7 +20,7 @@ const ListContext = React.createContext({
 
 export default ListContext;
 
-export default class ListProvider extends Component {
+export class ListProvider extends Component {
   constructor(props) {
     super(props)
   
@@ -90,7 +90,7 @@ export default class ListProvider extends Component {
       specificGeneralList: this.state.specificGeneralList, 
       specificEventList: this.state.specificEventList,
       newGeneralList: this.state.newGeneralList,
-      newEventList: this.state.newEventList,,
+      newEventList: this.state.newEventList,
       error: this.state.error,
       setGeneralLists: this.setGeneralLists,
       setEventLists: this.setEventLists,
@@ -102,9 +102,9 @@ export default class ListProvider extends Component {
       clearError: this.clearError
     }
     return (
-      <ListProvider value={value}>
+      <ListContext.Provider value={value}>
         {this.props.children}
-      </ListProvider>
+      </ListContext.Provider>
     )
   }
 }
