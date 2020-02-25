@@ -10,8 +10,6 @@ export default class List extends Component {
   
     this.state = {
        deleteClicked: false,
-       yesClicked: false,
-       noClicked: false
     }
   }
   
@@ -25,8 +23,7 @@ export default class List extends Component {
     GeneralService.deleteList(this.props.list.id)
       .then(() => {
         this.setState({
-          deleteClicked: false,
-          yesClicked: false
+          deleteClicked: false
         })
 
         /* The steps below trigger the page to re-render when a list is successfully deleted. Otherwise, you would need to refresh the page to see that the list was 
@@ -46,8 +43,7 @@ export default class List extends Component {
 
   noClicked = () => {
     this.setState({
-      deleteClicked: false,
-      noClicked: false
+      deleteClicked: false
     })
   }
   
@@ -78,16 +74,35 @@ export default class List extends Component {
   }
 
   render() {
+    const itemsArray = this.props.list.items.split('\n');
     return (
       <div className="list-entry">
         <h2 className="list-h2">{this.props.list.title}</h2>
-        <input 
+
+
+        {itemsArray.map(item => {
+          return (
+            <>
+              <input 
+                type="checkbox"
+                name="item"
+                className="list-input"
+                id="item"
+              />
+              <label className="list-input" htmlFor="item">{item}</label>
+            </>
+          )
+        })}
+
+
+
+        {/* <input 
           type="checkbox"
           name="item"
           className="list-input"
           id="item"
         />
-        <label className="list-input" htmlFor="item">{this.props.list.items}</label>
+        <label className="list-input" htmlFor="item">{this.props.list.items}</label> */}
         <div className="list-buttons">
           <button 
             type="button"
