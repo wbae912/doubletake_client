@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import GeneralService from '../../Utils/general-service';
 import ListContext from '../../Context/ListContext';
+import GeneralEditForm from '../GeneralEditForm/GeneralEditForm';
 
 export default class List extends Component {
   static contextType = ListContext;
@@ -10,6 +11,7 @@ export default class List extends Component {
   
     this.state = {
        deleteClicked: false,
+       editClicked: false
     }
   }
   
@@ -56,14 +58,12 @@ export default class List extends Component {
             <button 
               type="button" 
               className="yes-button"
-              name="yesClicked"
               onClick={this.yesClicked}
             >
             Yes</button>
             <button 
               type="button" 
               className="no-button"
-              name="noClicked"
               onClick={this.noClicked}
             >
             No</button>
@@ -71,6 +71,12 @@ export default class List extends Component {
         </div>
       )
     }
+  }
+
+  handleCancel = e => {
+    this.setState({
+      editClicked: false
+    })
   }
 
   render() {
@@ -108,10 +114,23 @@ export default class List extends Component {
             type="button"
             className="delete-button"
             name="deleteClicked"
-            onClick={(e) => {this.toggleButton(e)}}
+            onClick={this.toggleButton}
           >
           Delete</button>
+          <button 
+            type="button" 
+            className="edit-button"
+            name="editClicked"
+            onClick={this.toggleButton}
+          >
+          Edit</button>
         </div>
+        
+        {this.state.editClicked && <GeneralEditForm 
+          list={this.props.list}
+          handleCancel={this.handleCancel}
+        />}
+
         {this.renderDeleteConfirmMessage()}
       </div>
     )
