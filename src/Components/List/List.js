@@ -85,10 +85,9 @@ export default class List extends Component {
       <div className="list-entry">
         <h2 className="list-h2">{this.props.list.title}</h2>
 
-
-        {itemsArray.map(item => {
+        {itemsArray.map((item, key) => {
           return (
-            <>
+            <div className="items-array" key={key}>
               <input 
                 type="checkbox"
                 name="item"
@@ -96,19 +95,10 @@ export default class List extends Component {
                 id="item"
               />
               <label className="list-input" htmlFor="item">{item}</label>
-            </>
+            </div>
           )
         })}
 
-
-
-        {/* <input 
-          type="checkbox"
-          name="item"
-          className="list-input"
-          id="item"
-        />
-        <label className="list-input" htmlFor="item">{this.props.list.items}</label> */}
         <div className="list-buttons">
           <button 
             type="button"
@@ -127,6 +117,7 @@ export default class List extends Component {
         </div>
         
         {this.state.editClicked && <GeneralEditForm 
+          key={this.props.list.id} // NOT SURE WHY KEY IS NOT UNIQUE
           list={this.props.list}
           handleCancel={this.handleCancel}
         />}
