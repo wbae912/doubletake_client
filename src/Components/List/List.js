@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import GeneralService from '../../Utils/general-service';
 import ListContext from '../../Context/ListContext';
 import GeneralEditForm from '../GeneralEditForm/GeneralEditForm';
+import './List.css';
 
 export default class List extends Component {
   static contextType = ListContext;
@@ -11,7 +12,8 @@ export default class List extends Component {
   
     this.state = {
        deleteClicked: false,
-       editClicked: false
+       editClicked: false,
+       lists: []
     }
   }
   
@@ -79,22 +81,76 @@ export default class List extends Component {
     })
   }
 
-  render() {
+  toggleItemCheck = (item, index) => {
+    item.checked = !item.checked;
+
+    const updatedLists = this.state.lists;
+    updatedLists[index] = item;
+    
+    this.setState({
+      lists: updatedLists
+    })
+  }
+
+  renderItemChecked = (item, index) => {
+    if(item.checked) {
+      return (
+        <>
+          <input 
+            type="checkbox"
+            name="itemChecked"
+            className="list-input"
+            id={index}
+            onClick={() => this.toggleItemCheck(item,index)}
+          />
+          <label className="list-input-strikethrough" htmlFor="item">{item.name}</label>
+        </>
+      )
+    } else {
+        return (
+          <>
+            <input 
+              type="checkbox"
+              name="itemChecked"
+              className="list-input"
+              id={index}
+              onClick={() => this.toggleItemCheck(item,index)}
+            />
+            <label className="list-input" htmlFor="item">{item.name}</label>
+          </>
+        )
+    }
+  }
+
+  /* Setting up this lifecycle method so that lists can be set within state. Faced previous issue where I tried to toggle checked, but since it was an object created outside
+     of state, it did not automatically re-render the page to show that the item was "checked off". Therefore, applying the same logic, but housing inside the lifecycle method
+     so that page can re-render when item is checked. 
+  */
+  componentDidMount() {
     const itemsArray = this.props.list.items.split('\n');
+    const itemsArrayWithObjects = [];
+
+    for(let i = 0; i < itemsArray.length; i++) {
+      itemsArrayWithObjects.push({
+        name: itemsArray[i],
+        checked: false
+      })
+    }
+
+    this.setState({
+      lists: [...itemsArrayWithObjects]
+    })
+  }
+
+  render() {
     return (
       <div className="list-entry">
         <h2 className="list-h2">{this.props.list.title}</h2>
 
-        {itemsArray.map((item, key) => {
+        {this.state.lists.map((item, key) => {
           return (
             <div className="items-array" key={key}>
-              <input 
-                type="checkbox"
-                name="item"
-                className="list-input"
-                id="item"
-              />
-              <label className="list-input" htmlFor="item">{item}</label>
+              {this.renderItemChecked(item, key)}
             </div>
           )
         })}
@@ -117,7 +173,7 @@ export default class List extends Component {
         </div>
         
         {this.state.editClicked && <GeneralEditForm 
-          key={this.props.list.id} // NOT SURE WHY KEY IS NOT UNIQUE
+          key={this.props.list.id}
           list={this.props.list}
           handleCancel={this.handleCancel}
         />}
