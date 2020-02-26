@@ -33,9 +33,9 @@ export default class List extends Component {
         /* The steps below trigger the page to re-render when a list is successfully deleted. Otherwise, you would need to refresh the page to see that the list was 
            deleted, which is not what is intended.
 
-           ADDITIONAL NOTES: this.setState for deleteClicked and yesClicked have to come BEFORE the "resetting" the generalLists in context. Otherwise, a warning is received
+           ADDITIONAL NOTES: setState for deleteClicked and yesClicked have to come BEFORE "resetting" the generalLists in context. Otherwise, a warning is received
            that setState is being called on an unmounted component (which can lead to performance issues). If we reset the generalLists with the removed list and call setState 
-           afterwards, the component has already been deleted/unmounted, which is why the setState needs to come before
+           afterwards, the component has already been deleted/unmounted, which is why setState needs to come before
         */
         const filteredGeneralList = this.context.generalLists.filter(list => list.id !== this.props.list.id);
         this.context.setGeneralLists(filteredGeneralList);
@@ -81,6 +81,26 @@ export default class List extends Component {
     })
   }
 
+  /* Setting up this lifecycle method so that lists can be set within state. Faced previous issue where I tried to toggle checked, but since it was an object created outside
+     of state, it did not automatically re-render the page to show that the item was "checked off". Therefore, applying the same logic, but housing inside the lifecycle method
+     so that page can re-render when item is checked. 
+  */
+  componentDidMount() {
+    const itemsArray = this.props.list.items.split('\n');
+    const itemsArrayWithObjects = [];
+
+    for(let i = 0; i < itemsArray.length; i++) {
+      itemsArrayWithObjects.push({
+        name: itemsArray[i],
+        checked: false
+      })
+    }
+
+    this.setState({
+      lists: [...itemsArrayWithObjects]
+    })
+  }
+
   toggleItemCheck = (item, index) => {
     item.checked = !item.checked;
 
@@ -120,26 +140,6 @@ export default class List extends Component {
           </>
         )
     }
-  }
-
-  /* Setting up this lifecycle method so that lists can be set within state. Faced previous issue where I tried to toggle checked, but since it was an object created outside
-     of state, it did not automatically re-render the page to show that the item was "checked off". Therefore, applying the same logic, but housing inside the lifecycle method
-     so that page can re-render when item is checked. 
-  */
-  componentDidMount() {
-    const itemsArray = this.props.list.items.split('\n');
-    const itemsArrayWithObjects = [];
-
-    for(let i = 0; i < itemsArray.length; i++) {
-      itemsArrayWithObjects.push({
-        name: itemsArray[i],
-        checked: false
-      })
-    }
-
-    this.setState({
-      lists: [...itemsArrayWithObjects]
-    })
   }
 
   render() {
