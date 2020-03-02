@@ -183,3 +183,10 @@ export default class List extends Component {
     )
   }
 }
+
+
+// NOTES: REFACTOR CODE TO NOT MUTATE STATE...
+// NOTES: DO NOT USE INDEX AS KEY OR ELSE IT WILL CHANGE THE ORDER OF THINGS....FIX THAT IN LIST.JS
+
+// FIX EDIT BUG
+// ALSO...LOOK INTO PASSING PROPS AS AN ID... WILL IT ADD IT AS A PROPERTY??? ID = 0; key={id++}, id={id++}
