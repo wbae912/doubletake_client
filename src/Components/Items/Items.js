@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
 import ItemContext from '../../Context/ItemContext';
 import TokenService from '../../services/token-service';
+import ItemForm from '../ItemForm/ItemForm';
 
 export default class Items extends Component {
   static contextType = ItemContext;
+
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+       addClicked: false
+    }
+  }
+  
 
   componentDidMount() {
     fetch('http://localhost:8000/api/generalItems/', {
@@ -39,11 +49,48 @@ export default class Items extends Component {
         </div>
       )}
   }
+
+  toggleButton = e => {
+    this.setState({
+      [e.target.name]: true
+    })
+  }
+
+  handleCancel = e => {
+    this.setState({
+      addClicked: false
+    })
+  }
+
+  renderItemForm = () => {
+    if(this.state.addClicked) {
+      return (
+        <div className="item-form-div">
+          <ItemForm 
+            handleCancel={this.handleCancel}
+          />
+        </div>
+      )
+    } else {
+      return (
+        <>
+          <button 
+            type="button" 
+            className="add-item-button"
+            name="addClicked"
+            onClick={this.toggleButton}
+          >
+          Add Item</button>
+        </>
+      )
+    }
+  }
   
   render() {
     return (
       <div className="items-div">
         {this.context.generalItemsForUser.map(item => this.renderItems(item))}
+        {this.renderItemForm()}
       </div>
     )
   }
