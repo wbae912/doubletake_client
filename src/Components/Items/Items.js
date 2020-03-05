@@ -14,7 +14,6 @@ export default class Items extends Component {
     }
   }
   
-
   componentDidMount() {
     fetch('http://localhost:8000/api/generalItems/', {
       headers: {
@@ -44,8 +43,21 @@ export default class Items extends Component {
             name="itemChecked"
             className="list-input"
             id={`item - ${item.id}`}
+            value={item.id}
           />
           <label className="list-input" htmlFor={`item - ${item.id}`}>{item.item}</label>
+          <button 
+            type="button" 
+            className="delete-item-button"
+            
+            /* Previous issue was that onClick event handler was firing when page rendered. The solution is to use .bind(), where the first argument we pass through is "this"
+               Bind makes it so that the method is triggered only when I click the item.
+
+               Reference this: https://stackoverflow.com/questions/32937365/button-onclick-triggered-when-init-in-react-application
+            */
+            onClick={this.deleteItem.bind(this, item.id)}
+          >
+          Delete Item</button>
         </div>
       )}
   }
@@ -85,6 +97,31 @@ export default class Items extends Component {
         </>
       )
     }
+  }
+
+  deleteItem = (itemId) => {
+    const listId = this.props.listId;
+
+    fetch(`http://localhost:8000/api/generalItems/${listId}/${itemId}`, {
+      method: 'DELETE',
+      headers: {
+        authorization: `bearer ${TokenService.getAuthToken()}`
+      }
+    })
+    .then(res => {
+      if(!res.ok) {
+        return res.json().then(err => Promise.reject(err));
+      }
+    })
+    .then(() => {
+      const generalItems = [...this.context.generalItemsForUser];
+
+      const filteredGeneralItems = generalItems.filter(item => item.id !== itemId);
+      this.context.setGeneralItems(filteredGeneralItems);
+    })
+    .catch(res => {
+      this.context.setError(res.error);
+    })
   }
   
   render() {
