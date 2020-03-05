@@ -10,8 +10,7 @@ export default class GeneralEditForm extends Component {
   
     this.state = {
        id: null,
-       title: '',
-       items: ''
+       title: ''
     }
   }
   
@@ -21,8 +20,7 @@ export default class GeneralEditForm extends Component {
       .then(data => {
         this.setState({
           id: data.id,
-          title: data.title,
-          items: data.items
+          title: data.title
         })
       })
   }
@@ -39,7 +37,8 @@ export default class GeneralEditForm extends Component {
     const editList = {...this.state};
     GeneralService.editList(this.props.list.id, editList)
       .then(() => {
-        const updatedLists = this.context.generalLists.map(list => (list.id === editList.id) ? editList : list);
+        const generalLists = [...this.context.generalLists];
+        const updatedLists = generalLists.map(list => (list.id === editList.id) ? editList : list);
         this.context.setGeneralLists(updatedLists);
 
         this.props.handleCancel(e)
@@ -62,16 +61,6 @@ export default class GeneralEditForm extends Component {
                 id="list-title"
                 required
                 value={this.state.title}
-                onChange={this.handleChange}
-              />
-              <label className="items-label" htmlFor="items-text">Items</label>
-              <p className="items-p">Please enter each item on a new line.</p>
-              <textarea 
-                name="items"
-                className="items-text"
-                id="items-text"
-                required
-                value={this.state.items}
                 onChange={this.handleChange}
               />
             </div>

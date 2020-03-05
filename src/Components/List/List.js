@@ -14,11 +14,9 @@ export default class List extends Component {
     this.state = {
        deleteClicked: false,
        editClicked: false,
-       lists: []
     }
   }
   
-  // DELETE methods
   toggleButton = e => {
     this.setState({
       [e.target.name]: true
@@ -78,7 +76,11 @@ export default class List extends Component {
     }
   }
 
-  // PATCH methods
+  handleCancel = e => {
+    this.setState({
+      editClicked: false
+    })
+  }
 
   render() {
     return (
@@ -102,9 +104,16 @@ export default class List extends Component {
             type="button"
             className="edit-button"
             name="editClicked"
+            onClick={this.toggleButton}
           >
           Edit</button>
         </div>
+
+        {this.state.editClicked && <GeneralEditForm 
+           key={this.props.list.id}
+           list={this.props.list}
+           handleCancel={this.handleCancel}
+         />}
 
         {this.renderDeleteConfirmMessage()}
       </div>
@@ -122,32 +131,6 @@ export default class List extends Component {
 
 
 
-
- // handleCancel = e => {
-  //   this.setState({
-  //     editClicked: false
-  //   })
-  // }
-
-  // /* Setting up this lifecycle method so that lists can be set within state. Faced previous issue where I tried to toggle checked, but since it was an object created outside
-  //    of state, it did not automatically re-render the page to show that the item was "checked off". Therefore, applying the same logic, but housing inside the lifecycle method
-  //    so that page can re-render when item is checked. 
-  // */
-  // componentDidMount() {
-  //   const itemsArray = this.props.list.items.split('\n');
-  //   const itemsArrayWithObjects = [];
-
-  //   for(let i = 0; i < itemsArray.length; i++) {
-  //     itemsArrayWithObjects.push({
-  //       name: itemsArray[i],
-  //       checked: false
-  //     })
-  //   }
-
-  //   this.setState({
-  //     lists: [...itemsArrayWithObjects]
-  //   })
-  // }
 
   // toggleItemCheck = (item, index) => {
   //   item.checked = !item.checked;
