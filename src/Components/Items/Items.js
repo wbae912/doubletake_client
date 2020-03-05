@@ -43,7 +43,6 @@ export default class Items extends Component {
             name="itemChecked"
             className="list-input"
             id={`item - ${item.id}`}
-            value={item.id}
           />
           <label className="list-input" htmlFor={`item - ${item.id}`}>{item.item}</label>
           <button 
@@ -54,6 +53,11 @@ export default class Items extends Component {
                Bind makes it so that the method is triggered only when I click the item.
 
                Reference this: https://stackoverflow.com/questions/32937365/button-onclick-triggered-when-init-in-react-application
+
+               Alternatively, it would work by using this: onClicl={() => this.deleteItem(item.id)}
+               This is because if we don't do this, we are performing a function call as the value, when instead we should be PASSING the function as a value
+
+               Reference this: https://stackoverflow.com/questions/33846682/react-onclick-function-fires-on-render
             */
             onClick={this.deleteItem.bind(this, item.id)}
           >
