@@ -7,6 +7,14 @@ import ListContext from '../../Context/ListContext';
 export default class GeneralCheckList extends Component {
   static contextType = ListContext;
 
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+       formClicked: false
+    }
+  }
+
   componentDidMount() {
     GeneralService.getLists()
       .then(data => {
@@ -15,6 +23,38 @@ export default class GeneralCheckList extends Component {
       .catch(res => {
         return this.context.setError(res.error);
       })
+  }
+
+  toggleButton = e => {
+    this.setState({
+      formClicked: true
+    })
+  }
+
+  handleCancel = e => {
+    this.setState({
+      formClicked: false
+    })
+  }
+
+  renderForm = () => {
+    if(!this.state.formClicked) {
+      return (
+        <div className="list-form-div">
+          <p className="list-form-p">Create New List</p>
+          <button
+            type="button" 
+            className="list-form-button"
+            onClick={this.toggleButton}
+          >
+          +</button>
+        </div>
+      )} else {
+        return (
+          <GeneralListForm 
+            handleCancel={this.handleCancel}
+          />
+        )}
   }
 
   render() {
@@ -29,7 +69,8 @@ export default class GeneralCheckList extends Component {
           />
         )}
 
-        <GeneralListForm />
+        {this.renderForm()}
+        
       </div>
     )
   }

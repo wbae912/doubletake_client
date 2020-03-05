@@ -9,14 +9,13 @@ export default class GeneralListForm extends Component {
     super(props)
   
     this.state = {
-       title: '',
-       items: ''
+       title: ''
     }
   }
   
   handleChange = e => {
     this.setState({
-      [e.target.name]: e.target.value
+      title: e.target.value
     })
   }
 
@@ -32,7 +31,7 @@ export default class GeneralListForm extends Component {
         
         /* This step is performed so that an immediate re-render is triggered when a new list is POSTed. Without this, the re-render and new list would not appear on page
            until a page refresh is performed. */
-        const newGeneralList = this.context.generalLists;
+        const newGeneralList = [...this.context.generalLists];
         newGeneralList.push(data);
         this.context.setGeneralLists(newGeneralList);
       })
@@ -42,7 +41,6 @@ export default class GeneralListForm extends Component {
     
     // Resets the values of the input fields after Submit
     e.target.title.value = '';
-    e.target.items.value = '';
   }
 
   render() {
@@ -63,7 +61,7 @@ export default class GeneralListForm extends Component {
               required
               onChange={this.handleChange}
             />
-            <label className="items-label" htmlFor="items-text">Items</label>
+            {/* <label className="items-label" htmlFor="items-text">Items</label>
             <p className="items-p">Please enter each item on a new line.</p>
             <textarea 
               name="items"
@@ -71,11 +69,16 @@ export default class GeneralListForm extends Component {
               id="items-text"
               required
               onChange={this.handleChange}
-            />
+            /> */}
           </div>
           <div className="general-buttons">
             <button type="submit" className="submit-button">Submit</button>
-            <button type="button" className="cancel-button">Cancel</button>
+            <button 
+              type="button" 
+              className="cancel-button"
+              onClick={this.props.handleCancel}
+            >
+            Cancel</button>
           </div>
         </form>
       </div>
