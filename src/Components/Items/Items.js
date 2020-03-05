@@ -68,6 +68,7 @@ export default class Items extends Component {
         <div className="item-form-div">
           <ItemForm 
             handleCancel={this.handleCancel}
+            listId={this.props.listId}
           />
         </div>
       )
