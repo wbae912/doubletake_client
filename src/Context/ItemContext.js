@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 const ItemContext = React.createContext({
-  generalItemsForList: [],
-  eventItemsForList: [],
+  generalItemsForUser: [],
+  eventItemsForUser: [],
   specificGeneralItem: {},
   specificEventItem: {},
   newGeneralItem: {},
@@ -17,8 +17,8 @@ export class ItemProvider extends Component {
     super(props)
   
     this.state = {
-      generalItemsForList: [],
-      eventItemsForList: [],
+      generalItemsForUser: [],
+      eventItemsForUser: [],
       specificGeneralItem: {},
       specificEventItem: {},
       newGeneralItem: {},
@@ -29,13 +29,13 @@ export class ItemProvider extends Component {
 
   setGeneralItems = data => {
     this.setState({
-      generalItemsForList: data
+      generalItemsForUser: data
     })
   }
 
   setEventItems = data => {
     this.setState({
-      eventItemsForList: data
+      eventItemsForUser: data
     })
   }
 
@@ -77,8 +77,8 @@ export class ItemProvider extends Component {
 
   render() {
     const value = {
-      generalItemsForList: this.state.generalItemsForList,
-      eventItemsForList: this.state.eventItemsForList,
+      generalItemsForUser: this.state.generalItemsForUser,
+      eventItemsForUser: this.state.eventItemsForUser,
       specificGeneralItem: this.state.specificEventItem,
       specificEventItem: this.state.specificEventItem,
       newGeneralItem: this.state.newGeneralItem,

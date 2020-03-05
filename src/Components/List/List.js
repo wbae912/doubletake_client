@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import GeneralService from '../../Utils/general-service';
 import ListContext from '../../Context/ListContext';
 import GeneralEditForm from '../GeneralEditForm/GeneralEditForm';
+import Items from '../Items/Items';
 import './List.css';
 
 export default class List extends Component {
@@ -185,8 +186,28 @@ export default class List extends Component {
 
   render() {
     return (
-      <div>
-        
+      <div className="list-entry">
+        <h2 className="list-h2">{this.props.list.title}</h2>
+
+        <Items 
+          userId={this.props.list.user_id}
+          listId={this.props.list.id}
+        />
+
+        <div className="list-buttons">
+          <button
+            type="button"
+            className="delete-button"
+            name="deleteClicked"
+          >
+          Delete</button>
+          <button
+            type="button"
+            className="edit-button"
+            name="editClicked"
+          >
+          Edit</button>
+        </div>
       </div>
     )
   }
