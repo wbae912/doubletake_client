@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import TokenService from '../../services/token-service';
 import ItemContext from '../../Context/ItemContext';
+import GeneralItemsService from '../../Utils/generalItems-service';
 
 export default class EditItemForm extends Component {
   static contextType = ItemContext;
@@ -18,15 +18,7 @@ export default class EditItemForm extends Component {
     const listId = this.props.listId;
     const itemId = this.props.itemId;
 
-    fetch(`http://localhost:8000/api/generalItems/${listId}/${itemId}`, {
-      headers: {
-        'authorization': `bearer ${TokenService.getAuthToken()}`
-      }
-    })
-    .then(res => (!res.ok)
-      ? res.json().then(err => Promise.reject(err))
-      : res.json()
-    )
+    GeneralItemsService.getSpecificItem(listId, itemId)
     .then(data => {
       this.setState({
         item: data.item,
@@ -54,19 +46,7 @@ export default class EditItemForm extends Component {
     const item = this.state.item;
     const editItem = {...this.state.itemObject, item};
 
-    fetch(`http://localhost:8000/api/generalItems/${listId}/${itemId}`, {
-      method: 'PATCH',
-      headers: {
-        'content-type': 'application/json',
-        'authorization': `bearer ${TokenService.getAuthToken()}`
-      },
-      body: JSON.stringify(editItem)
-    })
-    .then(res => {
-      if(!res.ok) {
-        return res.json().then(err => Promise.reject(err));
-      }
-    })
+    GeneralItemsService.editItem(listId, itemId, editItem)
     .then(() => {
       const generalItems = [...this.context.generalItemsForUser];
 

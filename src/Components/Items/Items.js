@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import ItemContext from '../../Context/ItemContext';
-import TokenService from '../../services/token-service';
 import ItemForm from '../ItemForm/ItemForm';
 import EditItemForm from '../EditItemForm/EditItemForm';
+import GeneralItemsService from '../../Utils/generalItems-service';
 import './Items.css'
 
 export default class Items extends Component {
@@ -18,17 +18,7 @@ export default class Items extends Component {
   }
   
   componentDidMount() {
-    fetch('http://localhost:8000/api/generalItems/', {
-      headers: {
-        'authorization': `bearer ${TokenService.getAuthToken()}`
-      }
-    })
-      .then(res => {
-        if(!res.ok) {
-          return res.json().then(err => Promise.reject(err));
-        }
-        return res.json();
-      })
+    GeneralItemsService.getItems()
       .then(data => {
         this.context.setGeneralItems(data);
       })
@@ -101,6 +91,12 @@ export default class Items extends Component {
     })
   }
 
+  handleAddClicked = e => {
+    this.setState({
+      addClicked: false
+    })
+  }
+
   handleCancel = e => {
     this.setState({
       [e.target.name]: false
@@ -112,7 +108,7 @@ export default class Items extends Component {
       return (
         <div className="item-form-div">
           <ItemForm 
-            handleCancel={this.handleCancel}
+            handleAddClicked={this.handleAddClicked}
             listId={this.props.listId}
           />
         </div>
@@ -135,17 +131,7 @@ export default class Items extends Component {
   deleteItem = (itemId) => {
     const listId = this.props.listId;
 
-    fetch(`http://localhost:8000/api/generalItems/${listId}/${itemId}`, {
-      method: 'DELETE',
-      headers: {
-        authorization: `bearer ${TokenService.getAuthToken()}`
-      }
-    })
-    .then(res => {
-      if(!res.ok) {
-        return res.json().then(err => Promise.reject(err));
-      }
-    })
+    GeneralItemsService.deleteItem(listId, itemId)
     .then(() => {
       const generalItems = [...this.context.generalItemsForUser];
 
@@ -201,19 +187,7 @@ export default class Items extends Component {
     const listId = item.list_id;
     const itemId = item.id;
     
-    fetch(`http://localhost:8000/api/generalItems/${listId}/${itemId}`, {
-      method: 'PATCH',
-      headers: {
-        'content-type': 'application/json',
-        'authorization': `bearer ${TokenService.getAuthToken()}`
-      },
-      body: JSON.stringify(editItem)
-    })
-    .then(res => {
-      if(!res.ok) {
-        return res.json().then(err => Promise.reject(err));
-      }
-    })
+    GeneralItemsService.editItem(listId, itemId, editItem)
     .then(() => {
       const generalItems = [...this.context.generalItemsForUser];
       

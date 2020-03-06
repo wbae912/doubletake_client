@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ItemContext from '../../Context/ItemContext';
-import TokenService from '../../services/token-service';
+import GeneralItemsService from '../../Utils/generalItems-service';
 
 export default class ItemForm extends Component {
   static contextType = ItemContext;
@@ -23,20 +23,7 @@ export default class ItemForm extends Component {
 
     const newItem = {...this.state};
 
-    fetch(`http://localhost:8000/api/generalItems/${this.props.listId}`, {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-        'authorization': `bearer ${TokenService.getAuthToken()}`
-      },
-      body: JSON.stringify(newItem)
-    })
-    .then(res => {
-      if(!res.ok) {
-        return res.json().then(err => Promise.reject(err));
-      }
-      return res.json();
-    })
+    GeneralItemsService.postItem(newItem, this.props.listId)
     .then(data => {
       this.context.setNewGeneralItem(data);
 
@@ -44,6 +31,7 @@ export default class ItemForm extends Component {
       newGeneralItems.push(data);
       this.context.setGeneralItems(newGeneralItems);
 
+      this.props.handleAddClicked(e);
     })
     .catch(res => {
       this.context.setError(res.error);
@@ -56,7 +44,7 @@ export default class ItemForm extends Component {
     return (
       <form 
         className="item-form"
-        onSubmit={(e) => {this.addItem(e); this.props.handleCancel(e)}}
+        onSubmit={(e) => this.addItem(e)}
       >
         <input 
           type="text" 
@@ -76,5 +64,3 @@ export default class ItemForm extends Component {
     )
   }
 }
-
-// NOTE: FIX ADD LIST OR ITEM BUG WHERE IT DOESN'T GET RID OF THE FORM AFTER SUBMIT!!!!

@@ -34,6 +34,8 @@ export default class GeneralListForm extends Component {
         const newGeneralList = [...this.context.generalLists];
         newGeneralList.push(data);
         this.context.setGeneralLists(newGeneralList);
+
+        this.props.handleCancel(e);
       })
       .catch(res => {
         this.context.setError(res.error);
@@ -76,7 +78,6 @@ export default class GeneralListForm extends Component {
             <button 
               type="button" 
               className="cancel-button"
-              onClick={this.props.handleCancel}
             >
             Cancel</button>
           </div>
