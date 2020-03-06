@@ -64,10 +64,11 @@ export default class ItemForm extends Component {
           name="item"
           onChange={this.handleChange}
         />
-        <button type="submit">+</button>
+        <button type="submit" className="add-button">+</button>
         <button 
           type="button" 
           className="cancel-button"
+          name="addClicked"
           onClick={this.props.handleCancel}
         >  
         X</button>

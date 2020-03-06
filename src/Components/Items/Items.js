@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ItemContext from '../../Context/ItemContext';
 import TokenService from '../../services/token-service';
 import ItemForm from '../ItemForm/ItemForm';
+import EditItemForm from '../EditItemForm/EditItemForm';
 
 export default class Items extends Component {
   static contextType = ItemContext;
@@ -10,7 +11,8 @@ export default class Items extends Component {
     super(props)
   
     this.state = {
-       addClicked: false
+       addClicked: false,
+       editClicked: null
     }
   }
   
@@ -45,6 +47,9 @@ export default class Items extends Component {
             id={`item - ${item.id}`}
           />
           <label className="list-input" htmlFor={`item - ${item.id}`}>{item.item}</label>
+  
+          {this.renderEditForm(item)}
+
           <button 
             type="button" 
             className="delete-item-button"
@@ -74,7 +79,7 @@ export default class Items extends Component {
 
   handleCancel = e => {
     this.setState({
-      addClicked: false
+      [e.target.name]: false
     })
   }
 
@@ -125,6 +130,42 @@ export default class Items extends Component {
     })
     .catch(res => {
       this.context.setError(res.error);
+    })
+  }
+
+  renderEditForm = (item) => {
+    if(this.state.editClicked === item.id) {
+      return (
+        <>
+          <EditItemForm 
+            listId={item.list_id}
+            itemId={item.id}
+            handleEditCancel={this.handleEditCancel}
+          />
+        </>
+      )} else {
+      return (
+        <>
+          <button
+            type="button"
+            className="edit-item-button"
+            name="editClicked"
+            onClick={() => {this.handleEditClicked(item.id);}}
+          >
+          Edit Item</button>
+      </>
+      )}
+  }
+
+  handleEditClicked = itemId => {
+    this.setState({
+      editClicked: itemId
+    })
+  }
+
+  handleEditCancel = e => {
+    this.setState({
+      editClicked: false
     })
   }
   
