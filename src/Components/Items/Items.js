@@ -59,7 +59,7 @@ export default class Items extends Component {
 
                Reference this: https://stackoverflow.com/questions/32937365/button-onclick-triggered-when-init-in-react-application
 
-               Alternatively, it would work by using this: onClicl={() => this.deleteItem(item.id)}
+               Alternatively, it would work by using this: onClick={() => this.deleteItem(item.id)}
                This is because if we don't do this, we are performing a function call as the value, when instead we should be PASSING the function as a value
 
                Reference this: https://stackoverflow.com/questions/33846682/react-onclick-function-fires-on-render
