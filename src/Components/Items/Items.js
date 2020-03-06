@@ -3,6 +3,7 @@ import ItemContext from '../../Context/ItemContext';
 import TokenService from '../../services/token-service';
 import ItemForm from '../ItemForm/ItemForm';
 import EditItemForm from '../EditItemForm/EditItemForm';
+import './Items.css'
 
 export default class Items extends Component {
   static contextType = ItemContext;
@@ -37,14 +38,15 @@ export default class Items extends Component {
   }
 
   renderItems = item => {
-    if(item.list_id === this.props.listId) {
-      return (
+    if(item.list_id === this.props.listId && !item.checked) {
+      return (  
         <div className="item-div" key={item.id}>
           <input
             type="checkbox"
             name="itemChecked"
             className="list-input"
             id={`item - ${item.id}`}
+            onClick={() => this.toggleChecked(item)}
           />
           <label className="list-input" htmlFor={`item - ${item.id}`}>{item.item}</label>
   
@@ -68,7 +70,29 @@ export default class Items extends Component {
           >
           Delete Item</button>
         </div>
-      )}
+      )} else if(item.list_id === this.props.listId && item.checked) {
+        return (
+          <div className="item-div" key={item.id}>
+            <input
+              type="checkbox"
+              name="itemChecked"
+              className="list-input"
+              id={`item - ${item.id}`}
+              onChange={() => this.toggleChecked(item)}
+              defaultChecked
+            />
+            <label className="list-input-strikethrough" htmlFor={`item - ${item.id}`}>{item.item}</label>
+    
+            {this.renderEditForm(item)}
+
+            <button 
+              type="button" 
+              className="delete-item-button"
+              onChange={this.deleteItem.bind(this, item.id)}
+            >
+            Delete Item</button>
+          </div>
+        )}
   }
 
   toggleButton = e => {
@@ -166,6 +190,38 @@ export default class Items extends Component {
   handleEditCancel = e => {
     this.setState({
       editClicked: false
+    })
+  }
+
+  toggleChecked = (item) => {
+    item.checked = !item.checked;
+
+    const editItem = {...item};
+
+    const listId = item.list_id;
+    const itemId = item.id;
+    
+    fetch(`http://localhost:8000/api/generalItems/${listId}/${itemId}`, {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json',
+        'authorization': `bearer ${TokenService.getAuthToken()}`
+      },
+      body: JSON.stringify(editItem)
+    })
+    .then(res => {
+      if(!res.ok) {
+        return res.json().then(err => Promise.reject(err));
+      }
+    })
+    .then(() => {
+      const generalItems = [...this.context.generalItemsForUser];
+      
+      const updatedGeneralItems = generalItems.map(item => (item.id === editItem.id) ? editItem : item);
+      this.context.setGeneralItems(updatedGeneralItems);
+    })
+    .catch(res => {
+      this.context.setError(res.error);
     })
   }
   
