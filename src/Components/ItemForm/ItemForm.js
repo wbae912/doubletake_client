@@ -76,3 +76,5 @@ export default class ItemForm extends Component {
     )
   }
 }
+
+// NOTE: FIX ADD LIST OR ITEM BUG WHERE IT DOESN'T GET RID OF THE FORM AFTER SUBMIT!!!!
