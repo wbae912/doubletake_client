@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import Login from '../../Components/Login/Login';
 import Register from '../../Components/Register/Register';
 import GeneralCheckList from '../../Components/GeneralCheckList/GeneralCheckList';
+import EventCheckList from '../../Components/EventCheckList/EventCheckList';
 import './App.css';
 
 function App() {
@@ -20,6 +21,10 @@ function App() {
         <Route 
           path={'/general'}
           component={GeneralCheckList}
+        />
+        <Route
+          path={'/event'}
+          component={EventCheckList}
         />
       </Switch>
     </div>

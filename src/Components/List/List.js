@@ -83,9 +83,17 @@ export default class List extends Component {
   }
 
   render() {
+    let date = new Date(this.props.list.date_of_event).toLocaleString();
+    
+    let dateArray = date.split(',');
     return (
       <div className="list-entry">
         <h2 className="list-h2">{this.props.list.title}</h2>
+
+        {(this.props.list.hasOwnProperty('date_of_event') 
+          ? <h3 className="list-date">{dateArray[0]}</h3>
+          : null
+        )}
 
         <Items 
           userId={this.props.list.user_id}

@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
-import GeneralService from '../../Utils/general-service';
+import EventService from '../../Utils/event-service';
 import ListContext from '../../Context/ListContext';
 
-export default class GeneralListForm extends Component {
+export default class EventListForm extends Component {
   static contextType = ListContext;
 
   constructor(props) {
     super(props)
   
     this.state = {
-       title: ''
+       title: '',
+       date_of_event: ''
     }
   }
   
   handleChange = e => {
     this.setState({
-      title: e.target.value
+      [e.target.name]: e.target.value
     })
   }
 
@@ -25,15 +26,15 @@ export default class GeneralListForm extends Component {
     // Spread operator to copy state into new object
     const newList = {...this.state};
 
-    GeneralService.postList(newList)
+    EventService.postList(newList)
       .then(data => {
-        this.context.setNewGeneralList(data);
+        this.context.setNewEventList(data);
         
         /* This step is performed so that an immediate re-render is triggered when a new list is POSTed. Without this, the re-render and new list would not appear on page
            until a page refresh is performed. */
-        const newGeneralList = [...this.context.generalLists];
-        newGeneralList.push(data);
-        this.context.setGeneralLists(newGeneralList);
+        const newEventList = [...this.context.eventLists];
+        newEventList.push(data);
+        this.context.setEventLists(newEventList);
 
         this.props.handleCancel(e);
       })
@@ -46,14 +47,15 @@ export default class GeneralListForm extends Component {
   }
 
   render() {
+    console.log(this.state)
     return (
-      <div className="general-form-div">
-        <h2 className="general-form-h2">Create List</h2>
+      <div className="event-form-div">
+        <h2 className="event-form-h2">Create List</h2>
         <form 
-          className="general-form"
+          className="event-form"
           onSubmit={this.handleSubmit}
         >
-          <div className="general-labels-inputs">
+          <div className="event-labels-inputs">
             <label className="title-label" htmlFor="list-title">List Name</label>
             <input 
               type="text"
@@ -63,8 +65,17 @@ export default class GeneralListForm extends Component {
               required
               onChange={this.handleChange}
             />
+            <label className="date-label" htmlFor="list-date">List Date</label>
+            <input 
+              type="date"
+              name="date_of_event"
+              className="list-date"
+              id="list-date"
+              required
+              onChange={this.handleChange}
+            />
           </div>
-          <div className="general-buttons">
+          <div className="event-buttons">
             <button type="submit" className="submit-button">Submit</button>
             <button 
               type="button" 
