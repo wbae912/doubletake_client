@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import GeneralService from '../../Utils/general-service';
+import EventService from '../../Utils/event-service';
 import ListContext from '../../Context/ListContext';
 import GeneralEditForm from '../GeneralEditForm/GeneralEditForm';
 import Items from '../Items/Items';
@@ -24,26 +25,42 @@ export default class List extends Component {
   }
   
   yesClicked = () => {
-    GeneralService.deleteList(this.props.list.id)
-      .then(() => {
-        this.setState({
-          deleteClicked: false
+    if(!this.props.list.date_of_event) {
+      GeneralService.deleteList(this.props.list.id)
+        .then(() => {
+          this.setState({
+            deleteClicked: false
+          })
+
+          /* The steps below trigger the page to re-render when a list is successfully deleted. Otherwise, you would need to refresh the page to see that the list was 
+            deleted, which is not what is intended.
+
+            ADDITIONAL NOTES: setState for deleteClicked and yesClicked have to come BEFORE "resetting" the generalLists in context. Otherwise, a warning is received
+            that setState is being called on an unmounted component (which can lead to performance issues). If we reset the generalLists with the removed list and call setState 
+            afterwards, the component has already been deleted/unmounted, which is why setState needs to come before
+          */
+          const generalLists = [...this.context.generalLists];
+          const filteredGeneralList = generalLists.filter(list => list.id !== this.props.list.id);
+          this.context.setGeneralLists(filteredGeneralList);
         })
+        .catch(res => {
+          this.context.setError(res.error);
+        })
+      } else {
+        EventService.deleteList(this.props.list.id)
+          .then(() => {
+            this.setState({
+              deleteClicked: false
+            })
 
-        /* The steps below trigger the page to re-render when a list is successfully deleted. Otherwise, you would need to refresh the page to see that the list was 
-           deleted, which is not what is intended.
-
-           ADDITIONAL NOTES: setState for deleteClicked and yesClicked have to come BEFORE "resetting" the generalLists in context. Otherwise, a warning is received
-           that setState is being called on an unmounted component (which can lead to performance issues). If we reset the generalLists with the removed list and call setState 
-           afterwards, the component has already been deleted/unmounted, which is why setState needs to come before
-        */
-        const generalLists = [...this.context.generalLists];
-        const filteredGeneralList = generalLists.filter(list => list.id !== this.props.list.id);
-        this.context.setGeneralLists(filteredGeneralList);
-      })
-      .catch(res => {
-        this.context.setError(res.error);
-      })
+            const eventLists = [...this.context.eventLists];
+            const filteredEventList = eventLists.filter(list => list.id !== this.props.list.id);
+            this.context.setEventLists(filteredEventList);
+          })
+          .catch(res => {
+            this.context.setError(res.error);
+          })
+    }
   }
 
   noClicked = () => {

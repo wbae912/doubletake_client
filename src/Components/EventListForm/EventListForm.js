@@ -47,7 +47,6 @@ export default class EventListForm extends Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <div className="event-form-div">
         <h2 className="event-form-h2">Create List</h2>
@@ -80,6 +79,7 @@ export default class EventListForm extends Component {
             <button 
               type="button" 
               className="cancel-button"
+              onClick={this.props.handleCancel}
             >
             Cancel</button>
           </div>
