@@ -3,6 +3,7 @@ import GeneralService from '../../Utils/general-service';
 import EventService from '../../Utils/event-service';
 import ListContext from '../../Context/ListContext';
 import GeneralEditForm from '../GeneralEditForm/GeneralEditForm';
+import EventEditForm from '../EventEditForm/EventEditForm';
 import Items from '../Items/Items';
 import './List.css';
 
@@ -99,10 +100,28 @@ export default class List extends Component {
     })
   }
 
+  renderEditForm = () => {
+    if(this.state.editClicked && !this.props.list.date_of_event) {
+      return(
+        <GeneralEditForm 
+          key={this.props.list.id}
+          list={this.props.list}
+          handleCancel={this.handleCancel}
+        />
+      )} else if(this.state.editClicked && this.props.list.date_of_event) {
+        return (
+          <EventEditForm 
+            key={this.props.list.id}
+            list={this.props.list}
+            handleCancel={this.handleCancel}
+          />
+        )}
+  }
+
   render() {
     let date = new Date(this.props.list.date_of_event).toLocaleString();
-    
     let dateArray = date.split(',');
+
     return (
       <div className="list-entry">
         <h2 className="list-h2">{this.props.list.title}</h2>
@@ -134,11 +153,13 @@ export default class List extends Component {
           Edit</button>
         </div>
 
-        {this.state.editClicked && <GeneralEditForm 
+        {/* {this.state.editClicked && <GeneralEditForm 
            key={this.props.list.id}
            list={this.props.list}
            handleCancel={this.handleCancel}
-         />}
+         />} */}
+
+         {this.renderEditForm()}
 
         {this.renderDeleteConfirmMessage()}
       </div>
