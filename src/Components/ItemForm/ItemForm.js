@@ -40,7 +40,6 @@ class ItemForm extends Component {
         this.context.setError(res.error);
       })
     } else if(this.props.match.path === '/event') {
-      // POSTing to "Event Items" endpoint using (async/await) + (try/catch) for practice
       try {
         let newEventItem = await EventItemsService.postItem(newItem, this.props.listId);
         this.context.setNewEventItem(newEventItem);
@@ -51,7 +50,6 @@ class ItemForm extends Component {
 
         this.props.handleAddClicked(e);
       } catch(res) {
-        console.log(res);
         this.context.setError(res.error);
       }
     }

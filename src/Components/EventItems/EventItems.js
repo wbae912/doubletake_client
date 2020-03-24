@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ItemContext from '../../Context/ItemContext';
 import ItemForm from '../ItemForm/ItemForm';
-import EditItemForm from '../EditItemForm/EditItemForm';
+import EditEventItemForm from '../EditEventItemForm/EditEventItemForm';
 import EventItemsService from '../../Utils/eventItems-service';
 import './EventItems.css'
 
@@ -144,7 +144,7 @@ export default class EventItems extends Component {
     if(this.state.editClicked === item.id) {
       return (
         <>
-          <EditItemForm 
+          <EditEventItemForm 
             listId={item.list_id}
             itemId={item.id}
             handleEditCancel={this.handleEditCancel}
@@ -176,25 +176,23 @@ export default class EventItems extends Component {
     })
   }
 
-  // toggleChecked = (item) => {
-  //   item.checked = !item.checked;
+  toggleChecked = async item => {
+    item.checked = !item.checked;
+    const editItem = {...item};
 
-  //   const editItem = {...item};
+    const listId = item.list_id;
+    const itemId = item.id;
 
-  //   const listId = item.list_id;
-  //   const itemId = item.id;
-    
-  //   GeneralItemsService.editItem(listId, itemId, editItem)
-  //   .then(() => {
-  //     const generalItems = [...this.context.generalItemsForUser];
-      
-  //     const updatedGeneralItems = generalItems.map(item => (item.id === editItem.id) ? editItem : item);
-  //     this.context.setGeneralItems(updatedGeneralItems);
-  //   })
-  //   .catch(res => {
-  //     this.context.setError(res.error);
-  //   })
-  // }
+    try {
+      await EventItemsService.editItem(listId, itemId, editItem)
+
+      const eventItems = [...this.context.eventItemsForUser];
+      const updatedEventItems = eventItems.map(item => (item.id === editItem.id) ? editItem : item);
+      this.context.setEventItems(updatedEventItems);
+    } catch(res) {
+      this.context.setError(res.error);
+    }
+  }
   
   render() {
     return (
