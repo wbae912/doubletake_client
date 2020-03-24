@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import ItemContext from '../../Context/ItemContext';
 import ItemForm from '../ItemForm/ItemForm';
 import EditItemForm from '../EditItemForm/EditItemForm';
-import GeneralItemsService from '../../Utils/generalItems-service';
-import './Items.css'
+import EventItemsService from '../../Utils/eventItems-service';
+import './EventItems.css'
 
-export default class Items extends Component {
+export default class EventItems extends Component {
   static contextType = ItemContext;
 
   constructor(props) {
@@ -17,14 +17,13 @@ export default class Items extends Component {
     }
   }
   
-  componentDidMount() {
-    GeneralItemsService.getItems()
-      .then(data => {
-        this.context.setGeneralItems(data);
-      })
-      .catch(res => {
-        this.context.setError(res.error);
-      })
+  async componentDidMount() {
+    try {
+      let eventItems = await EventItemsService.getItems();
+      this.context.setEventItems(eventItems);
+    } catch(res) {
+      this.context.setError(res.error);
+    }
   }
 
   renderItems = item => {
@@ -55,7 +54,7 @@ export default class Items extends Component {
 
                Reference this: https://stackoverflow.com/questions/33846682/react-onclick-function-fires-on-render
             */
-            onClick={this.deleteItem.bind(this, item.id)}
+            // onClick={this.deleteItem.bind(this, item.id)}
           >
           Delete Item</button>
         </div>
@@ -77,7 +76,7 @@ export default class Items extends Component {
             <button 
               type="button" 
               className="delete-item-button"
-              onChange={this.deleteItem.bind(this, item.id)}
+              // onChange={this.deleteItem.bind(this, item.id)}
             >
             Delete Item</button>
           </div>
@@ -127,20 +126,20 @@ export default class Items extends Component {
     }
   }
 
-  deleteItem = (itemId) => {
-    const listId = this.props.listId;
+  // deleteItem = (itemId) => {
+  //   const listId = this.props.listId;
 
-    GeneralItemsService.deleteItem(listId, itemId)
-    .then(() => {
-      const generalItems = [...this.context.generalItemsForUser];
+  //   GeneralItemsService.deleteItem(listId, itemId)
+  //   .then(() => {
+  //     const generalItems = [...this.context.generalItemsForUser];
 
-      const filteredGeneralItems = generalItems.filter(item => item.id !== itemId);
-      this.context.setGeneralItems(filteredGeneralItems);
-    })
-    .catch(res => {
-      this.context.setError(res.error);
-    })
-  }
+  //     const filteredGeneralItems = generalItems.filter(item => item.id !== itemId);
+  //     this.context.setGeneralItems(filteredGeneralItems);
+  //   })
+  //   .catch(res => {
+  //     this.context.setError(res.error);
+  //   })
+  // }
 
   renderEditForm = (item) => {
     if(this.state.editClicked === item.id) {
@@ -178,30 +177,30 @@ export default class Items extends Component {
     })
   }
 
-  toggleChecked = (item) => {
-    item.checked = !item.checked;
+  // toggleChecked = (item) => {
+  //   item.checked = !item.checked;
 
-    const editItem = {...item};
+  //   const editItem = {...item};
 
-    const listId = item.list_id;
-    const itemId = item.id;
+  //   const listId = item.list_id;
+  //   const itemId = item.id;
     
-    GeneralItemsService.editItem(listId, itemId, editItem)
-    .then(() => {
-      const generalItems = [...this.context.generalItemsForUser];
+  //   GeneralItemsService.editItem(listId, itemId, editItem)
+  //   .then(() => {
+  //     const generalItems = [...this.context.generalItemsForUser];
       
-      const updatedGeneralItems = generalItems.map(item => (item.id === editItem.id) ? editItem : item);
-      this.context.setGeneralItems(updatedGeneralItems);
-    })
-    .catch(res => {
-      this.context.setError(res.error);
-    })
-  }
+  //     const updatedGeneralItems = generalItems.map(item => (item.id === editItem.id) ? editItem : item);
+  //     this.context.setGeneralItems(updatedGeneralItems);
+  //   })
+  //   .catch(res => {
+  //     this.context.setError(res.error);
+  //   })
+  // }
   
   render() {
     return (
       <div className="items-div">
-        {this.context.generalItemsForUser.map(item => this.renderItems(item))}
+        {this.context.eventItemsForUser.map(item => this.renderItems(item))}
         {this.renderItemForm()}
       </div>
     )

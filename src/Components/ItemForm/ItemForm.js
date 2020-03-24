@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import ItemContext from '../../Context/ItemContext';
 import GeneralItemsService from '../../Utils/generalItems-service';
+import EventItemsService from '../../Utils/eventItems-service';
 
-export default class ItemForm extends Component {
+class ItemForm extends Component {
   static contextType = ItemContext;
   constructor(props) {
     super(props)
@@ -18,26 +20,42 @@ export default class ItemForm extends Component {
     })
   }
 
-  addItem = e => {
+  addItem = async e => {
     e.preventDefault();
 
     const newItem = {...this.state};
 
-    GeneralItemsService.postItem(newItem, this.props.listId)
-    .then(data => {
-      this.context.setNewGeneralItem(data);
+    if(this.props.match.path === '/general') {
+      GeneralItemsService.postItem(newItem, this.props.listId)
+      .then(data => {
+        this.context.setNewGeneralItem(data);
 
-      const newGeneralItems = [...this.context.generalItemsForUser];
-      newGeneralItems.push(data);
-      this.context.setGeneralItems(newGeneralItems);
+        const newGeneralItems = [...this.context.generalItemsForUser];
+        newGeneralItems.push(data);
+        this.context.setGeneralItems(newGeneralItems);
 
-      this.props.handleAddClicked(e);
-    })
-    .catch(res => {
-      this.context.setError(res.error);
-    })
+        this.props.handleAddClicked(e);
+      })
+      .catch(res => {
+        this.context.setError(res.error);
+      })
+    } else if(this.props.match.path === '/event') {
+      // POSTing to Event Items using (async/await) + (try/catch) for practice
+      try {
+        let newEventItem = await EventItemsService.postItem(newItem, this.props.listId);
+        this.context.setNewEventItem(newEventItem);
 
-    e.target.item.value = '';
+        const newEventItems = [...this.context.eventItemsForUser];
+        newEventItems.push(newEventItem);
+        this.context.setEventItems(newEventItems);
+
+        this.props.handleAddClicked(e);
+      } catch(res) {
+        console.log(res);
+        this.context.setError(res.error);
+      }
+    }
+    // e.target.item.value = '';
   }
     
   render() {
@@ -64,3 +82,5 @@ export default class ItemForm extends Component {
     )
   }
 }
+
+export default withRouter(ItemForm);

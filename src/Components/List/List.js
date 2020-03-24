@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import GeneralService from '../../Utils/general-service';
 import EventService from '../../Utils/event-service';
 import ListContext from '../../Context/ListContext';
 import GeneralEditForm from '../GeneralEditForm/GeneralEditForm';
 import EventEditForm from '../EventEditForm/EventEditForm';
 import Items from '../Items/Items';
+import EventItems from '../EventItems/EventItems';
 import './List.css';
 
-export default class List extends Component {
+class List extends Component {
   static contextType = ListContext;
   
   constructor(props) {
@@ -118,6 +120,24 @@ export default class List extends Component {
         )}
   }
 
+  renderItems = () => {
+    if(this.props.match.path === '/general') {
+      return (
+        <Items 
+          userId={this.props.list.user_id}
+          listId={this.props.list.id}
+        />
+      )
+    } else if(this.props.match.path === '/event') {
+      return (
+        <EventItems 
+          userId={this.props.list.user_id}
+          listId={this.props.list.id}
+        />
+      )
+    }
+  }
+
   render() {
     let date = new Date(this.props.list.date_of_event).toLocaleString();
     let dateArray = date.split(',');
@@ -131,10 +151,7 @@ export default class List extends Component {
           : null
         )}
 
-        <Items 
-          userId={this.props.list.user_id}
-          listId={this.props.list.id}
-        />
+        {this.renderItems()}
 
         <div className="list-buttons">
           <button
@@ -166,3 +183,5 @@ export default class List extends Component {
     )
   }
 }
+
+export default withRouter(List);
