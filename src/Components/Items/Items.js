@@ -77,7 +77,7 @@ export default class Items extends Component {
             <button 
               type="button" 
               className="delete-item-button"
-              onChange={this.deleteItem.bind(this, item.id)}
+              onClick={this.deleteItem.bind(this, item.id)}
             >
             Delete Item</button>
           </div>

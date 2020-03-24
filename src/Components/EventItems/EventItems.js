@@ -54,7 +54,7 @@ export default class EventItems extends Component {
 
                Reference this: https://stackoverflow.com/questions/33846682/react-onclick-function-fires-on-render
             */
-            // onClick={this.deleteItem.bind(this, item.id)}
+            onClick={this.deleteItem.bind(this, item.id)}
           >
           Delete Item</button>
         </div>
@@ -76,7 +76,7 @@ export default class EventItems extends Component {
             <button 
               type="button" 
               className="delete-item-button"
-              // onChange={this.deleteItem.bind(this, item.id)}
+              onClick={this.deleteItem.bind(this, item.id)}
             >
             Delete Item</button>
           </div>
@@ -126,20 +126,19 @@ export default class EventItems extends Component {
     }
   }
 
-  // deleteItem = (itemId) => {
-  //   const listId = this.props.listId;
+  deleteItem = async itemId => {
+    const listId = this.props.listId;
 
-  //   GeneralItemsService.deleteItem(listId, itemId)
-  //   .then(() => {
-  //     const generalItems = [...this.context.generalItemsForUser];
+    try {
+      await EventItemsService.deleteItem(listId, itemId);
 
-  //     const filteredGeneralItems = generalItems.filter(item => item.id !== itemId);
-  //     this.context.setGeneralItems(filteredGeneralItems);
-  //   })
-  //   .catch(res => {
-  //     this.context.setError(res.error);
-  //   })
-  // }
+      const eventItems = [...this.context.eventItemsForUser];
+      const filteredEventItems = eventItems.filter(item => item.id !== itemId);
+      this.context.setEventItems(filteredEventItems);
+    } catch(res) {
+      this.context.setError(res.error);
+    }
+  }
 
   renderEditForm = (item) => {
     if(this.state.editClicked === item.id) {
