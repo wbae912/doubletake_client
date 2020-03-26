@@ -13,8 +13,7 @@ export default class Items extends Component {
   
     this.state = {
        addClicked: false,
-       editClicked: null,
-       generalItems: []
+       editClicked: null
     }
   }
   
@@ -210,6 +209,7 @@ export default class Items extends Component {
     })
   }
 
+  // This was the "ref" created in List component so that it could access the following method in child (Items) component. In List component, this refers to (this.child.current.updateGeneralItems)
   updateGeneralItems = (items) => {
     this.context.setGeneralItems(items);
   }

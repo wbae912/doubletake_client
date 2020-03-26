@@ -35,7 +35,7 @@ export default class EventItems extends Component {
           <input
             type="checkbox"
             name="itemChecked"
-            className="list-input"
+            className={`list-input_e${this.props.listId}`}
             id={`item - ${item.id}`}
             onClick={() => this.toggleChecked(item)}
           />
@@ -66,7 +66,7 @@ export default class EventItems extends Component {
             <input
               type="checkbox"
               name="itemChecked"
-              className="list-input"
+              className={`list-input_e${this.props.listId}`}
               id={`item - ${item.id}`}
               onChange={() => this.toggleChecked(item)}
               defaultChecked
@@ -200,6 +200,11 @@ export default class EventItems extends Component {
     } catch(res) {
       this.context.setError(res.error);
     }
+  }
+
+  // This was the "ref" created in List component so that it could access the following method in child (Items) component. In List component, this refers to (this.child.current.updateEventItems)
+  updateEventItems = (items) => {
+    this.context.setEventItems(items);
   }
   
   render() {

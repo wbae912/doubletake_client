@@ -8,6 +8,7 @@ import EventEditForm from '../EventEditForm/EventEditForm';
 import Items from '../Items/Items';
 import EventItems from '../EventItems/EventItems';
 import GeneralItemsService from '../../Utils/generalItems-service';
+import EventItemsService from '../../Utils/eventItems-service';
 import './List.css';
 
 class List extends Component {
@@ -19,11 +20,10 @@ class List extends Component {
     this.state = {
        deleteClicked: false,
        editClicked: false,
-       // Added these two in for branch
        generalItems: [],
        eventItems: []
     }
-    // Added for branch in order to use a method in child component...Bad design but good to know/practice
+    // "ref" was created in order to access methods from child components (Items + EventItems). Typically, not best practice/design, but good to know/practice.
     this.child = React.createRef();
   }
   
@@ -132,10 +132,9 @@ class List extends Component {
         <Items 
           userId={this.props.list.user_id}
           listId={this.props.list.id}
-          // Added for branch
+          // Created this callback method and passed down to child component. Child will then "call" the callback prop to pass data from child to parent.
           callbackFromParent={this.callbackGeneralItems}
           ref={this.child}
-          generalItems={this.state.generalItems}
         />
       )
     } else if(this.props.match.path === '/event') {
@@ -143,28 +142,26 @@ class List extends Component {
         <EventItems 
           userId={this.props.list.user_id}
           listId={this.props.list.id}
-          // Added for branch
+          // Created this callback method and passed down to child component. Child will then "call" the callback prop to pass data from child to parent.
           callbackFromParent={this.callbackEventItems}
+          ref={this.child}
         />
       )
     }
   }
 
-  // Added for branch. Useful method to get data from child to parent, is by having a callback method passed down as a prop and child to send data by calling the prop method
   callbackGeneralItems = (generalItems) => {
     this.setState({
       generalItems
     })
   }
 
-  // Added for branch. Useful method to get data from child to parent, is by having a callback method passed down as a prop and child to send data by calling the prop method
   callbackEventItems = (eventItems) => {
     this.setState({
       eventItems
     })
   }
 
-  // Added to change revert all items in a list to "unchecked"
   resetItems = (listId) => {
     if(this.props.match.path === '/general') {
       const generalItems = [...this.state.generalItems];
@@ -186,6 +183,26 @@ class List extends Component {
         this.child.current.updateGeneralItems(generalItems);
         this.revertCheckboxOnDOM(listId);
       });
+    } else if(this.props.match.path === '/event') {
+      const eventItems = [...this.state.eventItems];
+
+      const revertList = eventItems.filter(item => item.list_id === listId);
+
+      revertList.map(async item => {
+        item.checked = false;
+
+        await EventItemsService.editItem(listId, item.id, item);
+
+        for(let i = 0; i < eventItems.length; i++) {
+          for(let j = 0; j < revertList.length; j++) {
+            if(eventItems[i].id === revertList[j].id) {
+              eventItems[i] = revertList[j];
+            }
+          }
+        }
+        this.child.current.updateEventItems(eventItems);
+        this.revertCheckboxOnDOM(listId);
+      })
     }
   }
 
@@ -193,10 +210,19 @@ class List extends Component {
   // Previously, resetItems would work and un-strikethrough all items in a list, but the checkboxes would not uncheck because the component did not re-render
   // Therefore, this method is implemented to ensure that the checkboxes are unchecked as well after the reset button is clicked
   revertCheckboxOnDOM = (listId) => {
-    let checkboxes = document.getElementsByClassName(`list-input_g${listId}`);
-    for(let i = 0; i < checkboxes.length; i++) {
-      if(checkboxes[i].type === 'checkbox') {
-        checkboxes[i].checked = false;
+    if(this.props.match.path === '/general') {
+      let checkboxes = document.getElementsByClassName(`list-input_g${listId}`);
+      for(let i = 0; i < checkboxes.length; i++) {
+        if(checkboxes[i].type === 'checkbox') {
+          checkboxes[i].checked = false;
+        }
+      }
+    } else if(this.props.match.path === '/event') {
+      let checkboxes = document.getElementsByClassName(`list-input_e${listId}`);
+      for(let i = 0; i < checkboxes.length; i++) {
+        if(checkboxes[i].type === 'checkbox') {
+          checkboxes[i].checked = false;
+        }
       }
     }
   }
