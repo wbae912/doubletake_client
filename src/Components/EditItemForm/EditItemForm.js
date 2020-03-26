@@ -52,6 +52,8 @@ export default class EditItemForm extends Component {
 
       const updatedGeneralItems = generalItems.map(item => (item.id === editItem.id) ? editItem : item);
       this.context.setGeneralItems(updatedGeneralItems);
+      // Callback method sent from "List" component. This is a trick for Child components to send generalItems to Parent component...Needs to be used on all HTTP requests
+      this.props.callbackFromParent(updatedGeneralItems);
 
       this.props.handleEditCancel(e);
     })

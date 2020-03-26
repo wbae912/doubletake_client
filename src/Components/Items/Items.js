@@ -13,7 +13,8 @@ export default class Items extends Component {
   
     this.state = {
        addClicked: false,
-       editClicked: null
+       editClicked: null,
+       generalItems: []
     }
   }
   
@@ -21,6 +22,11 @@ export default class Items extends Component {
     GeneralItemsService.getItems()
       .then(data => {
         this.context.setGeneralItems(data);
+        this.setState({
+          generalItems: data
+        })
+        // Callback method sent from "List" component. This is a trick for Child components to send generalItems to Parent component...Needs to be used on all HTTP requests
+        this.props.callbackFromParent(data);
       })
       .catch(res => {
         this.context.setError(res.error);
@@ -34,7 +40,7 @@ export default class Items extends Component {
           <input
             type="checkbox"
             name="itemChecked"
-            className="list-input"
+            className={`list-input_g${this.props.listId}`}
             id={`item - ${item.id}`}
             onClick={() => this.toggleChecked(item)}
           />
@@ -65,7 +71,7 @@ export default class Items extends Component {
             <input
               type="checkbox"
               name="itemChecked"
-              className="list-input"
+              className={`list-input_g${this.props.listId}`}
               id={`item - ${item.id}`}
               onChange={() => this.toggleChecked(item)}
               defaultChecked
@@ -109,6 +115,7 @@ export default class Items extends Component {
           <ItemForm 
             handleAddClicked={this.handleAddClicked}
             listId={this.props.listId}
+            callbackFromParent={this.props.callbackFromParent}
           />
         </div>
       )
@@ -136,6 +143,8 @@ export default class Items extends Component {
 
       const filteredGeneralItems = generalItems.filter(item => item.id !== itemId);
       this.context.setGeneralItems(filteredGeneralItems);
+      // Callback method sent from "List" component. This is a trick for Child components to send generalItems to Parent component...Needs to be used on all HTTP requests
+      this.props.callbackFromParent(filteredGeneralItems);
     })
     .catch(res => {
       this.context.setError(res.error);
@@ -150,6 +159,7 @@ export default class Items extends Component {
             listId={item.list_id}
             itemId={item.id}
             handleEditCancel={this.handleEditCancel}
+            callbackFromParent={this.props.callbackFromParent}
           />
         </>
       )} else {
@@ -192,10 +202,16 @@ export default class Items extends Component {
       
       const updatedGeneralItems = generalItems.map(item => (item.id === editItem.id) ? editItem : item);
       this.context.setGeneralItems(updatedGeneralItems);
+      // Callback method sent from "List" component. This is a trick for Child components to send generalItems to Parent component...Needs to be used on all HTTP requests
+      this.props.callbackFromParent(updatedGeneralItems);
     })
     .catch(res => {
       this.context.setError(res.error);
     })
+  }
+
+  updateGeneralItems = (items) => {
+    this.context.setGeneralItems(items);
   }
   
   render() {

@@ -21,6 +21,8 @@ export default class EventItems extends Component {
     try {
       let eventItems = await EventItemsService.getItems();
       this.context.setEventItems(eventItems);
+      // Callback method sent from "List" component. This is a trick for Child components to send generalItems to Parent component...Needs to be used on all HTTP requests
+      this.props.callbackFromParent(eventItems);
     } catch(res) {
       this.context.setError(res.error);
     }
@@ -108,6 +110,7 @@ export default class EventItems extends Component {
           <ItemForm 
             handleAddClicked={this.handleAddClicked}
             listId={this.props.listId}
+            callbackFromParentEvent={this.props.callbackFromParent}
           />
         </div>
       )
@@ -135,6 +138,8 @@ export default class EventItems extends Component {
       const eventItems = [...this.context.eventItemsForUser];
       const filteredEventItems = eventItems.filter(item => item.id !== itemId);
       this.context.setEventItems(filteredEventItems);
+      // Callback method sent from "List" component. This is a trick for Child components to send generalItems to Parent component...Needs to be used on all HTTP requests
+      this.props.callbackFromParent(filteredEventItems);
     } catch(res) {
       this.context.setError(res.error);
     }
@@ -148,6 +153,7 @@ export default class EventItems extends Component {
             listId={item.list_id}
             itemId={item.id}
             handleEditCancel={this.handleEditCancel}
+            callbackFromParent={this.props.callbackFromParent}
           />
         </>
       )} else {
@@ -189,6 +195,8 @@ export default class EventItems extends Component {
       const eventItems = [...this.context.eventItemsForUser];
       const updatedEventItems = eventItems.map(item => (item.id === editItem.id) ? editItem : item);
       this.context.setEventItems(updatedEventItems);
+      // Callback method sent from "List" component. This is a trick for Child components to send generalItems to Parent component...Needs to be used on all HTTP requests
+      this.props.callbackFromParent(updatedEventItems);
     } catch(res) {
       this.context.setError(res.error);
     }

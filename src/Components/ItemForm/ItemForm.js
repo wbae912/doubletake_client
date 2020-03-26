@@ -33,6 +33,8 @@ class ItemForm extends Component {
         const newGeneralItems = [...this.context.generalItemsForUser];
         newGeneralItems.push(data);
         this.context.setGeneralItems(newGeneralItems);
+        // Callback method sent from "List" component. This is a trick for Child components to send generalItems to Parent component...Needs to be used on all HTTP requests
+        this.props.callbackFromParent(newGeneralItems);
 
         this.props.handleAddClicked(e);
       })
@@ -47,6 +49,8 @@ class ItemForm extends Component {
         const newEventItems = [...this.context.eventItemsForUser];
         newEventItems.push(newEventItem);
         this.context.setEventItems(newEventItems);
+        // Callback method sent from "List" component. This is a trick for Child components to send generalItems to Parent component...Needs to be used on all HTTP requests
+        this.props.callbackFromParentEvent(newEventItems);
 
         this.props.handleAddClicked(e);
       } catch(res) {
