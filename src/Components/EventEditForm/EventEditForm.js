@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import EventService from '../../Utils/event-service';
 import ListContext from '../../Context/ListContext';
+import TokenService from '../../services/token-service';
 
 export default class EventEditForm extends Component {
   static contextType = ListContext;
@@ -11,7 +12,13 @@ export default class EventEditForm extends Component {
     this.state = {
        id: null,
        title: '',
-       date_of_event: ''
+       date_of_event: '',
+       city: '',
+       state: '',
+       country: '',
+       weather_summary: '',
+       weather_icon: '',
+       temperature: null
     }
   }
   
@@ -24,7 +31,13 @@ export default class EventEditForm extends Component {
         this.setState({
           id: data.id,
           title: data.title,
-          date_of_event
+          date_of_event,
+          city: data.city,
+          state: data.state,
+          country: data.country,
+          weather_summary: data.weather_summary,
+          weather_icon: data.weather_icon,
+          temperature: data.temperature
         })
       })
   }
@@ -44,32 +57,56 @@ export default class EventEditForm extends Component {
   */
  convertDate = date => {
   let dateConvert = new Date(date).toISOString().split('T')[0];
-
   let dateArray = dateConvert.split('-');
-
   let newDateFormat = `${dateArray[1]}-${dateArray[2]}-${dateArray[0]}`;
-
   return newDateFormat;
 }
 
   handleSubmit = e => {
     e.preventDefault();
 
-    let date_of_event = this.convertDate(this.state.date_of_event);
+    const city = this.state.city;
+    const state = this.state.state;
+    const country = this.state.country;
 
-    const editList = {...this.state, date_of_event};
-    EventService.editList(this.props.list.id, editList)
-      .then(() => {
-        const eventLists = [...this.context.eventLists];
-        const updatedLists = eventLists.map(list => (list.id === editList.id) ? editList : list);
-        this.context.setEventLists(updatedLists);
+    fetch(`http://localhost:8000/api/weather?city=${city}&state=${state}&country=${country}`, {
+      headers: {
+        'authorization': `bearer ${TokenService.getAuthToken()}`
+      }
+    })
+    .then(res => {
+      if(!res.ok) {
+        return res.json().then(err => Promise.reject(err));
+      }
+      return res.json();
+    })
+    .then(data => {
+      let weather_summary = data.currently.summary;
+      let weather_icon = data.currently.icon;
+      let temperature = data.currently.temperature;
 
-        this.props.handleCancel(e)
+      this.setState({
+        weather_summary,
+        weather_icon,
+        temperature
       })
-      .catch(res => {
-        this.context.setError(res.error);
-      })
-  }
+    
+      let date_of_event = this.convertDate(this.state.date_of_event);
+      const editList = {...this.state, date_of_event};
+
+      return EventService.editList(this.props.list.id, editList)
+        .then(() => {
+          const eventLists = [...this.context.eventLists];
+          const updatedLists = eventLists.map(list => (list.id === editList.id) ? editList : list);
+          this.context.setEventLists(updatedLists);
+
+          this.props.handleCancel(e)
+        })
+        .catch(res => {
+          this.context.setError(res.error);
+        })
+  })
+}
 
   render() {
     return (
@@ -96,6 +133,33 @@ export default class EventEditForm extends Component {
                 value={this.state.date_of_event}
                 onChange={this.handleChange}
               />
+              <label className="location-label" htmlFor="list-city">City</label>
+              <input 
+                type="text"
+                name="city"
+                className="list-city"
+                id="list-city"
+                value={this.state.city}
+                onChange={this.handleChange}
+              />
+              <label className="location-label" htmlFor="list-state">State</label>
+              <input 
+                type="text"
+                name="state"
+                className="list-state"
+                id="list-state"
+                value={this.state.state}
+                onChange={this.handleChange}
+              />
+              <label className="location-label" htmlFor="list-country">Country</label>
+              <input 
+                type="text"
+                name="country"
+                className="list-country"
+                id="list-country"
+                value={this.state.country}
+                onChange={this.handleChange}
+              />
             </div>
             <div className="event-buttons">
               <button type="submit" className="submit-button">Submit</button>
@@ -106,3 +170,23 @@ export default class EventEditForm extends Component {
     )
   }
 }
+
+
+// handleSubmit = e => {
+//   e.preventDefault();
+
+//   let date_of_event = this.convertDate(this.state.date_of_event);
+
+//   const editList = {...this.state, date_of_event};
+//   EventService.editList(this.props.list.id, editList)
+//     .then(() => {
+//       const eventLists = [...this.context.eventLists];
+//       const updatedLists = eventLists.map(list => (list.id === editList.id) ? editList : list);
+//       this.context.setEventLists(updatedLists);
+
+//       this.props.handleCancel(e)
+//     })
+//     .catch(res => {
+//       this.context.setError(res.error);
+//     })
+// }

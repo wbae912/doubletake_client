@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import EventService from '../../Utils/event-service';
 import ListContext from '../../Context/ListContext';
+import TokenService from '../../services/token-service';
 
 export default class EventListForm extends Component {
   static contextType = ListContext;
@@ -10,7 +11,13 @@ export default class EventListForm extends Component {
   
     this.state = {
        title: '',
-       date_of_event: ''
+       date_of_event: '',
+       city: '',
+       state: '',
+       country: '',
+       weather_summary: '',
+       weather_icon: '',
+       temperature: null
     }
   }
   
@@ -23,25 +30,51 @@ export default class EventListForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    // Spread operator to copy state into new object
-    const newList = {...this.state};
+    const city = this.state.city;
+    const state = this.state.state;
+    const country = this.state.country;
 
-    EventService.postList(newList)
-      .then(data => {
-        this.context.setNewEventList(data);
-        
-        /* This step is performed so that an immediate re-render is triggered when a new list is POSTed. Without this, the re-render and new list would not appear on page
+    fetch(`http://localhost:8000/api/weather?city=${city}&state=${state}&country=${country}`, {
+      headers: {
+        'authorization': `bearer ${TokenService.getAuthToken()}`
+      }
+    })
+    .then(res => {
+      if(!res.ok) {
+        return res.json().then(err => Promise.reject(err));
+      }
+      return res.json();
+    })
+    .then(data => {
+      let weather_summary = data.currently.summary;
+      let weather_icon = data.currently.icon;
+      let temperature = data.currently.temperature;
+
+      this.setState({
+        weather_summary,
+        weather_icon,
+        temperature
+      })
+
+      const newList = {...this.state};
+      // Chained another async HTTP request (POST) to /event endpoint in server. This is chained after the initial GET request to /weather endpoint
+      // Order matters so that the GET request can retrieve us the weather data that will be POSTed in our new event list
+      return EventService.postList(newList)
+        .then(data => {
+          this.context.setNewEventList(data);
+
+          /* This step is performed so that an immediate re-render is triggered when a new list is POSTed. Without this, the re-render and new list would not appear on page
            until a page refresh is performed. */
-        const newEventList = [...this.context.eventLists];
-        newEventList.push(data);
-        this.context.setEventLists(newEventList);
+          const newEventList = [...this.context.eventLists];
+          newEventList.push(data);
+          this.context.setEventLists(newEventList);
 
-        this.props.handleCancel(e);
-      })
-      .catch(res => {
-        this.context.setError(res.error);
-      })
-    
+          this.props.handleCancel(e);
+        })
+    })
+    .catch(res => {
+      this.context.setError(res.error);
+    })
     // Resets the values of the input fields after Submit
     e.target.title.value = '';
   }
@@ -71,6 +104,30 @@ export default class EventListForm extends Component {
               className="list-date"
               id="list-date"
               required
+              onChange={this.handleChange}
+            />
+            <label className="location-label" htmlFor="list-city">City</label>
+            <input 
+              type="text"
+              name="city"
+              className="list-city"
+              id="list-city"
+              onChange={this.handleChange}
+            />
+            <label className="location-label" htmlFor="list-state">State</label>
+            <input 
+              type="text"
+              name="state"
+              className="list-state"
+              id="list-state"
+              onChange={this.handleChange}
+            />
+            <label className="location-label" htmlFor="list-country">Country</label>
+            <input 
+              type="text"
+              name="country"
+              className="list-country"
+              id="list-country"
               onChange={this.handleChange}
             />
           </div>
