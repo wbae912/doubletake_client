@@ -12,16 +12,14 @@ export default class Weather extends Component {
        weather_main: '',
        weather_description: '',
        weather_icon: '',
-       temperature: null
+       temperature: null,
+       fahrenheitDisplay: true,
+       celsiusDisplay: false
     }
   }
   
   componentDidMount() {
-    let city = this.props.list.city;
-    let state = this.props.list.state;
-    let country = this.props.list.country;
-
-    fetch(`http://localhost:8000/api/weather?city=${city}&state=${state}&country=${country}`, {
+    fetch(`http://localhost:8000/api/weather?city=${this.props.list.city}&state=${this.props.list.state}&country=${this.props.list.country}`, {
       headers: {
         'authorization': `bearer ${TokenService.getAuthToken()}`
       }
@@ -33,16 +31,55 @@ export default class Weather extends Component {
       return res.json();
     })
     .then(data => {
+      let temperature = data.main.temp;
+      temperature = temperature.toFixed(1);
+
       this.setState({
         weather_main: data.weather[0].main,
         weather_description: data.weather[0].description,
         weather_icon: data.weather[0].icon,
-        temperature: data.main.temp
+        temperature
       })
     })
     .catch(res => {
       this.context.setError(res.error);
     })
+  }
+
+  convertFahrenheit = temperature => {
+    if(this.state.celsiusDisplay) {
+      let fahrenheit = temperature * (9/5) + 32;
+      fahrenheit = fahrenheit.toFixed(1);
+
+      this.setState({
+        temperature: fahrenheit,
+        fahrenheitDisplay: true,
+        celsiusDisplay: false
+      })
+    }
+  }
+
+  convertCelsius = temperature => {
+    let celsius = (temperature - 32) * (5/9);
+    celsius = celsius.toFixed(1);
+    
+    this.setState({
+      temperature: celsius,
+      celsiusDisplay: true,
+      fahrenheitDisplay: false
+    })
+  }
+
+  renderTemperature = () => {
+    if(this.state.temperature && this.state.fahrenheitDisplay) {
+      return (
+        <p className="temperature-p">{this.state.temperature}&#176;F</p>
+      )
+    } else if(this.state.temperature && this.state.celsiusDisplay) {
+      return (
+        <p className="temperature-p">{this.state.temperature}&#176;C</p>
+      )
+    }
   }
   
   render() {
@@ -71,7 +108,16 @@ export default class Weather extends Component {
         <p className="weather-main-p">{this.state.weather_main}</p>
         <p className="weather-description-p">{this.state.weather_description}</p>
         <p className="weather-icon-p">{this.state.weather_icon}</p>
-        {this.state.temperature && <p className="temperature-p">{this.state.temperature}&#176;F</p>}
+        {this.renderTemperature()}
+
+        <button 
+          className="fahrenheit-button"
+          onClick={() => this.convertFahrenheit(this.state.temperature)}
+        >&#176;F</button>
+        <button 
+          className="celsius-button"
+          onClick={() => this.convertCelsius(this.state.temperature)}
+        >&#176;C</button>
       </div>
     )
   }
