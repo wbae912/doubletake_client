@@ -9,6 +9,7 @@ import Items from '../Items/Items';
 import EventItems from '../EventItems/EventItems';
 import GeneralItemsService from '../../Utils/generalItems-service';
 import EventItemsService from '../../Utils/eventItems-service';
+import Weather from '../Weather/Weather';
 import './List.css';
 
 class List extends Component {
@@ -239,6 +240,10 @@ class List extends Component {
           ? <h3 className="list-date">{dateArray[0]}</h3>
           : null
         )}
+
+        {this.props.list.hasOwnProperty('date_of_event') && <Weather 
+          list={this.props.list}
+        />}
 
         {this.renderItems()}
 

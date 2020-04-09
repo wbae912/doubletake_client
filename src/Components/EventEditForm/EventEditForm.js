@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import EventService from '../../Utils/event-service';
 import ListContext from '../../Context/ListContext';
-import TokenService from '../../services/token-service';
 
 export default class EventEditForm extends Component {
   static contextType = ListContext;
@@ -15,10 +14,7 @@ export default class EventEditForm extends Component {
        date_of_event: '',
        city: '',
        state: '',
-       country: '',
-       weather_summary: '',
-       weather_icon: '',
-       temperature: null
+       country: ''
     }
   }
   
@@ -34,10 +30,7 @@ export default class EventEditForm extends Component {
           date_of_event,
           city: data.city,
           state: data.state,
-          country: data.country,
-          weather_summary: data.weather_summary,
-          weather_icon: data.weather_icon,
-          temperature: data.temperature
+          country: data.country
         })
       })
   }
@@ -65,47 +58,20 @@ export default class EventEditForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    const city = this.state.city;
-    const state = this.state.state;
-    const country = this.state.country;
+    let date_of_event = this.convertDate(this.state.date_of_event);
+    const editList = {...this.state, date_of_event};
 
-    fetch(`http://localhost:8000/api/weather?city=${city}&state=${state}&country=${country}`, {
-      headers: {
-        'authorization': `bearer ${TokenService.getAuthToken()}`
-      }
+    EventService.editList(this.props.list.id, editList)
+    .then(() => {
+      const eventLists = [...this.context.eventLists];
+      const updatedLists = eventLists.map(list => (list.id === editList.id) ? editList : list);
+      this.context.setEventLists(updatedLists);
+
+      this.props.handleCancel(e)
     })
-    .then(res => {
-      if(!res.ok) {
-        return res.json().then(err => Promise.reject(err));
-      }
-      return res.json();
+    .catch(res => {
+      this.context.setError(res.error);
     })
-    .then(data => {
-      let weather_summary = data.currently.summary;
-      let weather_icon = data.currently.icon;
-      let temperature = data.currently.temperature;
-
-      this.setState({
-        weather_summary,
-        weather_icon,
-        temperature
-      })
-    
-      let date_of_event = this.convertDate(this.state.date_of_event);
-      const editList = {...this.state, date_of_event};
-
-      return EventService.editList(this.props.list.id, editList)
-        .then(() => {
-          const eventLists = [...this.context.eventLists];
-          const updatedLists = eventLists.map(list => (list.id === editList.id) ? editList : list);
-          this.context.setEventLists(updatedLists);
-
-          this.props.handleCancel(e)
-        })
-        .catch(res => {
-          this.context.setError(res.error);
-        })
-  })
 }
 
   render() {
