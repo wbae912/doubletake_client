@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import EventService from '../../Utils/event-service';
 import ListContext from '../../Context/ListContext';
-import TokenService from '../../services/token-service';
 
 export default class EventListForm extends Component {
   static contextType = ListContext;
@@ -14,10 +13,7 @@ export default class EventListForm extends Component {
        date_of_event: '',
        city: '',
        state: '',
-       country: '',
-       weather_summary: '',
-       weather_icon: '',
-       temperature: null
+       country: ''
     }
   }
   
@@ -30,47 +26,19 @@ export default class EventListForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    const city = this.state.city;
-    const state = this.state.state;
-    const country = this.state.country;
+    const newList = {...this.state};
 
-    fetch(`http://localhost:8000/api/weather?city=${city}&state=${state}&country=${country}`, {
-      headers: {
-        'authorization': `bearer ${TokenService.getAuthToken()}`
-      }
-    })
-    .then(res => {
-      if(!res.ok) {
-        return res.json().then(err => Promise.reject(err));
-      }
-      return res.json();
-    })
+    EventService.postList(newList)
     .then(data => {
-      let weather_summary = data.currently.summary;
-      let weather_icon = data.currently.icon;
-      let temperature = data.currently.temperature;
+      this.context.setNewEventList(data);
 
-      this.setState({
-        weather_summary,
-        weather_icon,
-        temperature
-      })
+      /* This step is performed so that an immediate re-render is triggered when a new list is POSTed. Without this, the re-render and new list would not appear on page
+        until a page refresh is performed. */
+      const newEventList = [...this.context.eventLists];
+      newEventList.push(data);
+      this.context.setEventLists(newEventList);
 
-      const newList = {...this.state};
-      // Chained another async HTTP request (POST) to /event endpoint in server. This is chained after the initial GET request to /weather endpoint
-      // Order matters so that the GET request can retrieve us the weather data that will be POSTed in our new event list
-      return EventService.postList(newList)
-        .then(data => {
-          this.context.setNewEventList(data);
-
-          /* This step is performed so that an immediate re-render is triggered when a new list is POSTed. Without this, the re-render and new list would not appear on page
-           until a page refresh is performed. */
-          const newEventList = [...this.context.eventLists];
-          newEventList.push(data);
-          this.context.setEventLists(newEventList);
-
-          this.props.handleCancel(e);
-        })
+      this.props.handleCancel(e);
     })
     .catch(res => {
       this.context.setError(res.error);

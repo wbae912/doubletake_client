@@ -270,17 +270,6 @@ export default class Items extends Component {
       this.context.setError(res.error);
     })
   }
-
-  // handleInputChange(event) {
-  //   const thisVehicleIndex = event.target.dataset.item
-  //   let vehicles = this.state.vehicles
-  //   let thisVehicle = vehicles[thisVehicleIndex]
-  //   // Handle your update thisVehicle, then...
-  //   vehicles[thisVehicleIndex] = thisVehicle
-  //   this.setState({
-  //     vehicles: vehicles
-  //   })
-  // }
   
   render() {
     return (
