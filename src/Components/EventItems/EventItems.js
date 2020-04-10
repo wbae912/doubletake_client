@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ItemContext from '../../Context/ItemContext';
 import ItemForm from '../ItemForm/ItemForm';
 import EditEventItemForm from '../EditEventItemForm/EditEventItemForm';
+import ItemQuantity from '../ItemQuantity/ItemQuantity';
 import EventItemsService from '../../Utils/eventItems-service';
 import './EventItems.css'
 
@@ -40,6 +41,11 @@ export default class EventItems extends Component {
             onClick={() => this.toggleChecked(item)}
           />
           <label className="list-input" htmlFor={`item - ${item.id}`}>{item.item}</label>
+
+          <ItemQuantity 
+            item={item}
+            callbackFromParent={this.props.callbackFromParent} // CHECK IF THIS BELONGS HERE
+          />
   
           {this.renderEditForm(item)}
 
@@ -72,6 +78,11 @@ export default class EventItems extends Component {
               defaultChecked
             />
             <label className="list-input-strikethrough" htmlFor={`item - ${item.id}`}>{item.item}</label>
+
+            <ItemQuantity 
+              item={item}
+              callbackFromParent={this.props.callbackFromParent} // CHECK IF THIS BELONGS HERE
+            />
     
             {this.renderEditForm(item)}
 

@@ -110,14 +110,18 @@ export default class Weather extends Component {
         <p className="weather-icon-p">{this.state.weather_icon}</p>
         {this.renderTemperature()}
 
-        <button 
-          className="fahrenheit-button"
-          onClick={() => this.convertFahrenheit(this.state.temperature)}
-        >&#176;F</button>
-        <button 
-          className="celsius-button"
-          onClick={() => this.convertCelsius(this.state.temperature)}
-        >&#176;C</button>
+        {this.state.temperature &&
+          <> 
+            <button 
+              className="fahrenheit-button"
+              onClick={() => this.convertFahrenheit(this.state.temperature)}
+            >&#176;F</button>
+            <button 
+              className="celsius-button"
+              onClick={() => this.convertCelsius(this.state.temperature)}
+            >&#176;C</button>
+          </>
+        }
       </div>
     )
   }

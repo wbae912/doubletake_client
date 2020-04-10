@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ItemContext from '../../Context/ItemContext';
 import ItemForm from '../ItemForm/ItemForm';
 import EditItemForm from '../EditItemForm/EditItemForm';
+import ItemQuantity from '../ItemQuantity/ItemQuantity';
 import GeneralItemsService from '../../Utils/generalItems-service';
 import './Items.css'
 
@@ -13,7 +14,9 @@ export default class Items extends Component {
   
     this.state = {
        addClicked: false,
-       editClicked: null
+       editClicked: null,
+       generalItems: [],
+       quantity: null
     }
   }
   
@@ -44,6 +47,11 @@ export default class Items extends Component {
             onClick={() => this.toggleChecked(item)}
           />
           <label className="list-input" htmlFor={`item - ${item.id}`}>{item.item}</label>
+
+          <ItemQuantity 
+            item={item}
+            callbackFromParent={this.props.callbackFromParent} // CHECK IF THIS BELONGS HERE
+          />
   
           {this.renderEditForm(item)}
 
@@ -76,6 +84,11 @@ export default class Items extends Component {
               defaultChecked
             />
             <label className="list-input-strikethrough" htmlFor={`item - ${item.id}`}>{item.item}</label>
+
+            <ItemQuantity 
+              item={item}
+              callbackFromParent={this.props.callbackFromParent} // CHECK IF THIS BELONGS HERE
+            />
     
             {this.renderEditForm(item)}
 
@@ -213,6 +226,61 @@ export default class Items extends Component {
   updateGeneralItems = (items) => {
     this.context.setGeneralItems(items);
   }
+
+  decrementQuantity = item => {
+    item.quantity--;
+
+    const editItem = {...item};
+
+    const listId = item.list_id;
+    const itemId = item.id;
+
+    GeneralItemsService.editItem(listId, itemId, editItem)
+    .then(() => {
+      const generalItems = [...this.context.generalItemsForUser];
+      
+      const updatedGeneralItems = generalItems.map(item => (item.id === editItem.id) ? editItem : item);
+      this.context.setGeneralItems(updatedGeneralItems);
+      // Callback method sent from "List" component. This is a trick for Child components to send generalItems to Parent component...Needs to be used on all HTTP requests
+      this.props.callbackFromParent(updatedGeneralItems);
+    })
+    .catch(res => {
+      this.context.setError(res.error);
+    })
+  }
+
+  incrementQuantity = item => {
+    item.quantity++;
+
+    const editItem = {...item};
+
+    const listId = item.list_id;
+    const itemId = item.id;
+
+    GeneralItemsService.editItem(listId, itemId, editItem)
+    .then(() => {
+      const generalItems = [...this.context.generalItemsForUser];
+      
+      const updatedGeneralItems = generalItems.map(item => (item.id === editItem.id) ? editItem : item);
+      this.context.setGeneralItems(updatedGeneralItems);
+      // Callback method sent from "List" component. This is a trick for Child components to send generalItems to Parent component...Needs to be used on all HTTP requests
+      this.props.callbackFromParent(updatedGeneralItems);
+    })
+    .catch(res => {
+      this.context.setError(res.error);
+    })
+  }
+
+  // handleInputChange(event) {
+  //   const thisVehicleIndex = event.target.dataset.item
+  //   let vehicles = this.state.vehicles
+  //   let thisVehicle = vehicles[thisVehicleIndex]
+  //   // Handle your update thisVehicle, then...
+  //   vehicles[thisVehicleIndex] = thisVehicle
+  //   this.setState({
+  //     vehicles: vehicles
+  //   })
+  // }
   
   render() {
     return (
