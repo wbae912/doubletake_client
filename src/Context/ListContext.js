@@ -6,7 +6,9 @@ const ListContext = React.createContext({
   specificGeneralList: {}, // Response from GET request (':/id' endpoint)
   specificEventList: {}, // Response from GET request (':/id' endpoint) 
   newGeneralList: {}, // Response from POST request
-  newEventList: {}, // Response from POST request
+  newEventList: {}, // Response from POST request,
+  searchedGeneralLists: [],
+  searchedEventLists: [],
   error: null,
   setGeneralLists: () => {},
   setEventLists: () => {},
@@ -14,6 +16,8 @@ const ListContext = React.createContext({
   setSpecificEventList: () => {},
   setNewGeneralList: () => {},
   setNewEventList: () => {},
+  setSearchedGeneralLists: () => {},
+  setSearchedEventLists: () => {},
   setError: () => {},
   clearError: () => {}
 });
@@ -31,6 +35,8 @@ export class ListProvider extends Component {
        specificEventList: {}, // Response from GET request (':/id' endpoint)
        newGeneralList: {}, // Response from POST request
        newEventList: {}, // Response from POST request,
+       searchedGeneralLists: [],
+       searchedEventLists: [],
        error: null
     }
   }
@@ -71,6 +77,18 @@ export class ListProvider extends Component {
     })
   }
 
+  setSearchedGeneralLists = data => {
+    this.setState({
+      searchedGeneralLists: data
+    })
+  }
+
+  setSearchedEventLists = data => {
+    this.setState({
+      searchedEventLists: data
+    })
+  }
+
   setError = error => {
     this.setState({
       error
@@ -91,6 +109,8 @@ export class ListProvider extends Component {
       specificEventList: this.state.specificEventList,
       newGeneralList: this.state.newGeneralList,
       newEventList: this.state.newEventList,
+      searchedGeneralLists: this.state.searchedGeneralLists,
+      searchedEventLists: this.state.searchedEventLists,
       error: this.state.error,
       setGeneralLists: this.setGeneralLists,
       setEventLists: this.setEventLists,
@@ -98,6 +118,8 @@ export class ListProvider extends Component {
       setSpecificEventList: this.setSpecificEventList,
       setNewGeneralList: this.setNewGeneralList,
       setNewEventList: this.setNewEventList,
+      setSearchedGeneralLists: this.setSearchedGeneralLists,
+      setSearchedEventLists: this.setSearchedEventLists,
       setError: this.setError,
       clearError: this.clearError
     }

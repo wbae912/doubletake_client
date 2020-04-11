@@ -128,7 +128,7 @@ class List extends Component {
   }
 
   renderItems = () => {
-    if(this.props.match.path === '/general') {
+    if(this.props.match.path === '/general' || this.props.match.path === '/generalSearch') {
       return (
         <Items 
           userId={this.props.list.user_id}
@@ -138,7 +138,7 @@ class List extends Component {
           ref={this.child}
         />
       )
-    } else if(this.props.match.path === '/event') {
+    } else if(this.props.match.path === '/event' || this.props.match.path === '/eventSearch') {
       return (
         <EventItems 
           userId={this.props.list.user_id}
