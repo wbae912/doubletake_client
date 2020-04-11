@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import List from '../../Components/List/List';
 import EventListForm from '../../Components/EventListForm/EventListForm';
 import SearchBar from '../SearchBar/SearchBar';
@@ -58,11 +59,45 @@ export default class EventCheckList extends Component {
         )}
   }
 
+  renderLink = () => {
+    if(this.context.eventSearched) {
+      return (
+        <Link 
+          to="/event"
+          onClick={this.backToEventLists}  
+        >
+          <h4 className="search-h4">← Back to all lists</h4>
+        </Link>
+      )
+    }
+  }
+
+  backToEventLists = async () => {
+    try {
+      let eventLists = await EventService.getLists();
+      this.context.setEventLists(eventLists);
+      this.context.setEventSearchedToFalse();
+    } catch(res) {
+      this.context.setError(res.error);
+    }
+  }
+
+  renderNoResults = () => {
+    if(this.context.eventSearched && this.context.eventLists.length === 0) {
+      return (
+      <p className="no-results-p">No results found for '{this.context.searchTerm}'</p>
+      )
+    }
+  }
+
   render() {
     return (
       <div className="event-lists">
         <p>This will render the event lists on the page</p>
         <SearchBar />
+
+        {this.renderLink()}
+        {this.renderNoResults()}
         
         {this.context.eventLists.map(list => 
           <List 

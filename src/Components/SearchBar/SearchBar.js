@@ -23,7 +23,6 @@ class SearchBar extends Component {
   handleSubmit = e => {
     e.preventDefault();
     let listType = this.props.match.path.slice(1);
-    console.log(listType);
 
     fetch(`http://localhost:8000/api/search/${listType}?searchTerm=${this.state.searchTerm}`, {
       headers: {
@@ -37,13 +36,18 @@ class SearchBar extends Component {
         return res.json();
       })
       .then(data => {
-        if(this.props.match.path === '/general' || this.props.match.path === '/generalSearch') {
-          this.context.setSearchedGeneralLists(data);
-          this.props.history.push('/generalSearch');
-        } else if(this.props.match.path === '/event' || this.props.match.path === '/eventSearch') {
-          this.context.setSearchedEventLists(data);
-          this.props.history.push('/eventSearch');
+        if(this.props.match.path === '/general') {
+          this.context.setGeneralLists(data);
+          this.context.setGeneralSearchedToTrue();
+          this.context.setSearchTerm(this.state.searchTerm);
+        } else if(this.props.match.path === '/event') {
+          this.context.setEventLists(data);
+          this.context.setEventSearchedToTrue();
+          this.context.setSearchTerm(this.state.searchTerm);
         }
+        this.setState({
+          searchTerm: ''
+        })
       })
       .catch(res => {
         this.context.setError(res.error);

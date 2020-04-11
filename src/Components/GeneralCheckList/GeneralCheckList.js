@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import List from '../../Components/List/List';
 import GeneralListForm from '../../Components/GeneralListForm/GeneralListForm';
 import SearchBar from '../SearchBar/SearchBar';
@@ -58,11 +59,45 @@ export default class GeneralCheckList extends Component {
         )}
   }
 
+  renderLink = () => {
+    if(this.context.generalSearched) {
+      return (
+        <Link 
+          to="/general"
+          onClick={this.backToGeneralLists}  
+        >
+          <h4 className="search-h4">← Back to all lists</h4>
+        </Link>
+      )
+    }
+  }
+
+  backToGeneralLists = async () => {
+    try {
+      let generalLists = await GeneralService.getLists();
+      this.context.setGeneralLists(generalLists);
+      this.context.setGeneralSearchedToFalse();
+    } catch(res) {
+      this.context.setError(res.error);
+    }
+  }
+
+  renderNoResults = () => {
+    if(this.context.generalSearched && this.context.generalLists.length === 0) {
+      return (
+      <p className="no-results-p">No results found for '{this.context.searchTerm}'</p>
+      )
+    }
+  }
+
   render() {
     return (
       <div className="general-lists">
         <p>This will render the general lists on the page</p>
         <SearchBar />
+
+        {this.renderLink()}
+        {this.renderNoResults()}
 
         {this.context.generalLists.map(list => 
           <List 

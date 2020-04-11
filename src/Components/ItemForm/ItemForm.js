@@ -64,12 +64,14 @@ class ItemForm extends Component {
     return (
       <form 
         className="item-form"
+        autoComplete="off"
         onSubmit={(e) => this.addItem(e)}
       >
         <input 
           type="text" 
           className="input-item"
           name="item"
+          autoComplete="off"
           onChange={this.handleChange}
         />
         <button type="submit" className="add-button">+</button>

@@ -3,12 +3,13 @@ import React, { Component } from 'react';
 const ListContext = React.createContext({
   generalLists: [],
   eventLists: [],
-  specificGeneralList: {}, // Response from GET request (':/id' endpoint)
-  specificEventList: {}, // Response from GET request (':/id' endpoint) 
+  specificGeneralList: {}, // Response from GET request (':/id' endpoint) AND/OR GET request ('/search' endpoint)
+  specificEventList: {}, // Response from GET request (':/id' endpoint) AND/OR GET request ('/search' endpoint)
   newGeneralList: {}, // Response from POST request
   newEventList: {}, // Response from POST request,
-  searchedGeneralLists: [],
-  searchedEventLists: [],
+  generalSearched: false,
+  eventSearched: false,
+  searchTerm: '',
   error: null,
   setGeneralLists: () => {},
   setEventLists: () => {},
@@ -16,8 +17,9 @@ const ListContext = React.createContext({
   setSpecificEventList: () => {},
   setNewGeneralList: () => {},
   setNewEventList: () => {},
-  setSearchedGeneralLists: () => {},
-  setSearchedEventLists: () => {},
+  setGeneralSearched: () => {},
+  setEventSearched: () => {},
+  setSearchTerm: () => {},
   setError: () => {},
   clearError: () => {}
 });
@@ -35,8 +37,9 @@ export class ListProvider extends Component {
        specificEventList: {}, // Response from GET request (':/id' endpoint)
        newGeneralList: {}, // Response from POST request
        newEventList: {}, // Response from POST request,
-       searchedGeneralLists: [],
-       searchedEventLists: [],
+       generalSearched: false,
+       eventSearched: false,
+       searchTerm: '',
        error: null
     }
   }
@@ -77,15 +80,33 @@ export class ListProvider extends Component {
     })
   }
 
-  setSearchedGeneralLists = data => {
+  setGeneralSearchedToTrue = () => {
     this.setState({
-      searchedGeneralLists: data
+      generalSearched: true
     })
   }
 
-  setSearchedEventLists = data => {
+  setEventSearchedToTrue = () => {
     this.setState({
-      searchedEventLists: data
+      eventSearched: true
+    })
+  }
+
+  setGeneralSearchedToFalse = () => {
+    this.setState({
+      generalSearched: false
+    })
+  }
+
+  setEventSearchedToFalse = () => {
+    this.setState({
+      eventSearched: false
+    })
+  }
+
+  setSearchTerm = searchTerm => {
+    this.setState({
+      searchTerm
     })
   }
 
@@ -109,8 +130,9 @@ export class ListProvider extends Component {
       specificEventList: this.state.specificEventList,
       newGeneralList: this.state.newGeneralList,
       newEventList: this.state.newEventList,
-      searchedGeneralLists: this.state.searchedGeneralLists,
-      searchedEventLists: this.state.searchedEventLists,
+      generalSearched: this.state.generalSearched,
+      eventSearched: this.state.eventSearched,
+      searchTerm: this.state.searchTerm,
       error: this.state.error,
       setGeneralLists: this.setGeneralLists,
       setEventLists: this.setEventLists,
@@ -118,8 +140,11 @@ export class ListProvider extends Component {
       setSpecificEventList: this.setSpecificEventList,
       setNewGeneralList: this.setNewGeneralList,
       setNewEventList: this.setNewEventList,
-      setSearchedGeneralLists: this.setSearchedGeneralLists,
-      setSearchedEventLists: this.setSearchedEventLists,
+      setGeneralSearchedToTrue: this.setGeneralSearchedToTrue,
+      setEventSearchedToTrue: this.setEventSearchedToTrue,
+      setGeneralSearchedToFalse: this.setGeneralSearchedToFalse,
+      setEventSearchedToFalse: this.setEventSearchedToFalse,
+      setSearchTerm: this.setSearchTerm,
       setError: this.setError,
       clearError: this.clearError
     }
