@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import List from '../../Components/List/List';
 import EventListForm from '../../Components/EventListForm/EventListForm';
+import SearchBar from '../SearchBar/SearchBar';
 import EventService from '../../Utils/event-service';
 import ListContext from '../../Context/ListContext';
 
@@ -61,6 +62,7 @@ export default class EventCheckList extends Component {
     return (
       <div className="event-lists">
         <p>This will render the event lists on the page</p>
+        <SearchBar />
         
         {this.context.eventLists.map(list => 
           <List 

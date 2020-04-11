@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import List from '../../Components/List/List';
 import GeneralListForm from '../../Components/GeneralListForm/GeneralListForm';
+import SearchBar from '../SearchBar/SearchBar';
 import GeneralService from '../../Utils/general-service';
 import ListContext from '../../Context/ListContext';
 
@@ -61,7 +62,8 @@ export default class GeneralCheckList extends Component {
     return (
       <div className="general-lists">
         <p>This will render the general lists on the page</p>
-        
+        <SearchBar />
+
         {this.context.generalLists.map(list => 
           <List 
             key={list.id}
