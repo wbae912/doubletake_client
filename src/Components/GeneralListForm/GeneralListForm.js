@@ -32,7 +32,7 @@ export default class GeneralListForm extends Component {
         /* This step is performed so that an immediate re-render is triggered when a new list is POSTed. Without this, the re-render and new list would not appear on page
            until a page refresh is performed. */
         const newGeneralList = [...this.context.generalLists];
-        newGeneralList.push(data);
+        newGeneralList.unshift(data);
         this.context.setGeneralLists(newGeneralList);
 
         this.props.handleCancel(e);

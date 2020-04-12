@@ -35,7 +35,7 @@ export default class EventListForm extends Component {
       /* This step is performed so that an immediate re-render is triggered when a new list is POSTed. Without this, the re-render and new list would not appear on page
         until a page refresh is performed. */
       const newEventList = [...this.context.eventLists];
-      newEventList.push(data);
+      newEventList.unshift(data);
       this.context.setEventLists(newEventList);
 
       this.props.handleCancel(e);
