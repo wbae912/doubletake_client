@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import List from '../../Components/List/List';
 import GeneralListForm from '../../Components/GeneralListForm/GeneralListForm';
 import SearchBar from '../SearchBar/SearchBar';
+import SortOptions from '../SortOptions/SortOptions';
 import GeneralService from '../../Utils/general-service';
 import ListContext from '../../Context/ListContext';
 
@@ -13,7 +14,8 @@ export default class GeneralCheckList extends Component {
     super(props)
   
     this.state = {
-       formClicked: false
+       formClicked: false,
+       sortOption: ''
     }
   }
 
@@ -90,16 +92,47 @@ export default class GeneralCheckList extends Component {
     }
   }
 
+  handleSortChange = e => {
+    this.setState({
+      sortOption: e.target.value
+    })
+  }
+
   render() {
+    let generalLists = this.context.generalLists;
+
+    //  1: Or positive => Elements go in DESC order
+    // -1: Or negative => Elements go in ASC order
+    //  0: Elements are equal
+    if(this.state.sortOption === '1') {
+      generalLists = generalLists.sort((a,b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0))
+    }
+    if(this.state.sortOption === '2') {
+      generalLists = generalLists.sort((a,b) => (b.title > a.title) ? 1 : ((a.title > b.title) ? -1 : 0))
+    }
+
+    // Newer lists will have a higher ID, so we are sorting by ID in descending order
+    // Additionally, we use default option 0 as Newest => Oldest because that is what the default order in which lists are returned when fetched from the database
+    if(this.state.sortOption === '3' || this.state.sortOption === '0') {
+      generalLists = generalLists.sort((a,b) => b.id - a.id)
+    }
+    // Older lists will have a lower ID, so we are sorting by ID in ascending order
+    if(this.state.sortOption === '4') {
+      generalLists = generalLists.sort((a,b) => a.id - b.id)
+    }
+
     return (
       <div className="general-lists">
         <p>This will render the general lists on the page</p>
         <SearchBar />
+        <SortOptions 
+          handleSortChange={this.handleSortChange}
+        />
 
         {this.renderLink()}
         {this.renderNoResults()}
 
-        {this.context.generalLists.map(list => 
+        {generalLists.map(list => 
           <List 
             key={list.id}
             list={list}
