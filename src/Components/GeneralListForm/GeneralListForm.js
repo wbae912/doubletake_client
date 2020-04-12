@@ -69,6 +69,7 @@ export default class GeneralListForm extends Component {
             <button 
               type="button" 
               className="cancel-button"
+              onClick={this.props.handleCancel}
             >
             Cancel</button>
           </div>
