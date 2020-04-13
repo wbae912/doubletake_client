@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import ListContext from '../../Context/ListContext';
 import TokenService from '../../services/token-service';
+import './SearchBar.css';
 
 class SearchBar extends Component {
   static contextType = ListContext;
@@ -64,7 +65,7 @@ class SearchBar extends Component {
           type="text"
           name="searchTerm"
           className="search-input"
-          placeholder="Search"
+          placeholder="Search List..."
           required
           value={this.state.searchTerm}
           onChange={this.handleChange}

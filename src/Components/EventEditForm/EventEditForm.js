@@ -136,23 +136,3 @@ export default class EventEditForm extends Component {
     )
   }
 }
-
-
-// handleSubmit = e => {
-//   e.preventDefault();
-
-//   let date_of_event = this.convertDate(this.state.date_of_event);
-
-//   const editList = {...this.state, date_of_event};
-//   EventService.editList(this.props.list.id, editList)
-//     .then(() => {
-//       const eventLists = [...this.context.eventLists];
-//       const updatedLists = eventLists.map(list => (list.id === editList.id) ? editList : list);
-//       this.context.setEventLists(updatedLists);
-
-//       this.props.handleCancel(e)
-//     })
-//     .catch(res => {
-//       this.context.setError(res.error);
-//     })
-// }

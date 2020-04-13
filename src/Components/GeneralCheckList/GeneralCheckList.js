@@ -123,7 +123,7 @@ export default class GeneralCheckList extends Component {
 
     return (
       <div className="general-lists">
-        <p>This will render the general lists on the page</p>
+        <h1 className="general-h1">General</h1>
         <SearchBar />
         <SortOptions 
           handleSortChange={this.handleSortChange}
