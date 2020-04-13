@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import ListContext from '../../Context/ListContext';
+import './SortOptions.css';
 
 class SortOptions extends Component {
   static contextType = ListContext;
