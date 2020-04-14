@@ -5,6 +5,7 @@ import App from './Components/App/App';
 import { BrowserRouter } from 'react-router-dom';
 import { ListProvider } from '../src/Context/ListContext';
 import { ItemProvider } from '../src/Context/ItemContext';
+import '../node_modules/font-awesome/css/font-awesome.min.css'; 
 
 ReactDOM.render(
   <BrowserRouter>

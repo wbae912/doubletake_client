@@ -6,6 +6,7 @@ import SearchBar from '../SearchBar/SearchBar';
 import SortOptions from '../SortOptions/SortOptions';
 import GeneralService from '../../Utils/general-service';
 import ListContext from '../../Context/ListContext';
+import './GeneralCheckList.css';
 
 export default class GeneralCheckList extends Component {
   static contextType = ListContext;

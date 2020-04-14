@@ -1,0 +1,73 @@
+.list-entry {
+  width: 95%;
+  border-radius: 12px;
+  border: 1px solid black;
+  margin: auto;
+}
+
+.list-h2 {
+  margin: 0 0 0.5em 0;
+  display: inline-block;
+}
+
+/* DROPDOWN MENU STYLING */
+.dropdown {
+  height: 20px;
+  position: relative;
+  text-align: right;
+  margin-right: 1em;
+}
+
+.dropbtn {
+  width: 30px;
+  padding: 0;
+  background-color: transparent;
+  font-size: 30px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropbtn:focus {
+  outline: none;
+}
+
+#dropdown-menu {
+  border: 1px solid black;
+  border-radius: 2px;
+  box-shadow: 0 0 4px grey;
+  position: absolute;
+  right: 0px;
+  z-index: 1;
+}
+
+.dropdown-btn {
+  width: 93px;
+  display: block;
+  color: black;
+  background-color: white;
+  padding: 3px 0 3px 0;
+}
+
+.dropdown-btn:hover {
+  background-color: rgb(50, 50, 255);
+}
+
+#delete-button, #edit-button, #reset-button {
+  border: none;
+  background-color: transparent;
+  font-size: 14px;
+}
+
+#delete-button:focus, #edit-button:focus, #reset-button:focus {
+  outline: none;
+}
+
+#delete-button:hover, #edit-button:hover, #reset-button:hover {
+  color: white;
+}
+
+.times-icon {
+  font-size: 14px;
+  color: red;
+}
+/* END OF DROPDOWN MENU STYLING */

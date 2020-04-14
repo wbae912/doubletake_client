@@ -10,6 +10,8 @@ import EventItems from '../EventItems/EventItems';
 import GeneralItemsService from '../../Utils/generalItems-service';
 import EventItemsService from '../../Utils/eventItems-service';
 import Weather from '../Weather/Weather';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import './List.css';
 
 class List extends Component {
@@ -22,7 +24,8 @@ class List extends Component {
        deleteClicked: false,
        editClicked: false,
        generalItems: [],
-       eventItems: []
+       eventItems: [],
+       menuClicked: false
     }
     // "ref" was created in order to access methods from child components (Items + EventItems). Typically, not best practice/design, but good to know/practice.
     this.child = React.createRef();
@@ -228,12 +231,75 @@ class List extends Component {
     }
   }
 
+  toggleMenuOn = e => {
+    this.setState({
+      menuClicked: true
+    })
+  }
+
+  toggleMenuOff = e => {
+    this.setState({
+      menuClicked: false
+    })
+  }
+
+  renderMenu = () => {
+    if(!this.state.menuClicked) {
+      return (
+        <div className='dropdown'>
+          <button className='dropbtn'onClick={this.toggleMenuOn}>
+            <svg className="octicon octicon-kebab-horizontal" viewBox="0 0 13 16" version="1.1" width="13" height="16" aria-hidden="true">
+              <path fillRule="evenodd" d="M1.5 9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm5 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM13 7.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"></path>
+            </svg>
+          </button>
+        </div>
+      )} else {
+        return (
+          <div className='dropdown'>
+            <button onClick={this.toggleMenuOff} className='dropbtn'>
+              <FontAwesomeIcon icon={faTimes} className="times-icon"/>
+            </button>
+            <div id='dropdown-menu'>
+              <div className="dropdown-btn">
+                <button
+                  type="button"
+                  id="delete-button"
+                  name="deleteClicked"
+                  onClick={(e) => {this.toggleButton(e); this.toggleMenuOff(e)}}
+                >
+                Delete List</button>
+              </div>
+              <div className="dropdown-btn">
+                <button
+                  type="button"
+                  id="edit-button"
+                  name="editClicked"
+                  onClick={(e) => {this.toggleButton(e); this.toggleMenuOff(e)}}
+                >
+                Edit List</button>
+              </div>
+              <div className="dropdown-btn">
+                <button
+                  type="button"
+                  id="reset-button"
+                  onClick={(e) => {this.resetItems(this.props.list.id); this.toggleMenuOff(e)}}
+                >
+                Reset Items</button>
+              </div>
+            </div>
+          </div>
+        )
+    }
+  }
+
   render() {
     let date = new Date(this.props.list.date_of_event).toLocaleString();
     let dateArray = date.split(',');
 
     return (
       <div className="list-entry">
+        {this.renderMenu()}
+
         <h2 className="list-h2">{this.props.list.title}</h2>
 
         {(this.props.list.hasOwnProperty('date_of_event') 
@@ -247,36 +313,7 @@ class List extends Component {
 
         {this.renderItems()}
 
-        <div className="list-buttons">
-          <button
-            type="button"
-            className="delete-button"
-            name="deleteClicked"
-            onClick={this.toggleButton}
-          >
-          Delete</button>
-          <button
-            type="button"
-            className="edit-button"
-            name="editClicked"
-            onClick={this.toggleButton}
-          >
-          Edit</button>
-          <button
-            type="button"
-            className="reset-button"
-            onClick={() => this.resetItems(this.props.list.id)}
-          >
-          Reset</button>
-        </div>
-
-        {/* {this.state.editClicked && <GeneralEditForm 
-           key={this.props.list.id}
-           list={this.props.list}
-           handleCancel={this.handleCancel}
-         />} */}
-
-         {this.renderEditForm()}
+        {this.renderEditForm()}
 
         {this.renderDeleteConfirmMessage()}
       </div>
