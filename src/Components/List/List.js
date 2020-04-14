@@ -260,16 +260,7 @@ class List extends Component {
               <FontAwesomeIcon icon={faTimes} className="times-icon"/>
             </button>
             <div id='dropdown-menu'>
-              <div className="dropdown-btn">
-                <button
-                  type="button"
-                  id="delete-button"
-                  name="deleteClicked"
-                  onClick={(e) => {this.toggleButton(e); this.toggleMenuOff(e)}}
-                >
-                Delete List</button>
-              </div>
-              <div className="dropdown-btn">
+              <div className="dropdown-btn" id="dropdown-edit">
                 <button
                   type="button"
                   id="edit-button"
@@ -279,6 +270,15 @@ class List extends Component {
                 Edit List</button>
               </div>
               <div className="dropdown-btn">
+                <button
+                  type="button"
+                  id="delete-button"
+                  name="deleteClicked"
+                  onClick={(e) => {this.toggleButton(e); this.toggleMenuOff(e)}}
+                >
+                Delete List</button>
+              </div>
+              <div className="dropdown-btn" id="dropdown-reset">
                 <button
                   type="button"
                   id="reset-button"
@@ -298,9 +298,12 @@ class List extends Component {
 
     return (
       <div className="list-entry">
+        <div className="color">
         {this.renderMenu()}
 
         <h2 className="list-h2">{this.props.list.title}</h2>
+        </div>
+        <hr className="underline" />
 
         {(this.props.list.hasOwnProperty('date_of_event') 
           ? <h3 className="list-date">{dateArray[0]}</h3>
