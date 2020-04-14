@@ -299,9 +299,9 @@ class List extends Component {
     return (
       <div className="list-entry">
         <div className="color">
-        {this.renderMenu()}
+          {this.renderMenu()}
 
-        <h2 className="list-h2">{this.props.list.title}</h2>
+          <h2 className="list-h2">{this.props.list.title}</h2>
         </div>
         <hr className="underline" />
 

@@ -46,7 +46,8 @@ export default class Items extends Component {
             id={`item - ${item.id}`}
             onClick={() => this.toggleChecked(item)}
           />
-          <label className="list-input" htmlFor={`item - ${item.id}`}>{item.item}</label>
+          
+          {/* <label className="list-input" htmlFor={`item - ${item.id}`}>{item.item}</label> */}
 
           <ItemQuantity 
             item={item}

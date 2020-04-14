@@ -1,3 +1,8 @@
 .quantity-form {
   display: inline-block;
 }
+
+.quantity-input {
+  width: 25px;
+  text-align: center;
+}
