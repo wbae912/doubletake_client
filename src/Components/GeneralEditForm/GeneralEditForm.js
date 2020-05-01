@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import Modal from 'react-modal';
 import GeneralService from '../../Utils/general-service';
 import ListContext from '../../Context/ListContext';
+import './GeneralEditForm.css';
+
+Modal.setAppElement('#root');
 
 export default class GeneralEditForm extends Component {
   static contextType = ListContext;
@@ -50,26 +54,44 @@ export default class GeneralEditForm extends Component {
 
   render() {
     return (
-      <div className="general-edit">
-        <form className="edit-form" onSubmit={this.handleSubmit}>
-          <div className="general-labels-inputs">
-              <label className="title-label" htmlFor="list-title">List Name</label>
-              <input 
-                type="text"
-                name="title"
-                className="list-title"
-                id="list-title"
-                required
-                value={this.state.title}
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className="general-buttons">
-              <button type="submit" className="submit-button">Submit</button>
-              <button type="button" className="cancel-button" onClick={this.props.handleCancel}>Cancel</button>
-            </div>
-        </form>        
-      </div>
+      <Modal // By default, clicking outside the modal will close it
+        isOpen={this.props.editClicked} // Modal will open if editClicked is "true"
+        onRequestClose={(e) => this.props.handleCancel(e)} // Pressing "Esc" key will exit modal
+        style={{
+          overlay: {
+            backdropFilter: 'blur(3px)' 
+          },
+          content: {
+            margin: 0,
+            position: 'relative',
+            top: '35%',
+            left: '50%',
+            bottom: '45%',
+            transform: 'translate(-50%, -50%)'
+          }
+        }}
+      >
+        <div className="general-edit">
+          <form className="edit-form" onSubmit={this.handleSubmit}>
+            <div className="general-labels-inputs">
+                <label className="title-label" htmlFor="list-title">Edit List Name</label>
+                <input 
+                  type="text"
+                  name="title"
+                  className="list-title"
+                  id="list-title"
+                  required
+                  value={this.state.title}
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div className="general-buttons">
+                <button type="submit" className="submit-button" id="submit-list-edit">Submit</button>
+                <button type="button" className="cancel-button" id="cancel-list-edit" onClick={this.props.handleCancel}>Cancel</button>
+              </div>
+          </form>        
+        </div>
+      </Modal>
     )
   }
 }

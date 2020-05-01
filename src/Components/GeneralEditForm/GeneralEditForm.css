@@ -1,0 +1,27 @@
+.edit-form {
+  text-align: center;
+}
+
+.title-label {
+  display: block;
+  margin-bottom: 0.6em;
+  font-size: 20px;
+}
+
+.list-title {
+  border: 1px solid rgb(104, 104, 104);
+  border-radius: 3px;
+  padding-left: 0.2em;
+  margin-bottom: 0.6em;
+}
+
+#submit-list-edit, #cancel-list-edit {
+  border: 1px solid rgb(104, 104, 104);
+  border-radius: 3px;
+  width: 70px;
+  cursor: pointer;
+}
+
+#submit-list-edit {
+  margin-right: 0.5em;
+}

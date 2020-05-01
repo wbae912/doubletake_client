@@ -116,6 +116,7 @@ class List extends Component {
     if(this.state.editClicked && !this.props.list.date_of_event) {
       return(
         <GeneralEditForm 
+          editClicked={this.state.editClicked}
           key={this.props.list.id}
           list={this.props.list}
           handleCancel={this.handleCancel}
