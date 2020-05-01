@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import Modal from 'react-modal';
 import GeneralService from '../../Utils/general-service';
 import ListContext from '../../Context/ListContext';
+import './GeneralListForm.css';
+
+Modal.setAppElement('#root');
 
 export default class GeneralListForm extends Component {
   static contextType = ListContext;
@@ -47,34 +51,52 @@ export default class GeneralListForm extends Component {
 
   render() {
     return (
-      <div className="general-form-div">
-        <h2 className="general-form-h2">Create List</h2>
-        <form 
-          className="general-form"
-          onSubmit={this.handleSubmit}
-        >
-          <div className="general-labels-inputs">
-            <label className="title-label" htmlFor="list-title">List Name</label>
-            <input 
-              type="text"
-              name="title"
-              className="list-title"
-              id="list-title"
-              required
-              onChange={this.handleChange}
-            />
-          </div>
-          <div className="general-buttons">
-            <button type="submit" className="submit-button">Submit</button>
-            <button 
-              type="button" 
-              className="cancel-button"
-              onClick={this.props.handleCancel}
-            >
-            Cancel</button>
-          </div>
-        </form>
-      </div>
+      <Modal
+        isOpen={this.props.formClicked}
+        onRequestClose={(e) => this.props.handleCancel(e)}
+        style={{
+          overlay: {
+            backdropFilter: 'blur(3px)' 
+          },
+          content: {
+            margin: 0,
+            position: 'relative',
+            top: '35%',
+            bottom: '45%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)'
+          }
+        }}
+      >
+        <div className="general-form-div">
+          <form 
+            className="general-form"
+            onSubmit={this.handleSubmit}
+          >
+            <div className="general-labels-inputs">
+              <label className="title-label" htmlFor="list-title">List Name</label>
+              <input 
+                type="text"
+                name="title"
+                className="list-title"
+                id="general-title-input"
+                required
+                onChange={this.handleChange}
+              />
+            </div>
+            <div className="general-buttons">
+              <button type="submit" className="submit-button" id="general-submit">Submit</button>
+              <button 
+                type="button" 
+                className="cancel-button"
+                id="general-cancel"
+                onClick={this.props.handleCancel}
+              >
+              Cancel</button>
+            </div>
+          </form>
+        </div>
+      </Modal>
     )
   }
 }

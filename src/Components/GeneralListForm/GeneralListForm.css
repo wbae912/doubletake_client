@@ -1,0 +1,25 @@
+.general-form-div {
+  text-align: center;
+}
+
+#general-title-input {
+  width: 165px;
+  border: 1px solid rgb(104, 104, 104);
+  border-radius: 3px;
+  padding-left: 0.2em;
+  margin-right: 0.5em;
+}
+
+#general-submit, #general-cancel {
+  border: 1px solid rgb(104, 104, 104);
+  border-radius: 3px;
+  width: 70px;
+  cursor: pointer;
+}
+
+#general-submit {
+  border: 1px solid rgb(0, 192, 2);
+  background-color: rgb(0, 192, 0);
+  color: white;
+  margin-right: 0.5em;
+}

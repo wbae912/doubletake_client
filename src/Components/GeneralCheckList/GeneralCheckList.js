@@ -46,17 +46,18 @@ export default class GeneralCheckList extends Component {
     if(!this.state.formClicked) {
       return (
         <div className="list-form-div">
-          <p className="list-form-p">Create New List</p>
           <button
             type="button" 
             className="list-form-button"
+            id="create-list-button"
             onClick={this.toggleButton}
           >
-          +</button>
+          Create New List</button>
         </div>
       )} else {
         return (
-          <GeneralListForm 
+          <GeneralListForm
+            formClicked={this.state.formClicked}
             handleCancel={this.handleCancel}
           />
         )}
@@ -142,6 +143,8 @@ export default class GeneralCheckList extends Component {
         {this.renderLink()}
         {this.renderNoResults()}
 
+        {this.renderForm()}
+
         {generalLists.map(list => 
           <List 
             color={colorStack[Math.floor(Math.random() * colorStack.length)]}
@@ -149,8 +152,6 @@ export default class GeneralCheckList extends Component {
             list={list}
           />
         )}
-
-        {this.renderForm()}
         
       </div>
     )

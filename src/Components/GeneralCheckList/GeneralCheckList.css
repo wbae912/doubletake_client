@@ -1,0 +1,20 @@
+#create-list-button {
+  height: 35px;
+  border-radius: 30px;
+  width: 140px;
+  border: 1px solid rgb(34, 189, 34);
+  background-color: rgb(34, 189, 34);
+  color: white;
+  cursor: pointer;
+  margin-bottom: 1em;
+}
+
+#create-list-button:hover {
+  border: 1px solid rgb(31, 165, 31);
+  background-color: rgb(31, 165, 31);
+}
+
+#create-list-button:active {
+  border: 1px solid rgb(31, 165, 31);
+  background-color: rgb(31, 165, 31);
+}
