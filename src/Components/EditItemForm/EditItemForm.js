@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ItemContext from '../../Context/ItemContext';
 import GeneralItemsService from '../../Utils/generalItems-service';
+import './EditItemForm.css'
 
 export default class EditItemForm extends Component {
   static contextType = ItemContext;
@@ -10,7 +11,8 @@ export default class EditItemForm extends Component {
   
     this.state = {
        item: '',
-       itemObject: {}
+       itemObject: {},
+       editClicked: false
     }
   }
 
@@ -56,10 +58,101 @@ export default class EditItemForm extends Component {
       this.props.callbackFromParent(updatedGeneralItems);
 
       this.props.handleEditCancel(e);
+      this.handleEditCancel(e);
     })
     .catch(res => {
       this.context.setError(res.error);
     })
+  }
+
+  handleKeyPress = e => {
+    if(e.key === 'Enter') {
+      const listId = this.props.listId;
+      const itemId = this.props.itemId;
+
+      const item = this.state.item;
+      const editItem = {...this.state.itemObject, item};
+  
+      GeneralItemsService.editItem(listId, itemId, editItem)
+      .then(() => {
+        const generalItems = [...this.context.generalItemsForUser];
+        
+        const updatedGeneralItems = generalItems.map(item => (item.id === editItem.id) ? editItem : item);
+        this.context.setGeneralItems(updatedGeneralItems);
+
+        this.props.callbackFromParent(updatedGeneralItems);
+        this.handleEditCancel(e);
+      })
+      .catch(res => {
+        this.context.setError(res.error);
+      })
+      // After the user presses "Enter" key, we do not want to focus on the input element anymore. That is why we use the "blur()" method to remove focus
+      let inputElement = document.getElementById(`edit-item-input-g${this.props.itemId}`);
+      inputElement.blur();
+    } 
+  }
+
+  handleBlur = e => {    
+    const listId = this.props.listId;
+    const itemId = this.props.itemId;
+
+    const item = this.state.item;
+    const editItem = {...this.state.itemObject, item};
+
+    GeneralItemsService.editItem(listId, itemId, editItem)
+    .then(() => {
+      const generalItems = [...this.context.generalItemsForUser];
+      
+      const updatedGeneralItems = generalItems.map(item => (item.id === editItem.id) ? editItem : item);
+      this.context.setGeneralItems(updatedGeneralItems);
+
+      this.props.callbackFromParent(updatedGeneralItems);
+      this.handleEditCancel(e);
+    })
+    .catch(res => {
+      this.context.setError(res.error);
+    })
+  }
+
+  handleEditToggle = e => {
+    this.setState({
+      editClicked: true
+    })
+  }
+
+  handleEditCancel = e => {
+    this.setState({
+      editClicked: false
+    })
+  }
+
+  renderInput = () => {
+    if(this.state.editClicked) {
+      return (
+        <input
+          type="text"
+          className={`input-item-checked-${this.props.item.checked}`}
+          id={`edit-item-input-g${this.props.itemId}`}
+          name="itemName"
+          value={this.state.item}
+          onChange={this.handleChange}
+          onKeyPress={this.handleKeyPress}
+          onBlur={this.handleBlur}
+        />
+      )
+    } else {
+      return (
+        <input
+          type="text"
+          className={`input-item-checked-${this.props.item.checked} read-only`}
+          id={`edit-item-input-g${this.props.itemId}`}
+          name="itemName"
+          value={this.state.item}
+          readOnly={true}
+          onClick={this.handleEditToggle}
+        />
+      )
+    }
   }
   
   render() {
@@ -68,21 +161,31 @@ export default class EditItemForm extends Component {
         className="edit-item-form"
         onSubmit={e => {this.editItem(e)}}
       >
-        <input
+
+
+        {this.renderInput()}
+
+        {/* <input
           type="text"
           className="input-item"
+          id={`edit-item-input-g${this.props.itemId}`}
           name="itemName"
           value={this.state.item}
           onChange={this.handleChange}
-        />
-        <button type="submit" className="edit-button">Edit</button>
+          onKeyPress={this.handleKeyPress}
+          onBlur={this.handleBlur}
+        /> */}
+
+
+
+        {/* <button type="submit" className="edit-button">Edit</button>
         <button
           type="button"
           className="cancel-button"
           name="editClicked"
           onClick={this.props.handleEditCancel}
         >
-        X</button>
+        X</button> */}
       </form>
     )
   }

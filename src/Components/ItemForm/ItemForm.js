@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import ItemContext from '../../Context/ItemContext';
 import GeneralItemsService from '../../Utils/generalItems-service';
 import EventItemsService from '../../Utils/eventItems-service';
+import './ItemForm.css';
 
 class ItemForm extends Component {
   static contextType = ItemContext;
@@ -36,7 +37,7 @@ class ItemForm extends Component {
         // Callback method sent from "List" component. This is a trick for Child components to send generalItems to Parent component...Needs to be used on all HTTP requests
         this.props.callbackFromParent(newGeneralItems);
 
-        this.props.handleAddClicked(e);
+        this.props.handleAddCancel(e);
       })
       .catch(res => {
         this.context.setError(res.error);
@@ -52,7 +53,7 @@ class ItemForm extends Component {
         // Callback method sent from "List" component. This is a trick for Child components to send generalItems to Parent component...Needs to be used on all HTTP requests
         this.props.callbackFromParentEvent(newEventItems);
 
-        this.props.handleAddClicked(e);
+        this.props.handleAddCancel(e);
       } catch(res) {
         this.context.setError(res.error);
       }
@@ -74,14 +75,14 @@ class ItemForm extends Component {
           autoComplete="off"
           onChange={this.handleChange}
         />
-        <button type="submit" className="add-button">+</button>
+        <button type="submit" className="add-button">Add</button>
         <button 
           type="button" 
           className="cancel-button"
           name="addClicked"
-          onClick={this.props.handleCancel}
+          onClick={this.props.handleAddCancel}
         >  
-        X</button>
+        Back</button>
       </form>
     )
   }

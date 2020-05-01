@@ -1,0 +1,22 @@
+.item-form {
+  margin: 1.3em 0 1.3em 0;
+}
+
+.input-item {
+  width: 165px;
+  border: 1px solid rgb(104, 104, 104);
+  border-radius: 3px;
+  padding-left: 0.2em;
+  margin-right: 0.5em;
+}
+
+.add-button, .cancel-button {
+  border: 1px solid rgb(104, 104, 104);
+  border-radius: 3px;
+  width: 50px;
+  cursor: pointer;
+}
+
+.add-button {
+  margin-right: 0.2em;
+}

@@ -4,6 +4,9 @@ import ItemForm from '../ItemForm/ItemForm';
 import EditItemForm from '../EditItemForm/EditItemForm';
 import ItemQuantity from '../ItemQuantity/ItemQuantity';
 import GeneralItemsService from '../../Utils/generalItems-service';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
+import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 import './Items.css'
 
 export default class Items extends Component {
@@ -46,7 +49,33 @@ export default class Items extends Component {
             id={`item - ${item.id}`}
             onClick={() => this.toggleChecked(item)}
           />
+          <label htmlFor={`item - ${item.id}`}></label>
           
+
+
+          <EditItemForm
+            item={item} 
+            listId={item.list_id}
+            itemId={item.id}
+            callbackFromParent={this.props.callbackFromParent}
+          />
+
+
+
+
+
+          {/* {this.renderEditForm(item)} */}
+          {/* {(this.state.editClicked === item.id)
+            ? this.renderEditForm(item)
+            : <input 
+                type="text"
+                className="item-input"
+                value={item.item}
+                readOnly={true}
+                onClick={() => {this.handleEditClicked(item.id);}}
+             />
+          } */}
+
           {/* <label className="list-input" htmlFor={`item - ${item.id}`}>{item.item}</label> */}
 
           <ItemQuantity 
@@ -54,24 +83,25 @@ export default class Items extends Component {
             callbackFromParent={this.props.callbackFromParent} // CHECK IF THIS BELONGS HERE
           />
   
-          {this.renderEditForm(item)}
+          {/* {this.renderEditForm(item)} */}
 
-          <button 
-            type="button" 
+
+          <FontAwesomeIcon 
+            icon={faTrashAlt} 
             className="delete-item-button"
-            /* Previous issue was that onClick event handler was firing when page rendered. The solution is to use .bind(), where the first argument we pass through is "this"
-               Bind makes it so that the method is triggered only when I click the item.
+            /* 
+              Previous issue was that onClick event handler was firing when page rendered. The solution is to use .bind(), where the first argument we pass through is "this"
+              Bind makes it so that the method is triggered only when I click the item.
 
-               Reference this: https://stackoverflow.com/questions/32937365/button-onclick-triggered-when-init-in-react-application
+              Reference this: https://stackoverflow.com/questions/32937365/button-onclick-triggered-when-init-in-react-application
 
-               Alternatively, it would work by using this: onClick={() => this.deleteItem(item.id)}
-               This is because if we don't do this, we are performing a function call as the value, when instead we should be PASSING the function as a value
+              Alternatively, it would work by using this: onClick={() => this.deleteItem(item.id)}
+              This is because if we don't do this, we are performing a function call as the value, when instead we should be PASSING the function as a value
 
-               Reference this: https://stackoverflow.com/questions/33846682/react-onclick-function-fires-on-render
+              Reference this: https://stackoverflow.com/questions/33846682/react-onclick-function-fires-on-render
             */
             onClick={this.deleteItem.bind(this, item.id)}
-          >
-          Delete Item</button>
+          />
         </div>
       )} else if(item.list_id === this.props.listId && item.checked) {
         return (
@@ -84,21 +114,49 @@ export default class Items extends Component {
               onChange={() => this.toggleChecked(item)}
               defaultChecked
             />
-            <label className="list-input-strikethrough" htmlFor={`item - ${item.id}`}>{item.item}</label>
+            <label htmlFor={`item - ${item.id}`}></label>
+            
+            <EditItemForm 
+              item={item}
+              listId={item.list_id}
+              itemId={item.id}
+              callbackFromParent={this.props.callbackFromParent}
+            />
+
+
+
+
+
+
+
+
+
+            {/* {this.renderEditForm(item)} */}
+            {/* <label className="list-input-strikethrough" htmlFor={`item - ${item.id}`}>{item.item}</label> */}
 
             <ItemQuantity 
               item={item}
               callbackFromParent={this.props.callbackFromParent} // CHECK IF THIS BELONGS HERE
             />
     
-            {this.renderEditForm(item)}
+            {/* {this.renderEditForm(item)} */}
 
-            <button 
-              type="button" 
+            <FontAwesomeIcon 
+              icon={faTrashAlt} 
               className="delete-item-button"
+              /* 
+                Previous issue was that onClick event handler was firing when page rendered. The solution is to use .bind(), where the first argument we pass through is "this"
+                Bind makes it so that the method is triggered only when I click the item.
+
+                Reference this: https://stackoverflow.com/questions/32937365/button-onclick-triggered-when-init-in-react-application
+
+                Alternatively, it would work by using this: onClick={() => this.deleteItem(item.id)}
+                This is because if we don't do this, we are performing a function call as the value, when instead we should be PASSING the function as a value
+
+                Reference this: https://stackoverflow.com/questions/33846682/react-onclick-function-fires-on-render
+              */
               onClick={this.deleteItem.bind(this, item.id)}
-            >
-            Delete Item</button>
+            />
           </div>
         )}
   }
@@ -109,9 +167,15 @@ export default class Items extends Component {
     })
   }
 
-  handleAddClicked = e => {
+  handleAddCancel = e => {
     this.setState({
       addClicked: false
+    })
+  }
+
+  handleAddClicked = e => {
+    this.setState({
+      addClicked: true
     })
   }
 
@@ -126,7 +190,7 @@ export default class Items extends Component {
       return (
         <div className="item-form-div">
           <ItemForm 
-            handleAddClicked={this.handleAddClicked}
+            handleAddCancel={this.handleAddCancel}
             listId={this.props.listId}
             callbackFromParent={this.props.callbackFromParent}
           />
@@ -135,13 +199,11 @@ export default class Items extends Component {
     } else {
       return (
         <>
-          <button 
-            type="button" 
+          <FontAwesomeIcon 
+            icon={faPlusSquare}
             className="add-item-button"
-            name="addClicked"
-            onClick={this.toggleButton}
-          >
-          Add Item</button>
+            onClick={this.handleAddClicked}
+          />
         </>
       )
     }
@@ -164,8 +226,8 @@ export default class Items extends Component {
     })
   }
 
-  renderEditForm = (item) => {
-    if(this.state.editClicked === item.id) {
+  renderEditForm = item => {
+    if(this.state.edit === item.id) {
       return (
         <>
           <EditItemForm 
@@ -176,30 +238,39 @@ export default class Items extends Component {
           />
         </>
       )} else {
-      return (
-        <>
-          <button
-            type="button"
-            className="edit-item-button"
-            name="editClicked"
-            onClick={() => {this.handleEditClicked(item.id);}}
-          >
-          Edit Item</button>
-      </>
-      )}
+        return (
+        <input 
+          type="text"
+          name="editClicked"
+          className="item-input"
+          value={item.item}
+          id={item.id}
+          readOnly={true}
+          onClick={(e) => this.handleEditClicked(e, item)}
+        />
+        )}
+      // else {
+      // return (
+      //   <>
+      //     <button
+      //       type="button"
+      //       className="edit-item-button"
+      //       name="editClicked"
+      //       onClick={() => {this.handleEditClicked(item.id);}}
+      //     >
+      //     Edit Item</button>
+      // </>
+      // )}
   }
 
-  handleEditClicked = itemId => {
-    this.setState({
-      editClicked: itemId
-    })
-  }
+  // handleEditClicked = itemId => {
+  //   if(!this.state.editClicked) {
+  //     this.setState({
+  //       editClicked: itemId
+  //     })
+  //   }
+  // }
 
-  handleEditCancel = e => {
-    this.setState({
-      editClicked: false
-    })
-  }
 
   toggleChecked = (item) => {
     item.checked = !item.checked;

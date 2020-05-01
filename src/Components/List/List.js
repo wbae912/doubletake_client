@@ -296,9 +296,12 @@ class List extends Component {
     let date = new Date(this.props.list.date_of_event).toLocaleString();
     let dateArray = date.split(',');
 
+
+
+
     return (
       <div className="list-entry">
-        <div className="color">
+        <div className="color" style={{backgroundColor: this.props.color}}>
           {this.renderMenu()}
 
           <h2 className="list-h2">{this.props.list.title}</h2>

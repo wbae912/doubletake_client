@@ -1,4 +1,58 @@
-.list-input-strikethrough {
-  color: grey;
-  text-decoration: line-through;
+/* STYLING FOR CHECKBOX INPUT */
+.item-div {
+  position: relative;
+  margin-bottom: 0.5em;
+}
+
+.item-div label {
+  position: absolute;
+  left: 5px;
+  top: 0;
+  height: 22.5px;
+  width: 22.5px;
+  background-color: #fff;
+  border: 1.15px solid darkgrey;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.item-div label:after {
+  position: absolute;
+  left: 5px;
+  top: 6px;
+  width: 12px;
+  height: 6px;
+  border: 2px solid #fff;
+  border-top: none;
+  border-right: none;
+  content: "";
+  opacity: 0;
+  transform: rotate(-45deg);
+}
+
+.item-div input[type="checkbox"] {
+  visibility: hidden;
+}
+
+.item-div input[type="checkbox"]:checked + label {
+  background-color: rgb(163, 70, 163);
+  border-color: rgb(163, 70, 163);
+}
+
+.item-div input[type="checkbox"]:checked + label:after {
+  opacity: 1;
+}
+/* END OF CHECKBOX STYLING */
+
+.delete-item-button {
+  margin-left: 0.5em;
+  color: red;
+  cursor: pointer;
+}
+
+.add-item-button {
+  color: rgb(22, 175, 22);
+  font-size: 20px;
+  margin: 0.3em 0 0.3em 0;
+  cursor: pointer;
 }
