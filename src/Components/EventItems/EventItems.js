@@ -4,7 +4,9 @@ import ItemForm from '../ItemForm/ItemForm';
 import EditEventItemForm from '../EditEventItemForm/EditEventItemForm';
 import ItemQuantity from '../ItemQuantity/ItemQuantity';
 import EventItemsService from '../../Utils/eventItems-service';
-import './EventItems.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
+import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 
 export default class EventItems extends Component {
   static contextType = ItemContext;
@@ -40,31 +42,25 @@ export default class EventItems extends Component {
             id={`item - ${item.id}`}
             onClick={() => this.toggleChecked(item)}
           />
-          <label className="list-input" htmlFor={`item - ${item.id}`}>{item.item}</label>
+          <label htmlFor={`item - ${item.id}`}></label>
+          
+          <EditEventItemForm 
+            item={item}
+            listId={item.list_id}
+            itemId={item.id}
+            callbackFromParent={this.props.callbackFromParent}
+          />
 
           <ItemQuantity 
             item={item}
             callbackFromParent={this.props.callbackFromParent} // CHECK IF THIS BELONGS HERE
           />
   
-          {this.renderEditForm(item)}
-
-          <button 
-            type="button" 
-            className="delete-item-button"
-            /* Previous issue was that onClick event handler was firing when page rendered. The solution is to use .bind(), where the first argument we pass through is "this"
-               Bind makes it so that the method is triggered only when I click the item.
-
-               Reference this: https://stackoverflow.com/questions/32937365/button-onclick-triggered-when-init-in-react-application
-
-               Alternatively, it would work by using this: onClick={() => this.deleteItem(item.id)}
-               This is because if we don't do this, we are performing a function call as the value, when instead we should be PASSING the function as a value
-
-               Reference this: https://stackoverflow.com/questions/33846682/react-onclick-function-fires-on-render
-            */
-            onClick={this.deleteItem.bind(this, item.id)}
-          >
-          Delete Item</button>
+          <FontAwesomeIcon 
+              icon={faTrashAlt}
+              className="delete-item-button"
+              onClick={this.deleteItem.bind(this, item.id)}
+          />
         </div>
       )} else if(item.list_id === this.props.listId && item.checked) {
         return (
@@ -77,21 +73,25 @@ export default class EventItems extends Component {
               onChange={() => this.toggleChecked(item)}
               defaultChecked
             />
-            <label className="list-input-strikethrough" htmlFor={`item - ${item.id}`}>{item.item}</label>
+            <label htmlFor={`item - ${item.id}`}></label>
+
+            <EditEventItemForm 
+              item={item}
+              listId={item.list_id}
+              itemId={item.id}
+              callbackFromParent={this.props.callbackFromParent}
+            />
 
             <ItemQuantity 
               item={item}
               callbackFromParent={this.props.callbackFromParent} // CHECK IF THIS BELONGS HERE
             />
-    
-            {this.renderEditForm(item)}
 
-            <button 
-              type="button" 
+            <FontAwesomeIcon 
+              icon={faTrashAlt}
               className="delete-item-button"
               onClick={this.deleteItem.bind(this, item.id)}
-            >
-            Delete Item</button>
+            />
           </div>
         )}
   }
@@ -102,9 +102,15 @@ export default class EventItems extends Component {
     })
   }
 
-  handleAddClicked = e => {
+  handleAddCancel = e => {
     this.setState({
       addClicked: false
+    })
+  }
+
+  handleAddClicked = e => {
+    this.setState({
+      addClicked: true
     })
   }
 
@@ -119,7 +125,7 @@ export default class EventItems extends Component {
       return (
         <div className="item-form-div">
           <ItemForm 
-            handleAddClicked={this.handleAddClicked}
+            handleAddCancel={this.handleAddCancel}
             listId={this.props.listId}
             callbackFromParentEvent={this.props.callbackFromParent}
           />
@@ -128,13 +134,11 @@ export default class EventItems extends Component {
     } else {
       return (
         <>
-          <button 
-            type="button" 
+          <FontAwesomeIcon 
+            icon={faPlusSquare}
             className="add-item-button"
-            name="addClicked"
-            onClick={this.toggleButton}
-          >
-          Add Item</button>
+            onClick={this.handleAddClicked}
+          />
         </>
       )
     }
@@ -156,42 +160,43 @@ export default class EventItems extends Component {
     }
   }
 
-  renderEditForm = (item) => {
-    if(this.state.editClicked === item.id) {
-      return (
-        <>
-          <EditEventItemForm 
-            listId={item.list_id}
-            itemId={item.id}
-            handleEditCancel={this.handleEditCancel}
-            callbackFromParent={this.props.callbackFromParent}
-          />
-        </>
-      )} else {
-      return (
-        <>
-          <button
-            type="button"
-            className="edit-item-button"
-            name="editClicked"
-            onClick={() => {this.handleEditClicked(item.id);}}
-          >
-          Edit Item</button>
-      </>
-      )}
-  }
+  // renderEditForm = (item) => {
+  //   if(this.state.editClicked === item.id) {
+  //     return (
+  //       <>
+  //         <EditEventItemForm 
+  //           listId={item.list_id}
+  //           itemId={item.id}
+  //           handleEditCancel={this.handleEditCancel} // CHECK TO SEE IF WE NEED
+  //           callbackFromParent={this.props.callbackFromParent}
+  //         />
+  //       </>
+  //     )} else {
+  //     return (
+  //       <>
+  //         <input 
+  //           type="text"
+  //           name="editClicked"
+  //           className="item-input"
+  //           value={item.item}
+  //           id={item.id}
+  //           readOnly={true}
+  //         />
+  //       </>
+  //     )}
+  // }
 
-  handleEditClicked = itemId => {
-    this.setState({
-      editClicked: itemId
-    })
-  }
+  // handleEditClicked = itemId => {
+  //   this.setState({
+  //     editClicked: itemId
+  //   })
+  // }
 
-  handleEditCancel = e => {
-    this.setState({
-      editClicked: false
-    })
-  }
+  // handleEditCancel = e => {
+  //   this.setState({
+  //     editClicked: false
+  //   })
+  // }
 
   toggleChecked = async item => {
     item.checked = !item.checked;

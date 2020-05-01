@@ -144,17 +144,6 @@ export default class Items extends Component {
             <FontAwesomeIcon 
               icon={faTrashAlt} 
               className="delete-item-button"
-              /* 
-                Previous issue was that onClick event handler was firing when page rendered. The solution is to use .bind(), where the first argument we pass through is "this"
-                Bind makes it so that the method is triggered only when I click the item.
-
-                Reference this: https://stackoverflow.com/questions/32937365/button-onclick-triggered-when-init-in-react-application
-
-                Alternatively, it would work by using this: onClick={() => this.deleteItem(item.id)}
-                This is because if we don't do this, we are performing a function call as the value, when instead we should be PASSING the function as a value
-
-                Reference this: https://stackoverflow.com/questions/33846682/react-onclick-function-fires-on-render
-              */
               onClick={this.deleteItem.bind(this, item.id)}
             />
           </div>
@@ -226,42 +215,42 @@ export default class Items extends Component {
     })
   }
 
-  renderEditForm = item => {
-    if(this.state.edit === item.id) {
-      return (
-        <>
-          <EditItemForm 
-            listId={item.list_id}
-            itemId={item.id}
-            handleEditCancel={this.handleEditCancel}
-            callbackFromParent={this.props.callbackFromParent}
-          />
-        </>
-      )} else {
-        return (
-        <input 
-          type="text"
-          name="editClicked"
-          className="item-input"
-          value={item.item}
-          id={item.id}
-          readOnly={true}
-          onClick={(e) => this.handleEditClicked(e, item)}
-        />
-        )}
-      // else {
-      // return (
-      //   <>
-      //     <button
-      //       type="button"
-      //       className="edit-item-button"
-      //       name="editClicked"
-      //       onClick={() => {this.handleEditClicked(item.id);}}
-      //     >
-      //     Edit Item</button>
-      // </>
-      // )}
-  }
+  // renderEditForm = item => {
+  //   if(this.state.edit === item.id) {
+  //     return (
+  //       <>
+  //         <EditItemForm 
+  //           listId={item.list_id}
+  //           itemId={item.id}
+  //           handleEditCancel={this.handleEditCancel} // CHECK TO SEE IF WE NEED
+  //           callbackFromParent={this.props.callbackFromParent}
+  //         />
+  //       </>
+  //     )} else {
+  //       return (
+  //       <input 
+  //         type="text"
+  //         name="editClicked"
+  //         className="item-input"
+  //         value={item.item}
+  //         id={item.id}
+  //         readOnly={true}
+  //         onClick={(e) => this.handleEditClicked(e, item)}
+  //       />
+  //       )}
+  //     // else {
+  //     // return (
+  //     //   <>
+  //     //     <button
+  //     //       type="button"
+  //     //       className="edit-item-button"
+  //     //       name="editClicked"
+  //     //       onClick={() => {this.handleEditClicked(item.id);}}
+  //     //     >
+  //     //     Edit Item</button>
+  //     // </>
+  //     // )}
+  // }
 
   // handleEditClicked = itemId => {
   //   if(!this.state.editClicked) {

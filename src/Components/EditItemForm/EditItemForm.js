@@ -81,7 +81,7 @@ export default class EditItemForm extends Component {
         this.context.setGeneralItems(updatedGeneralItems);
 
         this.props.callbackFromParent(updatedGeneralItems);
-        this.handleEditCancel(e);
+        this.handleEditCancel(e); // CHECK TO SEE IF WE NEED THIS
       })
       .catch(res => {
         this.context.setError(res.error);
@@ -107,7 +107,7 @@ export default class EditItemForm extends Component {
       this.context.setGeneralItems(updatedGeneralItems);
 
       this.props.callbackFromParent(updatedGeneralItems);
-      this.handleEditCancel(e);
+      this.handleEditCancel(e); // CHECK TO SEE IF WE NEED
     })
     .catch(res => {
       this.context.setError(res.error);
