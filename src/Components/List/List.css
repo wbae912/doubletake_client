@@ -24,6 +24,28 @@
   border-top-right-radius: 12px;
 }
 
+.delete-confirm {
+  text-align: center;
+}
+
+#no-delete-list-button, #delete-list-button {
+  border: 1px solid rgb(104, 104, 104);
+  border-radius: 3px;
+  width: 70px;
+  cursor: pointer;
+}
+
+#delete-list-button {
+  border: 1px solid rgb(209, 1, 1);
+  background-color: rgb(209, 2, 2);
+  color: white;
+  margin-right: 0.5em;
+}
+
+.delete-h3 {
+  margin-top: 0;
+}
+
 /* DROPDOWN MENU STYLING */
 .dropdown {
   height: 20px;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import Modal from 'react-modal';
 import GeneralService from '../../Utils/general-service';
 import EventService from '../../Utils/event-service';
 import ListContext from '../../Context/ListContext';
@@ -13,6 +14,8 @@ import Weather from '../Weather/Weather';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import './List.css';
+
+Modal.setAppElement('#root');
 
 class List extends Component {
   static contextType = ListContext;
@@ -85,23 +88,43 @@ class List extends Component {
   renderDeleteConfirmMessage = () => {
     if(this.state.deleteClicked) {
       return (
-        <div className="delete-confirm">
-          <h3 className="delete-h3">Are you sure you want to delete this list?</h3>
-          <div className="delete-confirm-buttons">
-            <button 
-              type="button" 
-              className="yes-button"
-              onClick={this.yesClicked}
-            >
-            Yes</button>
-            <button 
-              type="button" 
-              className="no-button"
-              onClick={this.noClicked}
-            >
-            No</button>
+        <Modal
+          isOpen={this.state.deleteClicked}
+          onRequestClose={() => this.noClicked()}
+          style={{
+            overlay: {
+              backdropFilter: 'blur(3px)' 
+            },
+            content: {
+              margin: 0,
+              position: 'relative',
+              top: '35%',
+              bottom: '45%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)'
+            }
+          }}
+        >
+          <div className="delete-confirm">
+            <h3 className="delete-h3">Delete List?</h3>
+            <div className="delete-confirm-buttons">
+              <button 
+                type="button" 
+                className="yes-button"
+                onClick={this.yesClicked}
+                id="delete-list-button"
+              >
+              Delete</button>
+              <button 
+                type="button" 
+                className="no-button"
+                onClick={this.noClicked}
+                id="no-delete-list-button"
+              >
+              No</button>
+            </div>
           </div>
-        </div>
+        </Modal>
       )
     }
   }
