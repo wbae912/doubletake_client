@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import Modal from 'react-modal';
 import EventService from '../../Utils/event-service';
 import ListContext from '../../Context/ListContext';
+import './EventListForm.css';
+
+Modal.setAppElement('#root');
 
 export default class EventListForm extends Component {
   static contextType = ListContext;
@@ -49,67 +53,91 @@ export default class EventListForm extends Component {
 
   render() {
     return (
-      <div className="event-form-div">
-        <h2 className="event-form-h2">Create List</h2>
-        <form 
-          className="event-form"
-          onSubmit={this.handleSubmit}
-        >
-          <div className="event-labels-inputs">
-            <label className="title-label" htmlFor="list-title">List Name</label>
-            <input 
-              type="text"
-              name="title"
-              className="list-title"
-              id="list-title"
-              required
-              onChange={this.handleChange}
-            />
-            <label className="date-label" htmlFor="list-date">List Date</label>
-            <input 
-              type="date"
-              name="date_of_event"
-              className="list-date"
-              id="list-date"
-              required
-              onChange={this.handleChange}
-            />
-            <label className="location-label" htmlFor="list-city">City</label>
-            <input 
-              type="text"
-              name="city"
-              className="list-city"
-              id="list-city"
-              onChange={this.handleChange}
-            />
-            <label className="location-label" htmlFor="list-state">State</label>
-            <input 
-              type="text"
-              name="state"
-              className="list-state"
-              id="list-state"
-              onChange={this.handleChange}
-            />
-            <label className="location-label" htmlFor="list-country">Country</label>
-            <input 
-              type="text"
-              name="country"
-              className="list-country"
-              id="list-country"
-              onChange={this.handleChange}
-            />
-          </div>
-          <div className="event-buttons">
-            <button type="submit" className="submit-button">Submit</button>
-            <button 
-              type="button" 
-              className="cancel-button"
-              onClick={this.props.handleCancel}
-            >
-            Cancel</button>
-          </div>
-        </form>
-      </div>
+      <Modal
+        isOpen={this.props.formClicked}
+        onRequestClose={(e) => this.props.handleCancel(e)}
+        style={{
+          overlay: {
+            backdropFilter: 'blur(3px)' 
+          },
+          content: {
+            margin: 0,
+            position: 'relative',
+            top: '35%',
+            bottom: '45%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)'
+          }
+        }}
+      >
+        <div className="event-form-div">
+          <form 
+            className="event-form"
+            onSubmit={this.handleSubmit}
+          >
+            <div className="event-labels-inputs">
+              <label className="event-label" htmlFor="list-title" id="event-title">List Name<span className="required">*</span></label>
+              <input 
+                type="text"
+                name="title"
+                className="event-input"
+                id="list-title"
+                placeholder="Enter a name"
+                required
+                onChange={this.handleChange}
+              />
+              <label className="event-label" htmlFor="list-date">Date of Event<span className="required">*</span></label>
+              <input 
+                type="date"
+                name="date_of_event"
+                className="event-input"
+                id="list-date"
+                placeholder="mm/dd/yyyy"
+                required
+                onChange={this.handleChange}
+              />
+              <label className="event-label" htmlFor="list-city">City</label>
+              <input 
+                type="text"
+                name="city"
+                className="event-input"
+                id="list-city"
+                placeholder="E.g. Los Angeles"
+                onChange={this.handleChange}
+              />
+              <label className="event-label" htmlFor="list-state">State</label>
+              <input 
+                type="text"
+                name="state"
+                className="event-input"
+                id="list-state"
+                placeholder="E.g. California"
+                onChange={this.handleChange}
+              />
+              <label className="event-label" htmlFor="list-country">Country</label>
+              <input 
+                type="text"
+                name="country"
+                className="event-input"
+                id="list-country"
+                placeholder="E.g. US"
+                onChange={this.handleChange}
+              />
+            </div>
+            <p className="required-p"><span className="required">*</span> = required</p>
+            <div className="event-buttons">
+              <button type="submit" className="submit-button" id="event-submit">Submit</button>
+              <button 
+                type="button" 
+                className="cancel-button"
+                id="event-cancel"
+                onClick={this.props.handleCancel}
+              >
+              Cancel</button>
+            </div>
+          </form>
+        </div>
+      </Modal>
     )
   }
 }

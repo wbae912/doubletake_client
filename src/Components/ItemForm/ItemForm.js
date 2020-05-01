@@ -73,6 +73,7 @@ class ItemForm extends Component {
           className="input-item"
           name="item"
           autoComplete="off"
+          placeholder="Enter an item"
           onChange={this.handleChange}
         />
         <button type="submit" className="add-button">Add</button>

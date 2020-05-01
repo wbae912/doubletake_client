@@ -80,6 +80,7 @@ export default class GeneralEditForm extends Component {
                   name="title"
                   className="list-title"
                   id="list-title"
+                  placeholder="Enter a name"
                   required
                   value={this.state.title}
                   onChange={this.handleChange}

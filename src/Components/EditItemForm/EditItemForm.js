@@ -134,6 +134,7 @@ export default class EditItemForm extends Component {
           className={`input-item-checked-${this.props.item.checked}`}
           id={`edit-item-input-g${this.props.itemId}`}
           name="itemName"
+          placeholder="Enter an item"
           value={this.state.item}
           onChange={this.handleChange}
           onKeyPress={this.handleKeyPress}

@@ -80,6 +80,7 @@ export default class GeneralListForm extends Component {
                 name="title"
                 className="list-title"
                 id="general-title-input"
+                placeholder="Enter a name"
                 required
                 onChange={this.handleChange}
               />

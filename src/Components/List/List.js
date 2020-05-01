@@ -146,7 +146,8 @@ class List extends Component {
         />
       )} else if(this.state.editClicked && this.props.list.date_of_event) {
         return (
-          <EventEditForm 
+          <EventEditForm
+            editClicked={this.state.editClicked}
             key={this.props.list.id}
             list={this.props.list}
             handleCancel={this.handleCancel}

@@ -45,17 +45,18 @@ export default class EventCheckList extends Component {
     if(!this.state.formClicked) {
       return (
         <div className="list-form-div">
-          <p className="list-form-p">Create New List</p>
           <button
             type="button" 
             className="list-form-button"
+            id="create-list-button"
             onClick={this.toggleButton}
           >
-          +</button>
+          Create New List</button>
         </div>
       )} else {
         return (
-          <EventListForm 
+          <EventListForm
+            formClicked={this.state.formClicked} 
             handleCancel={this.handleCancel}
           />
         )}
@@ -128,10 +129,19 @@ export default class EventCheckList extends Component {
     if(this.state.sortOption === '6') {
       eventLists = eventLists.sort((a,b) => new Date(b.date_of_event) - new Date(a.date_of_event));
     }
+
+    let colorStack = [
+      'rgb(70, 220, 70)',
+      'rgb(255, 112, 112)',
+      'rgb(241, 77, 241)',
+      'rgb(160, 160, 245)',
+      'orange',
+      'yellow',
+    ];
   
     return (
       <div className="event-lists">
-        <p>This will render the event lists on the page</p>
+        <h1 className="event-h1">Events</h1>
         <SearchBar />
         <SortOptions 
           handleSortChange={this.handleSortChange}
@@ -139,15 +149,16 @@ export default class EventCheckList extends Component {
 
         {this.renderLink()}
         {this.renderNoResults()}
+
+        {this.renderForm()}
         
         {eventLists.map(list => 
-          <List 
+          <List
+            color={colorStack[Math.floor(Math.random() * colorStack.length)]}
             key={list.id}
             list={list}
           />
         )}
-
-        {this.renderForm()}
         
       </div>
     )
