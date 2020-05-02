@@ -85,46 +85,59 @@ export default class Home extends Component {
 
     let date = (dateArray[0] === 'Invalid Date') ? 'Loading...' : dateArray[0];
 
+    let upcomingTitle = !this.state.upcomingList.title ? 'Loading...' : this.state.upcomingList.title;
+
     return (
       <div className="home-div">
-        <div className="upcoming-event-div">
-          <h2 className="upcoming-h2">Upcoming Event</h2>
-        </div>
-        <div id="container">
-          <div className="upcoming-div">
-            <div id="upcoming-container">
-              <p className="upcoming-title">{this.state.upcomingList.title}</p>
-              <p className="upcoming-date">{date}</p>
-            </div>
-            <div id="upcoming-goto">
-              <p className="go-to">>></p>
+        <div id="upcoming-home-div">
+          <div className="upcoming-event-div">
+            <h2 className="upcoming-h2">Upcoming Event</h2>
+          </div>
+          <div id="container">
+            <div className="upcoming-div">
+              <div id="upcoming-container">
+                <p className="upcoming-title">{upcomingTitle}</p>
+                <p className="upcoming-date">{date}</p>
+              </div>
+              <div id="upcoming-goto">
+                <p className="go-to">>></p>
+              </div>
             </div>
           </div>
         </div>
-        <div className="general-home-div">
-          <h2 className="general-home-h2">General</h2>
 
+        <div className="general-home-div">
+          <div className="title-div-general">
+            <h2 className="general-home-h2">General</h2>
+          </div>
           <ul className="general-ul">
             {(generalLists.length === 0)
               ? <li className="loading-li">Loading...</li>
-              : generalLists.map(list => 
-              <li key={list.id} className="general-li">{list.title}</li>  
+              : generalLists.map(list =>
+              <div key={list.id} className="li-div">
+                <li className="general-li">{list.title}</li>
+                <p className="go-to-general">>></p>
+              </div>
             )}
           </ul>
-
         </div>
-        <div className="event-home-div">
-          <h2 className="event-home-h2">Events</h2>
 
+        <div className="event-home-div">
+          <div className="title-div-event">
+            <h2 className="event-home-h2">Events</h2>
+          </div>
           <ul className="event-ul">
             {(eventLists.length === 0)
               ? <li className="loading-li">Loading...</li>
               : eventLists.map(list => 
-              <li key={list.id} className="event-li">{list.title}</li> 
+              <div key={list.id} className="li-div">
+                <li className="event-li">{list.title}</li>
+                <p className="go-to-event">>></p>
+              </div>
             )}
           </ul>
-
         </div>
+
       </div>
     )
   }

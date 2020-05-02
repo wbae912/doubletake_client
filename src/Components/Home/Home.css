@@ -2,10 +2,23 @@
   margin-top: 90px;
 }
 
+.loading-li {
+  font-size: 20px;
+  color: white;
+  text-shadow: 1px 1px 6px black;
+  font-weight: bold;
+  margin-top: 1em;
+}
+
+/* STYLING FOR UPCOMING EVENT */
+#upcoming-home-div {
+  margin-bottom: 1.5em;
+}
+
 .upcoming-event-div {
   background: radial-gradient(circle, rgba(240,184,0,0.9251050762101716) 0%, rgba(233,226,0,0.8130602582830007) 100%, rgba(0,212,255,1) 100%);
   color: white;
-  width: 95%;
+  width: 92%;
   border-top-right-radius: 12px;
   border-top-left-radius: 12px;
   border: 1px solid rgb(230, 198, 21);
@@ -17,11 +30,12 @@
   background-color: radial-gradient(circle, rgba(240,184,0,0.9251050762101716) 0%, rgba(233,226,0,0.8130602582830007) 100%, rgba(0,212,255,1) 100%);
   text-shadow: 1px 1px 6px black;
   margin-bottom: 0;
+  font-size: 26px;
 }
 
 #container {
   background: radial-gradient(circle, rgba(240,184,0,0.9251050762101716) 0%, rgba(233,226,0,0.8130602582830007) 100%, rgba(0,212,255,1) 100%);
-  width: 95%;
+  width: 92%;
   margin: auto;
   padding: 20px 0 20px 0;
   border-bottom-left-radius: 12px;
@@ -72,33 +86,172 @@
   margin: 0;
 }
 
-.go-to {
-  font-size: 17px;
-}
-
-
-
-
-
-
-
-
-
-
-/* .upcoming-title {
-  width: 45%;
-  margin-left: 1em;
-  font-size: 18px;
+.upcoming-title {
+  font-weight: bold;
 }
 
 .upcoming-date {
-  width: 38%;
-  margin-left: 1em;
-  font-size: 18px;
-
+  font-size: 13px;
 }
 
 .go-to {
-  width: 13%;
-  font-size: 18px;
-} */
+  font-size: 17px;
+  font-weight: bold;
+}
+/* END OF UPCOMING EVENT */
+
+
+/* STYLING FOR GENERAL LISTS */
+.general-home-div {
+  margin-bottom: 1.5em;
+}
+
+.title-div-general {
+  background: radial-gradient(circle, rgba(240,184,0,0.9251050762101716) 0%, rgba(233,226,0,0.8130602582830007) 100%, rgba(0,212,255,1) 100%);
+  color: white;
+  width: 92%;
+  border-top-right-radius: 12px;
+  border-top-left-radius: 12px;
+  border: 1px solid rgb(230, 198, 21);
+  border-bottom: none;
+  margin: auto;
+  padding-bottom: 1.5em;
+}
+
+.general-home-h2 {
+  background-color: radial-gradient(circle, rgba(240,184,0,0.9251050762101716) 0%, rgba(233,226,0,0.8130602582830007) 100%, rgba(0,212,255,1) 100%);
+  text-shadow: 1px 1px 6px black;
+  margin-bottom: 0;
+  font-size: 26px;
+}
+
+.general-ul {
+  background: radial-gradient(circle, rgba(240,184,0,0.9251050762101716) 0%, rgba(233,226,0,0.8130602582830007) 100%, rgba(0,212,255,1) 100%);
+  width: 92%;
+  height: 350px;
+  margin: auto;
+  padding: 20px 0 20px 0;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  border: 1px solid rgb(230, 198, 21);
+  border-top: none;
+  list-style: none;
+  padding: 0;
+  color: black;
+  padding-bottom: 20px;
+  overflow: auto;
+}
+
+.li-div {
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.12), 0 20px 20px rgba(0, 0, 0, 0.24);
+  background-color: white;
+  opacity: 0.85;
+  border-radius: 100px;
+  width: 95%;
+  height: 30px;
+  margin: auto;
+  margin-bottom: 0.5em;
+  padding: 5px 0 5px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  -webkit-transition: height 0.5s ease;
+  -moz-transition: height 0.5s ease;
+  -o-transition: height 0.5s ease;
+  transition: height 0.5s ease;
+}
+
+.li-div:hover {
+  height: 40px;
+}
+
+.general-li {
+  margin-left: 1.5em;
+  font-weight: bold;
+}
+
+.go-to-general {
+  margin-right: 1.5em;
+  font-weight: bold;
+}
+/* END OF GENERAL LISTS */
+
+
+/* STYLING FOR EVENT LISTS */
+.event-home-div {
+  margin-bottom: 1.5em;
+}
+
+.title-div-event {
+  background: radial-gradient(circle, rgba(240,184,0,0.9251050762101716) 0%, rgba(233,226,0,0.8130602582830007) 100%, rgba(0,212,255,1) 100%);
+  color: white;
+  width: 92%;
+  border-top-right-radius: 12px;
+  border-top-left-radius: 12px;
+  border: 1px solid rgb(230, 198, 21);
+  border-bottom: none;
+  margin: auto;
+  padding-bottom: 1.5em;
+}
+
+.event-home-h2 {
+  background-color: radial-gradient(circle, rgba(240,184,0,0.9251050762101716) 0%, rgba(233,226,0,0.8130602582830007) 100%, rgba(0,212,255,1) 100%);
+  text-shadow: 1px 1px 6px black;
+  margin-bottom: 0;
+  font-size: 26px;
+}
+
+.event-ul {
+  background: radial-gradient(circle, rgba(240,184,0,0.9251050762101716) 0%, rgba(233,226,0,0.8130602582830007) 100%, rgba(0,212,255,1) 100%);
+  width: 92%;
+  height: 350px;
+  margin: auto;
+  padding: 20px 0 20px 0;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  border: 1px solid rgb(230, 198, 21);
+  border-top: none;
+  list-style: none;
+  padding: 0;
+  color: black;
+  padding-bottom: 20px;
+  overflow: auto;
+}
+
+.li-div {
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.12), 0 20px 20px rgba(0, 0, 0, 0.24);
+  background-color: white;
+  opacity: 0.85;
+  border-radius: 100px;
+  width: 95%;
+  height: 30px;
+  margin: auto;
+  margin-bottom: 0.5em;
+  padding: 5px 0 5px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  -webkit-transition: height 0.5s ease;
+  -moz-transition: height 0.5s ease;
+  -o-transition: height 0.5s ease;
+  transition: height 0.5s ease;
+}
+
+.li-div:hover {
+  height: 40px;
+}
+
+.event-li {
+  margin-left: 1.5em;
+  font-weight: bold;
+}
+
+.go-to-event {
+  margin-right: 1.5em;
+  font-weight: bold;
+}
+/* END OF EVENT LISTS */
