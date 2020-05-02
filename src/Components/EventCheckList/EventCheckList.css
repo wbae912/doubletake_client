@@ -1,0 +1,20 @@
+.direct-general, .direct-event {
+  border: 1px solid rgb(163, 70, 163);;
+  padding: 8px 10px 8px 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.direct-event {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  color: white;
+  background-color: rgb(163, 70, 163);;
+}
+
+.direct-general {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  color: rgb(163, 70, 163);;
+  background-color: white;
+}

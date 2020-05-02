@@ -18,3 +18,30 @@
   border: 1px solid rgb(31, 165, 31);
   background-color: rgb(31, 165, 31);
 }
+
+.list-direct {
+  margin: 1.5em 0 1.5em 0;
+  display: flex;
+  justify-content: center;
+}
+
+.general-direct, .event-direct {
+  border: 1px solid rgb(163, 70, 163);;
+  padding: 8px 10px 8px 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.general-direct {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  color: white;
+  background-color: rgb(163, 70, 163);;
+}
+
+.event-direct {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  color: rgb(163, 70, 163);;
+  background-color: white;
+}

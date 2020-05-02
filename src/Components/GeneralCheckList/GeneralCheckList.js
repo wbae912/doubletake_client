@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import List from '../../Components/List/List';
 import GeneralListForm from '../../Components/GeneralListForm/GeneralListForm';
 import SearchBar from '../SearchBar/SearchBar';
@@ -8,7 +8,7 @@ import GeneralService from '../../Utils/general-service';
 import ListContext from '../../Context/ListContext';
 import './GeneralCheckList.css';
 
-export default class GeneralCheckList extends Component {
+class GeneralCheckList extends Component {
   static contextType = ListContext;
 
   constructor(props) {
@@ -100,6 +100,18 @@ export default class GeneralCheckList extends Component {
     })
   }
 
+  handleGeneral = () => {
+    if(this.props.match.path === '/general') {
+      return;
+    }
+  }
+
+  handleEvent = () => {
+    if(this.props.match.path === '/general') {
+      this.props.history.push('/event');
+    }
+  }
+
   render() {
     let generalLists = this.context.generalLists;
 
@@ -134,7 +146,17 @@ export default class GeneralCheckList extends Component {
 
     return (
       <div className="general-lists">
-        <h1 className="general-h1">General</h1>
+        {/* <h1 className="general-h1">General</h1> */}
+        <div className="list-direct">
+          <p
+            className="general-direct"
+            onClick={this.handleGeneral}
+          >General</p>
+          <p
+          className="event-direct"
+            onClick={this.handleEvent}
+          >Events</p>
+        </div>
         <SearchBar />
         <SortOptions 
           handleSortChange={this.handleSortChange}
@@ -157,3 +179,5 @@ export default class GeneralCheckList extends Component {
     )
   }
 }
+
+export default withRouter(GeneralCheckList);

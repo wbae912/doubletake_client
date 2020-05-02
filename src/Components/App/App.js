@@ -4,6 +4,7 @@ import Login from '../../Components/Login/Login';
 import Register from '../../Components/Register/Register';
 import GeneralCheckList from '../../Components/GeneralCheckList/GeneralCheckList';
 import EventCheckList from '../../Components/EventCheckList/EventCheckList';
+import NotFound from '../NotFound/NotFound';
 import './App.css';
 
 function App() {
@@ -25,6 +26,9 @@ function App() {
         <Route
           path={'/event'}
           component={EventCheckList}
+        />
+        <Route 
+          component={NotFound}
         />
       </Switch>
     </div>

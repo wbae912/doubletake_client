@@ -6,6 +6,7 @@ import SearchBar from '../SearchBar/SearchBar';
 import SortOptions from '../SortOptions/SortOptions';
 import EventService from '../../Utils/event-service';
 import ListContext from '../../Context/ListContext';
+import './EventCheckList.css';
 
 export default class EventCheckList extends Component {
   static contextType = ListContext;
@@ -99,6 +100,18 @@ export default class EventCheckList extends Component {
     })
   }
 
+  handleEvent = () => {
+    if(this.props.match.path === '/event') {
+      return;
+    }
+  }
+
+  handleGeneral = () => {
+    if(this.props.match.path === '/event') {
+      this.props.history.push('/general');
+    }
+  }
+
   render() {
     let eventLists = this.context.eventLists;
 
@@ -141,7 +154,17 @@ export default class EventCheckList extends Component {
   
     return (
       <div className="event-lists">
-        <h1 className="event-h1">Events</h1>
+        {/* <h1 className="event-h1">Events</h1> */}
+        <div className="list-direct">
+          <p
+            className="direct-general"
+            onClick={this.handleGeneral}
+          >General</p>
+          <p
+          className="direct-event"
+            onClick={this.handleEvent}
+          >Events</p>
+        </div>
         <SearchBar />
         <SortOptions 
           handleSortChange={this.handleSortChange}
