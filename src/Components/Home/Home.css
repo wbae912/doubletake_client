@@ -1,0 +1,104 @@
+.home-div {
+  margin-top: 90px;
+}
+
+.upcoming-event-div {
+  background: radial-gradient(circle, rgba(240,184,0,0.9251050762101716) 0%, rgba(233,226,0,0.8130602582830007) 100%, rgba(0,212,255,1) 100%);
+  color: white;
+  width: 95%;
+  border-top-right-radius: 12px;
+  border-top-left-radius: 12px;
+  border: 1px solid rgb(230, 198, 21);
+  border-bottom: none;
+  margin: auto;
+}
+
+.upcoming-h2 {
+  background-color: radial-gradient(circle, rgba(240,184,0,0.9251050762101716) 0%, rgba(233,226,0,0.8130602582830007) 100%, rgba(0,212,255,1) 100%);
+  text-shadow: 1px 1px 6px black;
+  margin-bottom: 0;
+}
+
+#container {
+  background: radial-gradient(circle, rgba(240,184,0,0.9251050762101716) 0%, rgba(233,226,0,0.8130602582830007) 100%, rgba(0,212,255,1) 100%);
+  width: 95%;
+  margin: auto;
+  padding: 20px 0 20px 0;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  border: 1px solid rgb(230, 198, 21);
+  border-top: none;
+}
+
+.upcoming-div {
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.12), 0 20px 20px rgba(0, 0, 0, 0.24);
+  background-color: white;
+  opacity: 0.85;
+  border-radius: 100px;
+  width: 95%;
+  height: 50px;
+  margin: auto;
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
+  padding: 5px 0 5px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  cursor: pointer;
+  -webkit-transition: height 0.5s ease;
+  -moz-transition: height 0.5s ease;
+  -o-transition: height 0.5s ease;
+  transition: height 0.5s ease;
+}
+
+.upcoming-div:hover {
+  height: 65px;
+}
+
+#upcoming-container {
+  margin-left: 1.5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+#upcoming-goto {
+  display: flex;
+  align-items: center;
+  margin-right: 1.5em;
+}
+
+.upcoming-title, .upcoming-date {
+  margin: 0;
+}
+
+.go-to {
+  font-size: 17px;
+}
+
+
+
+
+
+
+
+
+
+
+/* .upcoming-title {
+  width: 45%;
+  margin-left: 1em;
+  font-size: 18px;
+}
+
+.upcoming-date {
+  width: 38%;
+  margin-left: 1em;
+  font-size: 18px;
+
+}
+
+.go-to {
+  width: 13%;
+  font-size: 18px;
+} */

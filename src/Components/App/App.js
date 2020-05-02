@@ -7,6 +7,7 @@ import EventCheckList from '../../Components/EventCheckList/EventCheckList';
 import NotFound from '../NotFound/NotFound';
 import Nav from '../Nav/Nav';
 import NavBar from '../NavBar/NavBar';
+import Home from '../Home/Home';
 import TokenService from '../../services/token-service';
 import './App.css';
 
@@ -45,6 +46,10 @@ export default class App extends Component {
           <Route
             path={'/login'}
             component={Login}
+          />
+          <Route
+            path={'/home'}
+            component={Home}
           />
           <Route 
             path={'/general'}

@@ -77,6 +77,11 @@
 
 #menu-close {
   color: rgb(129, 22, 129);;
+  font-size: 18px;
+}
+
+#menu-close:hover {
+  color: white;
 }
 
 .menu li {

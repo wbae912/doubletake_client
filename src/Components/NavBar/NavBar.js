@@ -24,7 +24,16 @@ class NavBar extends Component {
     })
   }
 
-  toggleMenuOff = e => {
+  toggleMenuOffAfterSelection = e => {
+    let dropdownMenuCheckbox = document.getElementById('toggle');
+    dropdownMenuCheckbox.checked = false;
+
+    this.setState({
+      menuClicked: false
+    })
+  }
+
+  toggleMenuOff = () => {
     this.setState({
       menuClicked: false
     })
@@ -34,7 +43,7 @@ class NavBar extends Component {
     if(!this.state.menuClicked) {
       return (
         <div className="hamburger">
-          <label htmlFor="toggle" className="hamburger-logo" onClick={this.toggleMenuOn}>&#9776;</label>
+          <label htmlFor="toggle" className="hamburger-logo" id="toggle-label" onClick={this.toggleMenuOn}>&#9776;</label>
           <input type="checkbox" id="toggle"/>
           <ul className="menu">
               <li className="appnav-li appnav-li-first" onClick={() => this.props.history.push('/home')}>Home</li>
@@ -54,8 +63,8 @@ class NavBar extends Component {
           </label>
           <input type="checkbox" id="toggle"/>
           <ul className="menu">
-              <li className="appnav-li appnav-li-first" onClick={() => this.props.history.push('/home')}>Home</li>
-              <li className="appnav-li" onClick={() => this.props.history.push('/general')}>Lists</li>
+              <li className="appnav-li appnav-li-first" onClick={(e) => {this.props.history.push('/home'); this.toggleMenuOffAfterSelection(e)}}>Home</li>
+              <li className="appnav-li" onClick={(e) => {this.props.history.push('/general'); this.toggleMenuOffAfterSelection(e)}}>Lists</li>
               <li className="appnav-li appnav-li-last" 
                 onClick={() => {this.handleLogoutClick(); this.props.toggleLoggedOff(); this.props.history.push('/login')}}>
                 Logout
