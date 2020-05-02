@@ -271,8 +271,8 @@ class List extends Component {
   renderMenu = () => {
     if(!this.state.menuClicked) {
       return (
-        <div className='dropdown'>
-          <button className='dropbtn'onClick={this.toggleMenuOn}>
+        <div className='dropdown-list'>
+          <button className='dropbtn-list'onClick={this.toggleMenuOn}>
             <svg className="octicon octicon-kebab-horizontal" viewBox="0 0 13 16" version="1.1" width="13" height="16" aria-hidden="true">
               <path fillRule="evenodd" d="M1.5 9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm5 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM13 7.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"></path>
             </svg>
@@ -280,12 +280,12 @@ class List extends Component {
         </div>
       )} else {
         return (
-          <div className='dropdown'>
-            <button onClick={this.toggleMenuOff} className='dropbtn'>
+          <div className='dropdown-list'>
+            <button onClick={this.toggleMenuOff} className='dropbtn-list'>
               <FontAwesomeIcon icon={faTimes} className="times-icon"/>
             </button>
-            <div id='dropdown-menu'>
-              <div className="dropdown-btn" id="dropdown-edit">
+            <div id='dropdown-menu-list'>
+              <div className="dropdown-btn-list" id="dropdown-edit">
                 <button
                   type="button"
                   id="edit-button"
@@ -294,7 +294,7 @@ class List extends Component {
                 >
                 Edit List</button>
               </div>
-              <div className="dropdown-btn">
+              <div className="dropdown-btn-list">
                 <button
                   type="button"
                   id="delete-button"
@@ -303,7 +303,7 @@ class List extends Component {
                 >
                 Delete List</button>
               </div>
-              <div className="dropdown-btn" id="dropdown-reset">
+              <div className="dropdown-btn-list" id="dropdown-reset">
                 <button
                   type="button"
                   id="reset-button"
