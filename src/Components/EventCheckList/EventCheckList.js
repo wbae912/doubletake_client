@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import List from '../../Components/List/List';
 import EventListForm from '../../Components/EventListForm/EventListForm';
 import SearchBar from '../SearchBar/SearchBar';
@@ -8,7 +8,7 @@ import EventService from '../../Utils/event-service';
 import ListContext from '../../Context/ListContext';
 import './EventCheckList.css';
 
-export default class EventCheckList extends Component {
+class EventCheckList extends Component {
   static contextType = ListContext;
 
   constructor(props) {
@@ -187,3 +187,5 @@ export default class EventCheckList extends Component {
     )
   }
 }
+
+export default withRouter(EventCheckList);

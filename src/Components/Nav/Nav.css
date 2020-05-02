@@ -1,0 +1,90 @@
+.nav-header {
+  background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  height: 70px;
+}
+
+.nav-logo-header {
+  display: flex;
+  align-items: center;
+  margin-left: 2%;
+  width: 50%;
+}
+
+.logo-div {
+  margin-right: 10px;
+}
+
+.nav-title {
+  display: inline-block;
+  cursor: pointer;
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+  margin-left: 0.3em;
+}
+
+.nav {
+  color: white;
+}
+
+.nav-links {
+  list-style: none;
+  color: white;
+}
+
+.nav-li {
+  display: inline-block;
+  padding: 0;
+  padding-right: 10px;
+  transition: all 0.3s ease 0s;
+  font-weight: bold;
+  font-size: 13px;
+  color: white;
+  text-decoration: none;
+}
+
+.nav-li:hover {
+  color: rgb(129, 22, 129);
+}
+
+.selected {
+  color: rgb(129, 22, 129);
+}
+
+@media only screen and (min-width: 500px) {
+  .nav-li {
+    font-size: 14px;
+    padding-right: 20px;
+  }
+}
+
+@media only screen and (min-width: 750px) {
+  .nav-li {
+    font-size: 16px;
+    padding-right: 20px;
+  }
+  .nav-title {
+    font-size: 24px;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .nav-li {
+    padding-right: 25px;
+  }
+}
+
+@media only screen and (min-width: 1300px) {
+  .nav-li {
+    font-size: 17px;
+    padding-right: 30px;
+  }
+}

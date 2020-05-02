@@ -1,3 +1,7 @@
+.general-lists {
+  margin-top: 70px;
+}
+
 #create-list-button {
   height: 35px;
   border-radius: 30px;
@@ -20,7 +24,7 @@
 }
 
 .list-direct {
-  margin: 1.5em 0 1.5em 0;
+  margin: 0 0 0.8em 0;
   display: flex;
   justify-content: center;
 }

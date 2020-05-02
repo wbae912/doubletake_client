@@ -5,11 +5,13 @@ import Register from '../../Components/Register/Register';
 import GeneralCheckList from '../../Components/GeneralCheckList/GeneralCheckList';
 import EventCheckList from '../../Components/EventCheckList/EventCheckList';
 import NotFound from '../NotFound/NotFound';
+import Nav from '../Nav/Nav';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
+      <Nav />
       <Switch>
         <Route 
           path={'/register'}
