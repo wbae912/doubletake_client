@@ -16,7 +16,7 @@
   height: 2px;
   border-top: 1.15px solid rgb(90, 90, 90);
   margin-top: 0;
-  margin-bottom: 1em;
+  margin-bottom: 0;
 }
 
 .color {
@@ -44,6 +44,11 @@
 
 .delete-h3 {
   margin-top: 0;
+}
+
+#event-date {
+  margin: 0.5em 0 0.3em 0;
+  font-size: 24px;
 }
 
 /* DROPDOWN MENU STYLING */

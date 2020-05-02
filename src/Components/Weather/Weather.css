@@ -1,0 +1,83 @@
+.location-h3 {
+  margin-top: 0;
+  color: rgb(121, 121, 121)
+}
+
+.weather-flex-main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.weather-summary-div {
+  width: 50%;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  border-right: 1px solid lightgrey;
+  margin-bottom: 1em;
+}
+
+.weather-main-p {
+  margin: 0;
+  color: rgb(98, 98, 98);
+  font-weight: bold;
+  font-size: 14px;
+}
+
+#weather-icon {
+  margin: 0;
+  width: 90px;
+  height: 90px;
+}
+
+.temperature-div {
+  width: 50%;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.temperature-h2 {
+  margin: 0 0 22px 0;
+  display: flex;
+  font-size: 46px;
+}
+
+.temp-degree {
+  font-size: 13.5px;
+  margin-right: 0.1em;
+  margin-top: 0.5em;
+}
+
+.temp-notation {
+  font-size: 13.5px;
+  margin-top: 0.5em;
+}
+
+#f-button, #c-button {
+  font-size: 13.5px;
+  font-weight: bolder;
+}
+
+.fahrenheit-button {
+  width: 35px;
+  border-top-left-radius: 100px;
+  border-bottom-left-radius: 100px;
+}
+
+.celsius-button {
+  width: 35px;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+}
+
+.fahrenheit-button:focus, .celsius-button:focus {
+  background-color: rgb(85, 85, 85);
+  color: white;
+}
+
+.fahrenheit-button:active, .celsius-button:active {
+  background-color: rgb(85, 85, 85);
+  color: white;
+}

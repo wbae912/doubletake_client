@@ -321,9 +321,6 @@ class List extends Component {
     let date = new Date(this.props.list.date_of_event).toLocaleString();
     let dateArray = date.split(',');
 
-
-
-
     return (
       <div className="list-entry">
         <div className="color" style={{backgroundColor: this.props.color}}>
@@ -334,7 +331,7 @@ class List extends Component {
         <hr className="underline" />
 
         {(this.props.list.hasOwnProperty('date_of_event') 
-          ? <h3 className="list-date">{dateArray[0]}</h3>
+          ? <h3 className="list-date" id="event-date">{dateArray[0]}</h3>
           : null
         )}
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TokenService from '../../services/token-service';
 import ListContext from '../../Context/ListContext';
+import './Weather.css';
 
 export default class Weather extends Component {
   static contextType = ListContext;
@@ -12,7 +13,8 @@ export default class Weather extends Component {
        weather_main: '',
        weather_description: '',
        weather_icon: '',
-       temperature: null,
+       fahrenheit: null,
+       celsius: null,
        fahrenheitDisplay: true,
        celsiusDisplay: false
     }
@@ -31,14 +33,18 @@ export default class Weather extends Component {
       return res.json();
     })
     .then(data => {
-      let temperature = data.main.temp;
-      temperature = temperature.toFixed(1);
+      let fahrenheit = data.main.temp;
+      fahrenheit = fahrenheit.toFixed(1);
+
+      let celsius = (fahrenheit - 32) * (5/9);
+      celsius = celsius.toFixed(1);
 
       this.setState({
         weather_main: data.weather[0].main,
         weather_description: data.weather[0].description,
         weather_icon: data.weather[0].icon,
-        temperature
+        fahrenheit,
+        celsius
       })
     })
     .catch(res => {
@@ -46,38 +52,70 @@ export default class Weather extends Component {
     })
   }
 
-  convertFahrenheit = temperature => {
-    if(this.state.celsiusDisplay) {
-      let fahrenheit = temperature * (9/5) + 32;
-      fahrenheit = fahrenheit.toFixed(1);
-
-      this.setState({
-        temperature: fahrenheit,
-        fahrenheitDisplay: true,
-        celsiusDisplay: false
-      })
-    }
+  convertFahrenheit = () => {
+    this.setState({
+      fahrenheitDisplay: true,
+      celsiusDisplay: false
+    })
   }
 
-  convertCelsius = temperature => {
-    let celsius = (temperature - 32) * (5/9);
-    celsius = celsius.toFixed(1);
-    
+  convertCelsius = () => {    
     this.setState({
-      temperature: celsius,
       celsiusDisplay: true,
       fahrenheitDisplay: false
     })
   }
 
   renderTemperature = () => {
-    if(this.state.temperature && this.state.fahrenheitDisplay) {
+    if(this.state.fahrenheit && this.state.fahrenheitDisplay) {
       return (
-        <p className="temperature-p">{this.state.temperature}&#176;F</p>
+        <div className="temperature-div">
+          <h2 className="temperature-h2">{this.state.fahrenheit}
+            <span className="temp-degree">&#176;</span>
+            <span className="temp-notation">F</span>
+          </h2>
+          <div className="weather-button-div">
+            <button 
+                className="fahrenheit-button"
+                onClick={() => this.convertFahrenheit()}
+            >
+              <span className="temp-degree" id="f-button">&#176;</span>
+              <span className="temp-notation" id="f-button">F</span>
+            </button>
+            <button 
+              className="celsius-button"
+              onClick={() => this.convertCelsius()}
+            >
+              <span className="temp-degree" id="c-button">&#176;</span>
+              <span className="temp-notation" id="c-button">C</span>
+            </button>
+          </div>
+        </div>
       )
-    } else if(this.state.temperature && this.state.celsiusDisplay) {
+    } else if(this.state.celsius && this.state.celsiusDisplay) {
       return (
-        <p className="temperature-p">{this.state.temperature}&#176;C</p>
+        <div className="temperature-div">
+          <h2 className="temperature-h2">{this.state.celsius}
+            <span className="temp-degree">&#176;</span>
+            <span className="temp-notation">C</span>
+          </h2>
+          <div className="weather-button-div">
+            <button 
+              className="fahrenheit-button"
+              onClick={() => this.convertFahrenheit()}
+            >
+              <span className="temp-degree" id="f-button">&#176;</span>
+              <span className="temp-notation" id="f-button">F</span>
+            </button>
+            <button 
+              className="celsius-button"
+              onClick={() => this.convertCelsius()}
+            >
+              <span className="temp-degree" id="c-button">&#176;</span>
+              <span className="temp-notation" id="c-button">C</span>
+            </button>
+          </div>
+        </div>
       )
     }
   }
@@ -102,15 +140,21 @@ export default class Weather extends Component {
       location = '';
     }
 
+    let weatherIconCode = this.state.weather_icon;
+    let weatherIconImage = `http://openweathermap.org/img/wn/${weatherIconCode}@2x.png`; 
     return (
       <div className="weather-div">
         <h3 className="location-h3">{location}</h3>
-        <p className="weather-main-p">{this.state.weather_main}</p>
-        <p className="weather-description-p">{this.state.weather_description}</p>
-        <p className="weather-icon-p">{this.state.weather_icon}</p>
-        {this.renderTemperature()}
+        <div className="weather-flex-main">
+          <div className="weather-summary-div">
+            <p className="weather-main-p">{this.state.weather_main}</p>
+            {/* <p id="weather-icon" style={{backgroundImage: `url(${weatherIconImage})`}}></p> */}
+            <img src={weatherIconImage} alt="weather-icon" id="weather-icon"></img>
+          </div>
+          {this.renderTemperature()}
+        </div>
 
-        {this.state.temperature &&
+        {/* {this.state.temperature &&
           <> 
             <button 
               className="fahrenheit-button"
@@ -121,7 +165,7 @@ export default class Weather extends Component {
               onClick={() => this.convertCelsius(this.state.temperature)}
             >&#176;C</button>
           </>
-        }
+        } */}
       </div>
     )
   }
