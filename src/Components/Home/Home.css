@@ -128,7 +128,7 @@
 .general-ul {
   background: radial-gradient(circle, rgba(240,184,0,0.9251050762101716) 0%, rgba(233,226,0,0.8130602582830007) 100%, rgba(0,212,255,1) 100%);
   width: 92%;
-  height: 350px;
+  height: 325px;
   margin: auto;
   padding: 20px 0 20px 0;
   border-bottom-left-radius: 12px;
@@ -181,7 +181,7 @@
 
 /* STYLING FOR EVENT LISTS */
 .event-home-div {
-  margin-bottom: 1.5em;
+  margin-bottom: 3em;
 }
 
 .title-div-event {
@@ -206,7 +206,7 @@
 .event-ul {
   background: radial-gradient(circle, rgba(240,184,0,0.9251050762101716) 0%, rgba(233,226,0,0.8130602582830007) 100%, rgba(0,212,255,1) 100%);
   width: 92%;
-  height: 350px;
+  height: 325px;
   margin: auto;
   padding: 20px 0 20px 0;
   border-bottom-left-radius: 12px;

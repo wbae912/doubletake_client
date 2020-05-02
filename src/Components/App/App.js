@@ -8,6 +8,7 @@ import NotFound from '../NotFound/NotFound';
 import Nav from '../Nav/Nav';
 import NavBar from '../NavBar/NavBar';
 import Home from '../Home/Home';
+import Footer from '../Footer/Footer';
 import TokenService from '../../services/token-service';
 import './App.css';
 
@@ -63,6 +64,7 @@ export default class App extends Component {
             component={NotFound}
           />
         </Switch>
+        <Footer />
       </div>
     );
   }
