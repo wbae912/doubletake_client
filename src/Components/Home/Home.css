@@ -59,10 +59,10 @@
   flex-direction: row;
   justify-content: space-between;
   cursor: pointer;
-  -webkit-transition: height 0.5s ease;
-  -moz-transition: height 0.5s ease;
-  -o-transition: height 0.5s ease;
-  transition: height 0.5s ease;
+  -webkit-transition: height 0.25s ease;
+  -moz-transition: height 0.25s ease;
+  -o-transition: height 0.25s ease;
+  transition: height 0.25s ease;
 }
 
 .upcoming-div:hover {
@@ -157,10 +157,10 @@
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  -webkit-transition: height 0.5s ease;
-  -moz-transition: height 0.5s ease;
-  -o-transition: height 0.5s ease;
-  transition: height 0.5s ease;
+  -webkit-transition: height 0.25s ease;
+  -moz-transition: height 0.25s ease;
+  -o-transition: height 0.25s ease;
+  transition: height 0.25s ease;
 }
 
 .li-div:hover {
@@ -235,10 +235,10 @@
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  -webkit-transition: height 0.5s ease;
-  -moz-transition: height 0.5s ease;
-  -o-transition: height 0.5s ease;
-  transition: height 0.5s ease;
+  -webkit-transition: height 0.25s ease;
+  -moz-transition: height 0.25s ease;
+  -o-transition: height 0.25s ease;
+  transition: height 0.25s ease;
 }
 
 .li-div:hover {

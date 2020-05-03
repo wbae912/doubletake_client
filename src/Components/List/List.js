@@ -156,7 +156,7 @@ class List extends Component {
   }
 
   renderItems = () => {
-    if(this.props.match.path === '/general') {
+    if(this.props.match.path === '/general' || this.props.match.path === '/glist/:id') {
       return (
         <Items 
           userId={this.props.list.user_id}
@@ -192,7 +192,7 @@ class List extends Component {
   }
 
   resetItems = (listId) => {
-    if(this.props.match.path === '/general') {
+    if(this.props.match.path === '/general' || this.props.match.path === '/glist/:id') {
       const generalItems = [...this.state.generalItems];
       
       const revertList = generalItems.filter(item => item.list_id === listId);
@@ -239,7 +239,7 @@ class List extends Component {
   // Previously, resetItems would work and un-strikethrough all items in a list, but the checkboxes would not uncheck because the component did not re-render
   // Therefore, this method is implemented to ensure that the checkboxes are unchecked as well after the reset button is clicked
   revertCheckboxOnDOM = (listId) => {
-    if(this.props.match.path === '/general') {
+    if(this.props.match.path === '/general' || this.props.match.path === '/glist/:id') {
       let checkboxes = document.getElementsByClassName(`list-input_g${listId}`);
       for(let i = 0; i < checkboxes.length; i++) {
         if(checkboxes[i].type === 'checkbox') {

@@ -23,7 +23,7 @@ class ItemQuantity extends Component {
   }
 
   decrementQuantity = item => {
-    if(this.props.match.path === '/general') {
+    if(this.props.match.path === '/general' || this.props.match.path === '/glist/:id') {
       item.quantity--;
 
       this.setState({
@@ -75,7 +75,7 @@ class ItemQuantity extends Component {
   }
 
   incrementQuantity = item => {
-    if(this.props.match.path === '/general') {
+    if(this.props.match.path === '/general' || this.props.match.path === '/glist/:id') {
       item.quantity++;
 
       this.setState({
@@ -127,7 +127,7 @@ class ItemQuantity extends Component {
   }
 
   handleKeyPress = (e, item) => {
-    if(this.props.match.path === '/general') {
+    if(this.props.match.path === '/general' || this.props.match.path === '/glist/:id') {
       // This event listener fires once the user has pressed "Enter" key
       if(e.key === 'Enter') {
         let quantity = this.state.quantity;
@@ -182,7 +182,7 @@ class ItemQuantity extends Component {
 
   // This method was made so that if the user focuses out of the element, it will persist their quantity in the database
   handleBlur = item => {
-    if(this.props.match.path === '/general') {
+    if(this.props.match.path === '/general' || this.props.match.path === '/glist/:id') {
       let quantity = this.state.quantity;
       const editItem = {...item, quantity};
 
@@ -224,7 +224,7 @@ class ItemQuantity extends Component {
 }
 
   renderInput = () => {
-    if(this.props.match.path === '/general') {
+    if(this.props.match.path === '/general' || this.props.match.path === '/glist/:id') {
       return (
         <input 
           type="number"

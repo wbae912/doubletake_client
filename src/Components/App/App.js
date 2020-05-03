@@ -4,6 +4,8 @@ import Login from '../../Components/Login/Login';
 import Register from '../../Components/Register/Register';
 import GeneralCheckList from '../../Components/GeneralCheckList/GeneralCheckList';
 import EventCheckList from '../../Components/EventCheckList/EventCheckList';
+import IndividualGeneral from '../IndividualGeneral/IndividualGeneral';
+import IndividualEvent from '../IndividualEvent/IndividualEvent';
 import NotFound from '../NotFound/NotFound';
 import Nav from '../Nav/Nav';
 import NavBar from '../NavBar/NavBar';
@@ -59,6 +61,14 @@ export default class App extends Component {
           <Route
             path={'/event'}
             component={EventCheckList}
+          />
+          <Route 
+            path={'/glist/:id'}
+            component={IndividualGeneral}
+          />
+          <Route 
+            path={'/elist/:id'}
+            component={IndividualEvent}
           />
           <Route 
             component={NotFound}

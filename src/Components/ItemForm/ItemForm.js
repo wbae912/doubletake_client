@@ -26,7 +26,7 @@ class ItemForm extends Component {
 
     const newItem = {...this.state};
 
-    if(this.props.match.path === '/general') {
+    if(this.props.match.path === '/general' || this.props.match.path === '/glist/:id') {
       GeneralItemsService.postItem(newItem, this.props.listId)
       .then(data => {
         this.context.setNewGeneralItem(data);

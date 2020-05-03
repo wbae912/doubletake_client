@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import ListContext from '../../Context/ListContext';
 import EventService from '../../Utils/event-service';
 import GeneralService from '../../Utils/general-service';
 import './Home.css';
 
-export default class Home extends Component {
+class Home extends Component {
   static contextType = ListContext;
 
   constructor(props) {
@@ -75,6 +76,16 @@ export default class Home extends Component {
       sessionStorage.setItem('alerted', true);
     }
   }
+
+  handleGeneralClick = e => {
+    let elementId = e.target.id;
+    this.props.history.push(`/glist/${elementId}`);
+  }
+
+  handleEventClick = e => {
+    let elementId = e.target.id;
+    this.props.history.push(`/elist/${elementId}`);
+  }
   
   render() {
     let generalLists = [...this.state.generalLists];
@@ -89,18 +100,19 @@ export default class Home extends Component {
 
     return (
       <div className="home-div">
+
         <div id="upcoming-home-div">
           <div className="upcoming-event-div">
             <h2 className="upcoming-h2">Upcoming Event</h2>
           </div>
           <div id="container">
-            <div className="upcoming-div">
+            <div className="upcoming-div" id={this.state.upcomingList.id} onClick={this.handleEventClick}>
               <div id="upcoming-container">
-                <p className="upcoming-title">{upcomingTitle}</p>
-                <p className="upcoming-date">{date}</p>
+                <p className="upcoming-title" id={this.state.upcomingList.id} onClick={this.handleEventClick}>{upcomingTitle}</p>
+                <p className="upcoming-date" id={this.state.upcomingList.id} onClick={this.handleEventClick}>{date}</p>
               </div>
               <div id="upcoming-goto">
-                <p className="go-to">>></p>
+                <p className="go-to" id={this.state.upcomingList.id} onClick={this.handleEventClick}>>></p>
               </div>
             </div>
           </div>
@@ -114,9 +126,9 @@ export default class Home extends Component {
             {(generalLists.length === 0)
               ? <li className="loading-li">Loading...</li>
               : generalLists.map(list =>
-              <div key={list.id} className="li-div">
-                <li className="general-li">{list.title}</li>
-                <p className="go-to-general">>></p>
+              <div key={list.id} className="li-div" id={list.id} onClick={this.handleGeneralClick}>
+                <li className="general-li" id={list.id} onClick={this.handleGeneralClick}>{list.title}</li>
+                <p className="go-to-general" id={list.id} onClick={this.handleGeneralClick}>>></p>
               </div>
             )}
           </ul>
@@ -130,9 +142,9 @@ export default class Home extends Component {
             {(eventLists.length === 0)
               ? <li className="loading-li">Loading...</li>
               : eventLists.map(list => 
-              <div key={list.id} className="li-div">
-                <li className="event-li">{list.title}</li>
-                <p className="go-to-event">>></p>
+              <div key={list.id} className="li-div" id={list.id} onClick={this.handleEventClick}>
+                <li className="event-li" id={list.id} onClick={this.handleEventClick}>{list.title}</li>
+                <p className="go-to-event" id={list.id} onClick={this.handleEventClick}>>></p>
               </div>
             )}
           </ul>
@@ -142,3 +154,5 @@ export default class Home extends Component {
     )
   }
 }
+
+export default withRouter(Home);
