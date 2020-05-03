@@ -12,6 +12,24 @@ class NavBar extends Component {
     this.state = {
        menuClicked: false
     }
+    this.ref = React.createRef();
+  }
+
+  componentDidMount() {
+    document.addEventListener('mousedown', this.handleClickOutsideMenu, false);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleClickOutsideMenu, false);
+  }
+
+  handleClickOutsideMenu = e => {
+    if(this.ref.current) {
+      if(this.ref.current.contains(e.target)) {
+        return;
+      }
+      this.toggleMenuOffAfterSelection(e);
+    } 
   }
   
   handleLogoutClick = () => {
@@ -42,11 +60,11 @@ class NavBar extends Component {
   renderHamburger = () => {
     if(!this.state.menuClicked) {
       return (
-        <div className="hamburger">
+        <div className="hamburger" ref={this.ref}>
           <label htmlFor="toggle" className="hamburger-logo" id="toggle-label" onClick={this.toggleMenuOn}>&#9776;</label>
           <input type="checkbox" id="toggle"/>
           <ul className="menu">
-              <li className="appnav-li appnav-li-first" onClick={() => this.props.history.push('/home')}>Home</li>
+              <li id="test" className="appnav-li appnav-li-first" onClick={() => this.props.history.push('/home')}>Home</li>
               <li className="appnav-li" onClick={() => this.props.history.push('/general')}>Lists</li>
               <li className="appnav-li appnav-li-last" 
                 onClick={() => {this.handleLogoutClick(); this.props.toggleLoggedOff(); this.props.history.push('/login')}}>
@@ -57,13 +75,13 @@ class NavBar extends Component {
       )
     } else {
       return (
-        <div className="hamburger">
-          <label htmlFor="toggle" className="hamburger-logo" onClick={this.toggleMenuOff}>
+        <div className="hamburger" ref={this.ref}>
+          <label htmlFor="toggle" className="hamburger-logo" onClick={this.toggleMenuOff} ref={node => this.node = node}>
             <FontAwesomeIcon icon={faTimes} className="times-icon" id="menu-close" />
           </label>
           <input type="checkbox" id="toggle"/>
           <ul className="menu">
-              <li className="appnav-li appnav-li-first" onClick={(e) => {this.props.history.push('/home'); this.toggleMenuOffAfterSelection(e)}}>Home</li>
+              <li id="test" className="appnav-li appnav-li-first" onClick={(e) => {this.props.history.push('/home'); this.toggleMenuOffAfterSelection(e)}}>Home</li>
               <li className="appnav-li" onClick={(e) => {this.props.history.push('/general'); this.toggleMenuOffAfterSelection(e)}}>Lists</li>
               <li className="appnav-li appnav-li-last" 
                 onClick={() => {this.handleLogoutClick(); this.props.toggleLoggedOff(); this.props.history.push('/login')}}>
