@@ -166,7 +166,7 @@ class List extends Component {
           ref={this.child}
         />
       )
-    } else if(this.props.match.path === '/event') {
+    } else if(this.props.match.path === '/event' || this.props.match.path === '/elist/:id') {
       return (
         <EventItems 
           userId={this.props.list.user_id}
@@ -212,7 +212,7 @@ class List extends Component {
         this.child.current.updateGeneralItems(generalItems);
         this.revertCheckboxOnDOM(listId);
       });
-    } else if(this.props.match.path === '/event') {
+    } else if(this.props.match.path === '/event' || this.props.match.path === '/elist/:id') {
       const eventItems = [...this.state.eventItems];
 
       const revertList = eventItems.filter(item => item.list_id === listId);
@@ -246,7 +246,7 @@ class List extends Component {
           checkboxes[i].checked = false;
         }
       }
-    } else if(this.props.match.path === '/event') {
+    } else if(this.props.match.path === '/event' || this.props.match.path === '/elist/:id') {
       let checkboxes = document.getElementsByClassName(`list-input_e${listId}`);
       for(let i = 0; i < checkboxes.length; i++) {
         if(checkboxes[i].type === 'checkbox') {

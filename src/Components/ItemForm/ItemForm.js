@@ -42,7 +42,7 @@ class ItemForm extends Component {
       .catch(res => {
         this.context.setError(res.error);
       })
-    } else if(this.props.match.path === '/event') {
+    } else if(this.props.match.path === '/event' || this.props.match.path === '/elist/:id') {
       try {
         let newEventItem = await EventItemsService.postItem(newItem, this.props.listId);
         this.context.setNewEventItem(newEventItem);

@@ -47,7 +47,7 @@ class ItemQuantity extends Component {
       .catch(res => {
         this.context.setError(res.error);
       })
-    } else if(this.props.match.path === '/event') {
+    } else if(this.props.match.path === '/event' || this.props.match.path === '/elist/:id') {
       item.quantity--;
 
       this.setState({
@@ -99,7 +99,7 @@ class ItemQuantity extends Component {
       .catch(res => {
         this.context.setError(res.error);
       })
-    } else if(this.props.match.path === '/event') {
+    } else if(this.props.match.path === '/event' || this.props.match.path === '/elist/:id') {
       item.quantity++;
 
       this.setState({
@@ -152,8 +152,7 @@ class ItemQuantity extends Component {
         let inputElement = document.getElementById(`quantity-g${item.id}`);
         inputElement.blur();
       }
-    } else if(this.props.match.path === '/event') {
-      // This event listener fires once the user has pressed "Enter" key
+    } else if(this.props.match.path === '/event' || this.props.match.path === '/elist/:id') {
       if(e.key === 'Enter') {
         let quantity = this.state.quantity;
         const editItem = {...item, quantity};
@@ -173,7 +172,6 @@ class ItemQuantity extends Component {
         .catch(res => {
           this.context.setError(res.error);
         })
-        // After the user presses "Enter" key, we do not want to focus on the input element anymore. That is why we use the "blur()" method to remove focus
         let inputElement = document.getElementById(`quantity-e${item.id}`);
         inputElement.blur();
       }
@@ -201,7 +199,7 @@ class ItemQuantity extends Component {
       .catch(res => {
         this.context.setError(res.error);
       })
-  } else if(this.props.match.path === '/event') {
+  } else if(this.props.match.path === '/event' || this.props.match.path === '/elist/:id') {
       let quantity = this.state.quantity;
       const editItem = {...item, quantity};
 
@@ -239,7 +237,7 @@ class ItemQuantity extends Component {
           onBlur={() => this.handleBlur(this.props.item)}
         />
       )
-    } else if(this.props.match.path === '/event') {
+    } else if(this.props.match.path === '/event' || this.props.match.path === '/elist/:id') {
       return(
         <input 
           type="number"
