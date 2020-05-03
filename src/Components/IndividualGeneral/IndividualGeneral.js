@@ -13,7 +13,7 @@ class IndividualGeneral extends Component {
     super(props)
   
     this.state = {
-       list: {},
+       list: {}
     }
   }
 

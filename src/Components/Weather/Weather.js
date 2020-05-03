@@ -141,31 +141,29 @@ export default class Weather extends Component {
     }
 
     let weatherIconCode = this.state.weather_icon;
-    let weatherIconImage = `http://openweathermap.org/img/wn/${weatherIconCode}@2x.png`; 
+    let weatherIconImage = `http://openweathermap.org/img/wn/${weatherIconCode}@2x.png`;
+
     return (
       <div className="weather-div">
-        <h3 className="location-h3">{location}</h3>
-        <div className="weather-flex-main">
-          <div className="weather-summary-div">
-            <p className="weather-main-p">{this.state.weather_main}</p>
-            {/* <p id="weather-icon" style={{backgroundImage: `url(${weatherIconImage})`}}></p> */}
-            <img src={weatherIconImage} alt="weather-icon" id="weather-icon"></img>
-          </div>
-          {this.renderTemperature()}
-        </div>
 
-        {/* {this.state.temperature &&
-          <> 
-            <button 
-              className="fahrenheit-button"
-              onClick={() => this.convertFahrenheit(this.state.temperature)}
-            >&#176;F</button>
-            <button 
-              className="celsius-button"
-              onClick={() => this.convertCelsius(this.state.temperature)}
-            >&#176;C</button>
-          </>
-        } */}
+        {(location === '') 
+          ? <>
+              <h3 className="location-h3">Location: N/A</h3>
+            </>
+          :
+            <>
+              <h3 className="location-h3">{location}</h3>
+              <div className="weather-flex-main">
+                <div className="weather-summary-div">
+                  <p className="weather-main-p">{this.state.weather_main}</p>
+                  {/* <p id="weather-icon" style={{backgroundImage: `url(${weatherIconImage})`}}></p> */}
+                  <img src={weatherIconImage} alt="weather-icon" id="weather-icon"></img>
+                </div>
+                {this.renderTemperature()}
+              </div>
+            </>
+        }
+
       </div>
     )
   }
