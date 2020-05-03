@@ -32,6 +32,15 @@ class List extends Component {
     }
     // "ref" was created in order to access methods from child components (Items + EventItems). Typically, not best practice/design, but good to know/practice.
     this.child = React.createRef();
+    this.node = React.createRef();
+  }
+
+  componentDidMount() {
+    document.addEventListener('mousedown', this.handleClickOutsideMenu, false);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleClickOutsideMenu, false);
   }
   
   toggleButton = e => {
@@ -268,10 +277,19 @@ class List extends Component {
     })
   }
 
+  handleClickOutsideMenu = e => {
+    if(this.node.current) {
+      if(this.node.current.contains(e.target)) {
+        return;
+      }
+      this.toggleMenuOff(e);
+    }
+  }
+
   renderMenu = () => {
     if(!this.state.menuClicked) {
       return (
-        <div className='dropdown-list'>
+        <div className='dropdown-list' ref={this.node}>
           <button className='dropbtn-list'onClick={this.toggleMenuOn}>
             <svg className="octicon octicon-kebab-horizontal" viewBox="0 0 13 16" version="1.1" width="13" height="16" aria-hidden="true">
               <path fillRule="evenodd" d="M1.5 9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm5 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM13 7.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"></path>
@@ -280,7 +298,7 @@ class List extends Component {
         </div>
       )} else {
         return (
-          <div className='dropdown-list'>
+          <div className='dropdown-list' ref={this.node}>
             <button onClick={this.toggleMenuOff} className='dropbtn-list'>
               <FontAwesomeIcon icon={faTimes} className="times-icon"/>
             </button>
