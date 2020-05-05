@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 import FormValidation from '../../Components/FormValidation/FormValidation';
 import UserContext from '../../Context/UserContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import './Register.css';
 
 export default class Register extends Component {
@@ -24,7 +26,8 @@ export default class Register extends Component {
          password: false,
          passwordVerify: false,
        },
-       showPassword: false
+       showPassword: false,
+       error: null
     };
   }
 
@@ -118,8 +121,28 @@ export default class Register extends Component {
       this.props.history.push('/login');
     })
     .catch(res => {
-      this.context.setError(res.error); // DOUBLE CHECK IF RETURN NEEDS TO BE HERE
+      this.setState({
+        error: res.error
+      })
     })
+  }
+
+  renderShowPassword = () => {
+    if(this.state.showPassword) {
+      return (
+      <>
+        <FontAwesomeIcon icon={faEyeSlash} id="hide-icon" onClick={this.toggleShowPassword} />
+        <span className="show-span">Hide Password</span>
+      </>
+      )
+    } else {
+      return (
+        <>
+          <FontAwesomeIcon icon={faEye} id="show-icon" onClick={this.toggleShowPassword} />
+          <span className="show-span">Show Password</span>
+        </>
+      )
+    }
   }
 
   render() {
@@ -129,11 +152,63 @@ export default class Register extends Component {
     let passwordVerifyError = this.validatePasswordVerify();
 
     return (
-      <section className="register-section">
-        <h2 className="register-h2">Register</h2>
-        <form className="register-form" onSubmit={this.handleSubmit}>
-        {!this.state.showPassword 
-        ? <div className="register_inputs-labels">
+      <>
+        <div className="top-div-register">
+          {this.state.error && <p className='red'>{this.state.error}</p>}
+        </div>
+        <section className="register-section">
+          <div className="header-div">
+            <h2 className="register-h2">Doubletake</h2>
+          </div>
+          <form className="register-form" onSubmit={this.handleSubmit}>
+          {!this.state.showPassword 
+          ? <div className="register_inputs-labels">
+              <label className="register-label" htmlFor="email">Email</label>
+              <input 
+                type="email" 
+                name="email"
+                className="register-input" 
+                id="email" 
+                placeholder="example@email.com"
+                required
+                onChange={(e) => {this.handleCredentialsChange(e); this.handleTouchedChange(e);}}
+              />
+              {this.state.touched.email && <FormValidation message={emailError} />}
+              <label className="register-label" htmlFor="username">Username</label>
+              <input
+                type="text"
+                name="username"
+                className="register-input"
+                id="username"
+                placeholder="user123"
+                required
+                onChange={(e) => {this.handleCredentialsChange(e); this.handleTouchedChange(e)}}
+              />
+              {this.state.touched.username && <FormValidation message={usernameError} />}
+              <label className="register-label" htmlFor="password">Password</label>
+              <input 
+                type="password"
+                name="password"
+                className="register-input"
+                id="password"
+                autoComplete="off"
+                required
+                onChange={(e) => {this.handleCredentialsChange(e); this.handleTouchedChange(e); this.validatePassword();}}
+              />
+              {this.state.touched.password && <FormValidation message={passwordError} />}
+              <label className="register-label" htmlFor="password-again">Re-Enter Password</label>
+              <input 
+                type="password"
+                name="passwordVerify"
+                className="register-input" 
+                id="password-again"
+                autoComplete="off"
+                required
+                onChange={(e) => {this.handleNonNestedChange(e); this.handleTouchedChange(e)}}
+              />
+              {this.state.touched.passwordVerify && <FormValidation message={passwordVerifyError} />}
+            </div>
+          : <div className="register_inputs-labels">
             <label className="register-label" htmlFor="email">Email</label>
             <input 
               type="email" 
@@ -158,88 +233,38 @@ export default class Register extends Component {
             {this.state.touched.username && <FormValidation message={usernameError} />}
             <label className="register-label" htmlFor="password">Password</label>
             <input 
-              type="password"
+              type="text"
               name="password"
               className="register-input"
               id="password"
-              autoComplete="off"
               required
               onChange={(e) => {this.handleCredentialsChange(e); this.handleTouchedChange(e); this.validatePassword();}}
             />
             {this.state.touched.password && <FormValidation message={passwordError} />}
             <label className="register-label" htmlFor="password-again">Re-Enter Password</label>
             <input 
-              type="password"
+              type="text"
               name="passwordVerify"
               className="register-input" 
               id="password-again"
-              autoComplete="off"
               required
               onChange={(e) => {this.handleNonNestedChange(e); this.handleTouchedChange(e)}}
             />
             {this.state.touched.passwordVerify && <FormValidation message={passwordVerifyError} />}
-          </div>
-        : <div className="register_inputs-labels">
-          <label className="register-label" htmlFor="email">Email</label>
-          <input 
-            type="email" 
-            name="email"
-            className="register-input" 
-            id="email" 
-            placeholder="example@email.com"
-            required
-            onChange={(e) => {this.handleCredentialsChange(e); this.handleTouchedChange(e);}}
-          />
-          {this.state.touched.email && <FormValidation message={emailError} />}
-          <label className="register-label" htmlFor="username">Username</label>
-          <input
-            type="text"
-            name="username"
-            className="register-input"
-            id="username"
-            placeholder="user123"
-            required
-            onChange={(e) => {this.handleCredentialsChange(e); this.handleTouchedChange(e)}}
-          />
-          {this.state.touched.username && <FormValidation message={usernameError} />}
-          <label className="register-label" htmlFor="password">Password</label>
-          <input 
-            type="text"
-            name="password"
-            className="register-input"
-            id="password"
-            required
-            onChange={(e) => {this.handleCredentialsChange(e); this.handleTouchedChange(e); this.validatePassword();}}
-          />
-          {this.state.touched.password && <FormValidation message={passwordError} />}
-          <label className="register-label" htmlFor="password-again">Re-Enter Password</label>
-          <input 
-            type="text"
-            name="passwordVerify"
-            className="register-input" 
-            id="password-again"
-            required
-            onChange={(e) => {this.handleNonNestedChange(e); this.handleTouchedChange(e)}}
-          />
-          {this.state.touched.passwordVerify && <FormValidation message={passwordVerifyError} />}
-          </div>
-        }
-          <div className="div-checkbox">
-            <input 
-              type="checkbox"
-              name="showPassword" 
-              id="password-show" 
-              className="check-input" 
-              onClick={this.toggleShowPassword}
-            />
-            <label htmlFor="password-show" className="check-label">Show password</label>
-          </div>
-          <div className="register-buttons">
-            <button type="submit" className="register-button" disabled={emailError || usernameError || passwordError || passwordVerifyError}>Register</button>
-            <button type="button" className="back-button">Back</button>
-          </div>
-        </form>
-      </section>
+            </div>
+          }
+
+            <div className="div-checkbox">
+              {this.renderShowPassword()}
+            </div>
+
+            <div className="register-buttons">
+              <button type="submit" className="register-button" disabled={emailError || usernameError || passwordError || passwordVerifyError}>SIGN UP</button>
+              {/* <button type="button" className="back-button">Back</button> */}
+            </div>
+          </form>
+        </section>
+      </>
     )
   }
 }

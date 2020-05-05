@@ -1,5 +1,5 @@
-.top-div {
-  margin-top: 150px;
+.top-div-register {
+  margin-top: 120px;
 }
 
 .red {
@@ -25,6 +25,8 @@
   background-color: #392061;
   border-bottom: 1px solid #392061;
   margin-bottom: 2em;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 .login-header {
@@ -46,6 +48,7 @@
 .login-label {
   margin-bottom: 0.4em;
   font-size: 17px;
+  font-weight: 550;
 }
 
 .login-input {
