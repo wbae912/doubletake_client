@@ -1,8 +1,17 @@
+.top-div {
+  margin-top: 150px;
+}
+
+.red {
+  color: red;
+  font-size: 20px;
+  margin-bottom: 1.2em;
+}
+
 .login-section {
   width: 320px;
   text-align: center;
   margin: auto;
-  margin-top: 165px;
   border: 0.5px solid rgb(107, 107, 107);
   border-radius: 5px;
   box-shadow: 0 0 30px #000000;

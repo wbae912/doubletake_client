@@ -36,6 +36,13 @@ export default class App extends Component {
       isLoggedIn: false
     })
   }
+
+  // Since user is directed to Home page immediately after login, created this method so Home component can setState of "isLoggedIn" back up to parent (App) with this callback method
+  callbackIsLoggedIn = boolean => {
+    this.setState({
+      isLoggedIn: boolean
+    })
+  }
   
   render() {
     return (
@@ -52,7 +59,7 @@ export default class App extends Component {
           />
           <Route
             path={'/home'}
-            component={Home}
+            render={() => <Home callbackFromParent={this.callbackIsLoggedIn}/>}
           />
           <Route 
             path={'/general'}

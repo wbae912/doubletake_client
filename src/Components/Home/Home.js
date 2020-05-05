@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import ListContext from '../../Context/ListContext';
 import EventService from '../../Utils/event-service';
 import GeneralService from '../../Utils/general-service';
+import TokenService from '../../services/token-service';
 import './Home.css';
 
 class Home extends Component {
@@ -19,7 +20,11 @@ class Home extends Component {
     }
   }
 
-  componentDidMount() {    
+  componentDidMount() { 
+    if(TokenService.getAuthToken()) {
+      this.props.callbackFromParent(true);
+    }
+
     GeneralService.getLists()
       .then(data => {
         this.setState({
