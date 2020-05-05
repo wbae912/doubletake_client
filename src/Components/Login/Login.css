@@ -1,6 +1,27 @@
 .login-section {
+  width: 320px;
   text-align: center;
-  margin-top: 120px;
+  margin: auto;
+  margin-top: 165px;
+  border: 0.5px solid rgb(107, 107, 107);
+  border-radius: 5px;
+  box-shadow: 0 0 30px #000000;
+}
+
+.header-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  background-color: #392061;
+  border-bottom: 1px solid #392061;
+  margin-bottom: 2em;
+}
+
+.login-header {
+  margin: 0;
+  color: white;
+  font-size: 32px;
 }
 
 .login-form {
@@ -13,22 +34,51 @@
   align-items: center;
 }
 
-.login-buttons {
-  margin-top: 2em;
+.login-label {
+  margin-bottom: 0.4em;
+  font-size: 17px;
 }
 
-.login-button, .back-button {
-  margin: 0 1em 0 0;
-  width: 80px;
-  color: black;
-  background-color: white;
-  border: 1.5px solid black;
-  border-radius: 20px;
+.login-input {
+  width: 217px;
+  height: 25px;
+  border: 0.5px solid rgb(204, 204, 204);
+}
+
+#login-username {
+  margin-bottom: 1.2em;
+}
+
+.login-buttons {
+  width: 319.6px;
+  height: 70px;
+  margin-top: 1em;
+  background-color: #392061;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+.to-register-p {
+  margin-top: 3.5em;
+  margin-bottom: 0;
+  font-size: 13px;
+}
+
+.login-button {
+  width: 100%;
+  color: white;
+  background-color: transparent;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border: none;
+  font-size: 16px;
   cursor: pointer;
   transition: ease 0.4s;
 }
 
-.login-button:hover, .back-button:hover {
-  color:white;
+.login-button:hover {
   background-color: black;
+  font-size: 17.5px;
 }

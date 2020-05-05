@@ -50,7 +50,9 @@ export default class Login extends Component {
   render() {
     return (
       <section className="login-section">
-        <h2 className="login-header">Login</h2>
+        <div className="header-div">
+          <h2 className="login-header">Doubletake</h2>
+        </div>
         <form className="login-form" onSubmit={this.handleSubmitJwtAuth}>
           <div className="login_labels-inputs">
             <label className="login-label" htmlFor="username">Username</label>
@@ -71,14 +73,14 @@ export default class Login extends Component {
               onChange={this.handleInputChange}
             />
           </div>
-          <div className="login-buttons">
-            <button type="submit" className="login-button">Login</button>
-            <button type="button" className="back-button">Back</button>
-          </div>
           <div className="to-register"> 
             <p className="to-register-p">New to DoubleTake?&nbsp;
               <Link to='/register'>Create an account.</Link>
             </p>
+          </div>
+          <div className="login-buttons">
+            <button type="submit" className="login-button">LOGIN ></button>
+            {/* <button type="button" className="back-button">Back</button> */}
           </div>
         </form>
       </section>
