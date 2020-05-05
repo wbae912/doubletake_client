@@ -114,12 +114,7 @@ class NavBar extends Component {
               </div>
             </div>
             <Link to='/login'>
-              <p 
-                className="appnav-li"
-                id="logout-menu"
-                onClick={this.handleLogoutClick}
-              >
-              Logout</p>
+              <p className="appnav-li" id="logout-menu" onClick={this.handleLogoutClick}>Logout</p>
             </Link>
           </div>
         </nav>
