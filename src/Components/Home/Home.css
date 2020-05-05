@@ -277,6 +277,7 @@
   .upcoming-div {
     width: 520px;
     align-items: center;
+    margin-bottom: 0.5em;
   }
   #upcoming-container {
     display: inline-block;
@@ -325,6 +326,9 @@
   }
   .upcoming-event-div {
     width: 650px;
+  }
+  .upcoming-div {
+    margin-bottom: 0.8em;
   }
   #container {
     width: 650px;
@@ -376,6 +380,9 @@
   }
   .upcoming-event-div {
     width: 700px;
+  }
+  .upcoming-div {
+    margin-bottom: 1em;
   }
   #container {
     width: 700px;
