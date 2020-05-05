@@ -64,12 +64,12 @@ class NavBar extends Component {
           <label htmlFor="toggle" className="hamburger-logo" id="toggle-label" onClick={this.toggleMenuOn}>&#9776;</label>
           <input type="checkbox" id="toggle"/>
           <ul className="menu">
-              <li id="test" className="appnav-li appnav-li-first" onClick={() => this.props.history.push('/home')}>Home</li>
-              <li className="appnav-li" onClick={() => this.props.history.push('/general')}>Lists</li>
-              <li className="appnav-li appnav-li-last" 
-                onClick={() => {this.handleLogoutClick(); this.props.toggleLoggedOff(); this.props.history.push('/login')}}>
-                Logout
-              </li>    
+            <li className="appnav-li appnav-li-first" onClick={() => this.props.history.push('/home')}>Home</li>
+            <li className="appnav-li" onClick={() => this.props.history.push('/general')}>Lists</li>
+            <li className="appnav-li appnav-li-last" 
+              onClick={() => {this.handleLogoutClick(); this.props.toggleLoggedOff(); this.props.history.push('/login')}}>
+              Logout
+            </li>    
           </ul>
         </div>
       )
@@ -81,12 +81,12 @@ class NavBar extends Component {
           </label>
           <input type="checkbox" id="toggle"/>
           <ul className="menu">
-              <li id="test" className="appnav-li appnav-li-first" onClick={(e) => {this.props.history.push('/home'); this.toggleMenuOffAfterSelection(e)}}>Home</li>
-              <li className="appnav-li" onClick={(e) => {this.props.history.push('/general'); this.toggleMenuOffAfterSelection(e)}}>Lists</li>
-              <li className="appnav-li appnav-li-last" 
-                onClick={() => {this.handleLogoutClick(); this.props.toggleLoggedOff(); this.props.history.push('/login')}}>
-                Logout
-              </li>    
+            <li className="appnav-li appnav-li-first" onClick={(e) => {this.props.history.push('/home'); this.toggleMenuOffAfterSelection(e)}}>Home</li>
+            <li className="appnav-li" onClick={(e) => {this.props.history.push('/general'); this.toggleMenuOffAfterSelection(e)}}>Lists</li>
+            <li className="appnav-li appnav-li-last" 
+              onClick={() => {this.handleLogoutClick(); this.props.toggleLoggedOff(); this.props.history.push('/login')}}>
+              Logout
+            </li>    
           </ul>
         </div>
       )
@@ -102,11 +102,21 @@ class NavBar extends Component {
         
         <nav className="appnav">
           <div className="appnav-links">
-            <NavLink to='/home' activeClassName="selected" className="appnav-li">Home</NavLink>
-            <NavLink to='/general' activeClassName="selected" className="appnav-li">Lists</NavLink>
+            <NavLink to='/home' activeClassName="selected" className="appnav-li" id="home-menu">Home</NavLink>
+            {/* <NavLink to='/general' activeClassName="selected" className="appnav-li">Lists</NavLink> */}
+            <div className="appnav-li" id="dropdown-li">
+              <div className="dropdown">
+                <button className="dropbtn">Lists</button>
+                <div className="dropdown-content">
+                  <NavLink to='/general' activeClassName="selected-dropdown" className="dropdown-link"><span className="dropdown-span">General</span></NavLink>
+                  <NavLink to='/event' activeClassName="selected-dropdown" className="dropdown-link"><span className="dropdown-span">Events</span></NavLink>
+                </div>
+              </div>
+            </div>
             <Link to='/login'>
               <p 
                 className="appnav-li"
+                id="logout-menu"
                 onClick={this.handleLogoutClick}
               >
               Logout</p>
