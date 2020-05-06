@@ -167,14 +167,15 @@ class GeneralCheckList extends Component {
 
         {this.renderForm()}
 
-        {generalLists.map(list => 
-          <List 
-            color={colorStack[Math.floor(Math.random() * colorStack.length)]}
-            key={list.id}
-            list={list}
-          />
-        )}
-        
+        <div className="list-render-div">
+          {generalLists.map(list => 
+            <List 
+              color={colorStack[Math.floor(Math.random() * colorStack.length)]}
+              key={list.id}
+              list={list}
+            />
+          )}
+        </div>
       </div>
     )
   }

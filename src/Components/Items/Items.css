@@ -1,7 +1,18 @@
+.items-div {
+  height: 200px;
+  /* max-height: 300px; */
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+
 /* STYLING FOR CHECKBOX INPUT */
 .item-div {
   position: relative;
   margin-bottom: 0.5em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .item-div label {
@@ -45,14 +56,39 @@
 /* END OF CHECKBOX STYLING */
 
 .delete-item-button {
-  margin-left: 0.5em;
+  /* margin-left: 0.5em; */
+  margin-right: 3%;
   color: red;
   cursor: pointer;
+  flex-basis: 5%;
 }
 
 .add-item-button {
   color: rgb(22, 175, 22);
   font-size: 20px;
-  margin: 0.3em 0 0.3em 0;
+  margin: auto 0 0.3em 0;
   cursor: pointer;
+  align-self: center;
+}
+
+.item-checkbox {
+  flex-basis: 10%;
+}
+
+.expand {
+  text-align: right;
+}
+
+.react-expand-collapse__button {
+  position: absolute;
+  right: 12.5em;
+  color: blue;
+  font-size: 12px;
+  text-decoration: underline;
+}
+
+@media only screen and (min-width: 500px) {
+  .item-div label {
+    left: 1em;
+  }
 }

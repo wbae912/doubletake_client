@@ -45,7 +45,7 @@ export default class Items extends Component {
           <input
             type="checkbox"
             name="itemChecked"
-            className={`list-input_g${this.props.listId}`}
+            className={`list-input_g${this.props.listId} item-checkbox`}
             id={`item - ${item.id}`}
             onClick={() => this.toggleChecked(item)}
           />
@@ -109,7 +109,7 @@ export default class Items extends Component {
             <input
               type="checkbox"
               name="itemChecked"
-              className={`list-input_g${this.props.listId}`}
+              className={`list-input_g${this.props.listId} item-checkbox`}
               id={`item - ${item.id}`}
               onChange={() => this.toggleChecked(item)}
               defaultChecked
@@ -140,7 +140,7 @@ export default class Items extends Component {
             />
     
             {/* {this.renderEditForm(item)} */}
-
+        
             <FontAwesomeIcon 
               icon={faTrashAlt} 
               className="delete-item-button"
@@ -336,6 +336,7 @@ export default class Items extends Component {
     return (
       <div className="items-div">
         {this.context.generalItemsForUser.map(item => this.renderItems(item))}
+
         {this.renderItemForm()}
       </div>
     )

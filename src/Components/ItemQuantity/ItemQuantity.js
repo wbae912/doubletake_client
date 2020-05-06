@@ -257,7 +257,7 @@ class ItemQuantity extends Component {
 
   render() {
     return (
-      <>
+      <div className="quantity-div">
         <button
           type="button"
           className="decrement-button"
@@ -273,7 +273,7 @@ class ItemQuantity extends Component {
           onClick={() => this.incrementQuantity(this.props.item)}
         >
         +</button>
-      </>
+      </div>
     )
   }
 }

@@ -2,10 +2,11 @@
   display: inline-block;
   margin-right: 0.5em;
   margin-left: 0.5em;
+  flex-basis: 60%;
 }
 
 .edit-item-form input {
-  width: 135px;
+  width: 100%;
 }
 
 .input-item-checked-true, .input-item-checked-false {
@@ -18,4 +19,11 @@
   color: rgb(104, 104, 104);
   background-color: rgb(233, 233, 233);
   text-decoration: line-through;
+}
+
+@media only screen and (min-width: 500px) {
+  .edit-item-form {
+    margin-left: 1.2em;
+    flex-basis: 55%;
+  }
 }

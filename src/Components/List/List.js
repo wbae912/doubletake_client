@@ -12,7 +12,7 @@ import GeneralItemsService from '../../Utils/generalItems-service';
 import EventItemsService from '../../Utils/eventItems-service';
 import Weather from '../Weather/Weather';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faTimes, faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import './List.css';
 
 Modal.setAppElement('#root');
@@ -291,9 +291,10 @@ class List extends Component {
       return (
         <div className='dropdown-list' ref={this.node}>
           <button className='dropbtn-list'onClick={this.toggleMenuOn}>
-            <svg className="octicon octicon-kebab-horizontal" viewBox="0 0 13 16" version="1.1" width="13" height="16" aria-hidden="true">
+            <FontAwesomeIcon icon={faEllipsisH} className="menu-ellipsis" />
+            {/* <svg className="octicon octicon-kebab-horizontal" viewBox="0 0 13 16" version="1.1" width="13" height="16" aria-hidden="true">
               <path fillRule="evenodd" d="M1.5 9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm5 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM13 7.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"></path>
-            </svg>
+            </svg> */}
           </button>
         </div>
       )} else {

@@ -24,6 +24,10 @@
   border-top-right-radius: 12px;
 }
 
+.menu-ellipsis {
+  font-size: 16px;
+}
+
 .delete-confirm {
   text-align: center;
 }
@@ -125,3 +129,39 @@
   color: red;
 }
 /* END OF DROPDOWN MENU STYLING */
+
+@media only screen and (min-width: 550px) {
+  .list-entry {
+    width: 80%;
+  }
+}
+
+@media only screen and (min-width: 650px) {
+  .list-entry {
+    width: 75%;
+  }
+}
+
+@media only screen and (min-width: 750px) {
+  .list-entry {
+    width: 70%;
+  }
+}
+
+@media only screen and (min-width: 800px) {
+  .list-entry {
+    width: 65%;
+  }
+}
+
+@media only screen and (min-width: 800px) {
+  .list-entry {
+    width: 530px;
+  }
+}
+
+@media only screen and (min-width: 950px) {
+  .list-entry {
+    width: 90%;
+  }
+}
