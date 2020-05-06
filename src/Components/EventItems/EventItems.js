@@ -38,7 +38,7 @@ export default class EventItems extends Component {
           <input
             type="checkbox"
             name="itemChecked"
-            className={`list-input_e${this.props.listId}`}
+            className={`list-input_e${this.props.listId} item-checkbox`}
             id={`item - ${item.id}`}
             onClick={() => this.toggleChecked(item)}
           />
@@ -68,7 +68,7 @@ export default class EventItems extends Component {
             <input
               type="checkbox"
               name="itemChecked"
-              className={`list-input_e${this.props.listId}`}
+              className={`list-input_e${this.props.listId} item-checkbox`}
               id={`item - ${item.id}`}
               onChange={() => this.toggleChecked(item)}
               defaultChecked

@@ -75,17 +75,17 @@
   flex-basis: 10%;
 }
 
-.expand {
+/* .expand {
   text-align: right;
-}
+} */
 
-.react-expand-collapse__button {
+/* .react-expand-collapse__button {
   position: absolute;
   right: 12.5em;
   color: blue;
   font-size: 12px;
   text-decoration: underline;
-}
+} */
 
 @media only screen and (min-width: 500px) {
   .item-div label {

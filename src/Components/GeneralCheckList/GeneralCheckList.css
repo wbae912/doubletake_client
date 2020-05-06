@@ -2,6 +2,10 @@
   margin-top: 70px;
 }
 
+.list-render-div {
+  margin-bottom: 3em;
+}
+
 #create-list-button {
   height: 35px;
   border-radius: 30px;
@@ -53,6 +57,7 @@
 @media only screen and (min-width: 950px) {
   .list-render-div {
     display: grid;
+    margin-top: 1.5em;
     grid-template-columns: 50% 50%;
   }
 }

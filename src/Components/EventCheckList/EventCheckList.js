@@ -174,7 +174,8 @@ class EventCheckList extends Component {
         {this.renderNoResults()}
 
         {this.renderForm()}
-        
+
+        <div className="list-render-div">
         {eventLists.map(list => 
           <List
             color={colorStack[Math.floor(Math.random() * colorStack.length)]}
@@ -182,6 +183,7 @@ class EventCheckList extends Component {
             list={list}
           />
         )}
+        </div>
         
       </div>
     )
