@@ -34,7 +34,7 @@
 }
 
 .general-direct, .event-direct {
-  border: 1px solid rgb(163, 70, 163);;
+  border: 1px solid rgb(163, 70, 163);
   padding: 8px 10px 8px 10px;
   font-weight: bold;
   cursor: pointer;
@@ -54,10 +54,46 @@
   background-color: white;
 }
 
+@media only screen and (min-width: 750px) {
+  #create-list-button {
+    margin-bottom: 1.8em;
+  }
+  .general-direct, .event-direct {
+    width: 80px;
+  }
+}
+
 @media only screen and (min-width: 950px) {
   .list-render-div {
     display: grid;
     margin-top: 1.5em;
     grid-template-columns: 50% 50%;
+  }
+}
+
+@media only screen and (min-width: 1250px) {
+  .general-direct, .event-direct {
+    width: 90px;
+    font-size: 17px;
+  }
+}
+
+@media only screen and (min-width: 1300px) {
+  .list-render-div {
+    display: grid;
+    margin-top: 1.5em;
+    grid-template-columns: 33.3% 33.3% 33.3%;
+  }
+  #create-list-button {
+    width: 180px;
+    font-size: 17px;
+  }
+}
+
+@media only screen and (min-width: 1900px) {
+  .list-render-div {
+    display: grid;
+    margin-top: 1.5em;
+    grid-template-columns: 25% 25% 25% 25%;
   }
 }

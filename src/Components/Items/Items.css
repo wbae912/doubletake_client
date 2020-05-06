@@ -1,6 +1,5 @@
 .items-div {
   height: 200px;
-  /* max-height: 300px; */
   overflow: auto;
   display: flex;
   flex-direction: column;
@@ -90,5 +89,11 @@
 @media only screen and (min-width: 500px) {
   .item-div label {
     left: 1em;
+  }
+}
+
+@media only screen and (min-width: 1050px) {
+  .item-div label {
+    left: 1.4em;
   }
 }

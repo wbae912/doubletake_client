@@ -59,6 +59,7 @@ export default class GeneralListForm extends Component {
             backdropFilter: 'blur(3px)' 
           },
           content: {
+            width: '320px',
             margin: 0,
             position: 'relative',
             top: '35%',

@@ -22,3 +22,22 @@
   color: rgb(163, 70, 163);;
   background-color: white;
 }
+
+@media only screen and (min-width: 750px) {
+  .direct-general, .direct-event {
+    width: 80px;
+  }
+}
+
+@media only screen and (min-width: 1250px) {
+  .direct-general, .direct-event {
+    width: 90px;
+    font-size: 17px;
+  }
+}
+
+@media only screen and (min-width: 1750px) {
+  .direct-general, .direct-event {
+    width: 100px;
+  }
+}

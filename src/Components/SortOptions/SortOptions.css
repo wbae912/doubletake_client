@@ -12,3 +12,15 @@
   border-radius: 8px;
   border: 1px solid grey;
 }
+
+@media only screen and (min-width: 750px) {
+  #sort-options {
+    width: 200px;
+  }
+}
+
+@media only screen and (min-width: 750px) {
+  #sort-options {
+    width: 250px;
+  }
+}

@@ -165,3 +165,39 @@
     width: 90%;
   }
 }
+
+@media only screen and (min-width: 1250px) {
+  .list-entry {
+    width: 85%;
+  }
+}
+
+@media only screen and (min-width: 1300px) {
+  .list-entry {
+    width: 90%;
+  }
+}
+
+@media only screen and (min-width: 1800px) {
+  .list-entry {
+    width: 83%;
+  }
+}
+
+@media only screen and (min-width: 1900px) {
+  .list-entry {
+    width: 93%;
+  }
+}
+
+@media only screen and (min-width: 2300px) {
+  .list-entry {
+    width: 90%;
+  }
+}
+
+@media only screen and (min-width: 2500px) {
+  .list-entry {
+    width: 87%;
+  }
+}
