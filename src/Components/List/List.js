@@ -342,7 +342,7 @@ class List extends Component {
 
     return (
       <div className="list-entry">
-        <div className="color" style={{backgroundColor: this.props.color}}>
+        <div className="color">
           {this.renderMenu()}
 
           <h2 className="list-h2">{this.props.list.title}</h2>
@@ -369,3 +369,5 @@ class List extends Component {
 }
 
 export default withRouter(List);
+
+// style={{backgroundColor: this.props.color}}

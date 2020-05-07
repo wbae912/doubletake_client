@@ -16,7 +16,8 @@
 }
 
 .upcoming-event-div {
-  background: radial-gradient(circle, rgba(240,184,0,0.9251050762101716) 0%, rgba(233,226,0,0.8130602582830007) 100%, rgba(0,212,255,1) 100%);
+  background: rgb(213,97,2);
+  background: radial-gradient(circle, rgba(213,97,2,1) 0%, rgba(213,97,2,1) 100%, rgba(0,212,255,1) 100%);
   color: white;
   width: 92%;
   border-top-right-radius: 12px;
@@ -34,7 +35,8 @@
 }
 
 #container {
-  background: radial-gradient(circle, rgba(240,184,0,0.9251050762101716) 0%, rgba(233,226,0,0.8130602582830007) 100%, rgba(0,212,255,1) 100%);
+  background: rgb(213,97,2);
+  background: radial-gradient(circle, rgba(213,97,2,1) 0%, rgba(213,97,2,1) 100%, rgba(0,212,255,1) 100%);
   width: 92%;
   margin: auto;
   padding: 20px 0 20px 0;
@@ -107,26 +109,25 @@
 }
 
 .title-div-general {
-  background: radial-gradient(circle, rgba(240,184,0,0.9251050762101716) 0%, rgba(233,226,0,0.8130602582830007) 100%, rgba(0,212,255,1) 100%);
+  background-color: #a346a3;
   color: white;
   width: 92%;
   border-top-right-radius: 12px;
   border-top-left-radius: 12px;
-  border: 1px solid rgb(230, 198, 21);
+  border: 1px solid rgb(190, 190, 190);
   border-bottom: none;
   margin: auto;
   padding-bottom: 1.5em;
 }
 
 .general-home-h2 {
-  background-color: radial-gradient(circle, rgba(240,184,0,0.9251050762101716) 0%, rgba(233,226,0,0.8130602582830007) 100%, rgba(0,212,255,1) 100%);
   text-shadow: 1px 1px 6px black;
   margin-bottom: 0;
   font-size: 26px;
 }
 
 .general-ul {
-  background: radial-gradient(circle, rgba(240,184,0,0.9251050762101716) 0%, rgba(233,226,0,0.8130602582830007) 100%, rgba(0,212,255,1) 100%);
+  background-color: #a346a3;
   width: 92%;
   height: 325px;
   margin: 0;
@@ -134,7 +135,7 @@
   padding: 20px 0 20px 0;
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
-  border: 1px solid rgb(230, 198, 21);
+  border: 1px solid rgb(190, 190, 190);
   border-top: none;
   list-style: none;
   padding: 0;
@@ -182,37 +183,38 @@
 
 /* STYLING FOR EVENT LISTS */
 .event-home-div {
+  width: 92%;
+  margin: auto;
   margin-bottom: 3em;
 }
 
 .title-div-event {
-  background: radial-gradient(circle, rgba(240,184,0,0.9251050762101716) 0%, rgba(233,226,0,0.8130602582830007) 100%, rgba(0,212,255,1) 100%);
+  background-color: #a346a3;
   color: white;
-  width: 92%;
+  width: 100%;
+  margin: auto;
   border-top-right-radius: 12px;
   border-top-left-radius: 12px;
-  border: 1px solid rgb(230, 198, 21);
+  border: 1px solid rgb(190, 190, 190);
   border-bottom: none;
-  margin: auto;
   padding-bottom: 1.5em;
 }
 
 .event-home-h2 {
-  background-color: radial-gradient(circle, rgba(240,184,0,0.9251050762101716) 0%, rgba(233,226,0,0.8130602582830007) 100%, rgba(0,212,255,1) 100%);
   text-shadow: 1px 1px 6px black;
   margin-bottom: 0;
   font-size: 26px;
 }
 
 .event-ul {
-  background: radial-gradient(circle, rgba(240,184,0,0.9251050762101716) 0%, rgba(233,226,0,0.8130602582830007) 100%, rgba(0,212,255,1) 100%);
+  background-color: #a346a3;
   width: 92%;
   height: 325px;
   margin: auto;
   padding: 20px 0 20px 0;
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
-  border: 1px solid rgb(230, 198, 21);
+  border: 1px solid rgb(190, 190, 190);
   border-top: none;
   list-style: none;
   padding: 0;
@@ -322,6 +324,52 @@
 
 @media only screen and (min-width: 950px) {
   .home-div {
+    margin-top: 6em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .upcoming-general-container {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    height: 70vh;
+  }
+
+  .upcoming-event-div, #container {
+    width: 80%;
+    margin-right: 5%;
+  }
+
+  .upcoming-div {
+    width: 90%;
+  }
+
+  .upcoming-title {
+    margin-right: 0.5em;
+  }
+
+  .title-div-general, .general-ul {
+    width: 80%;
+    margin-right: 5%;
+  }
+
+  .general-ul {
+    margin-bottom: 2em;
+    height: 50vh;
+  }
+  
+  .title-div-event {
+    width: 100%;
+  }
+
+  .event-home-div {
+    width: 60%;
+    margin: 0;
+    margin-right: 5%;
+  }
+  /* .home-div {
     margin-top: 110px;
   }
   .upcoming-event-div {
@@ -371,10 +419,10 @@
   }
   .event-ul {
     padding-top: 1.5em;
-  }
+  } */
 }
 
-@media only screen and (min-width: 1150px) {
+/* @media only screen and (min-width: 1150px) {
   .home-div {
     margin-top: 125px;
   }
@@ -426,10 +474,56 @@
   .event-ul {
     padding-top: 1.5em;
   }
-}
+} */
 
 @media only screen and (min-width: 1350px) {
-  .general-home-div, .event-home-div {
+  /* .home-div {
+    margin-top: 6em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .upcoming-general-container {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+  }
+
+  .upcoming-event-div, #container {
+    width: 80%;
+    margin-right: 5%;
+  }
+
+  .upcoming-div {
+    width: 90%;
+  }
+
+  .upcoming-title {
+    margin-right: 0.5em;
+  }
+
+  .title-div-general, .general-ul {
+    width: 80%;
+    margin-right: 5%;
+  }
+
+  .general-ul {
+    margin-bottom: 2em;
+    height: 46.5vh;
+  }
+
+  .event-home-div {
+    width: 50%;
+    margin: 0;
+    margin-right: 5%;
+  } */
+
+  /* .title-div-event {
+    width: 60%;
+  } */
+
+  /* .general-home-div, .event-home-div {
     display: inline-block;
     width: 45%;
     margin-top: 1.5em;
@@ -472,5 +566,5 @@
   }
   .event-ul {
     padding-top: 1.5em;
-  }
+  } */
 }

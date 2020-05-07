@@ -1,0 +1,122 @@
+.CalenderContainer {
+  width: 100%;
+  margin: 25px auto;
+  margin-top: 0;
+  background-color: white;
+  color: #A346A3;
+  border: 1px solid rgb(206, 206, 206);
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  border-top: none;
+  padding-bottom: 1em;
+}
+
+.rbc-toolbar {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.rbc-toolbar-label {
+  font-size: 17px;
+  font-weight: bold;
+  margin: 0.5em 0;
+}
+
+#remove {
+  display: none;
+}
+
+.rbc-btn-group button {
+  font-size: 12px;
+  font-weight: bold;
+  color: #A346A3;
+  border-color: #A346A3;
+  padding: 3px 6px;
+  cursor: pointer;
+}
+
+.rbc-btn-group button:hover {
+  color: white;
+  background-color: #A346A3;
+  font-weight: bold;
+}
+
+.rbc-btn-group button:focus {
+  color: white;
+  background-color: #A346A3;
+  font-weight: bold;
+}
+
+.rbc-event {
+  background-color: #A346A3 !important;
+}
+
+/* .rbc-today {
+  border-bottom: 0.5px solid #A346A3 !important;
+}
+
+.rbc-month-view {
+  border-radius: 3px;
+  border: 0.5px solid #A346A3 !important;
+}
+
+.rbc-month-row {
+  border-bottom: 0.5px solid #A346A3 !important;
+}
+
+#last-row {
+  border-bottom: none !important;
+}
+
+.rbc-header {
+  border-left: 0.5px solid #A346A3 !important;
+  border-bottom: 0.5px solid #A346A3 !important;
+}
+
+#sunday {
+  border-left: none !important;
+}
+
+.rbc-day-bg + .rbc-day-bg {
+  border-left: 0.5px solid #A346A3 !important;
+}
+
+ */
+
+/* @media only screen and (min-width: 750px) {
+  .rbc-toolbar-label {
+    font-size: 2em;
+  }
+  .rbc-toolbar {
+    font-size: 1em;
+    flex-wrap: nowrap;
+  }
+  .rbc-toolbar button {
+    padding: .375rem 1rem !important;
+  }
+} */
+
+@media only screen and (min-width: 650px) {
+  .CalenderContainer {
+    width: 580px;
+  }
+}
+
+@media only screen and (min-width: 950px) {
+  .CalenderContainer {
+    /* width: 650px; */
+    width: 100%;
+  }
+}
+
+/* @media only screen and (min-width: 1150px) {
+  .CalenderContainer {
+    width: 700px;
+  }
+} */
+
+/* @media only screen and (min-width: 1350px) {
+  .CalenderContainer {
+
+  }
+} */

@@ -9,6 +9,7 @@
 .list-h2 {
   margin: 0 0 0.5em 0;
   display: inline-block;
+  color: white;
 }
 
 .underline {
@@ -22,10 +23,12 @@
 .color {
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
+  background-color: rgb(12, 15, 77);
 }
 
 .menu-ellipsis {
   font-size: 14px;
+  color: white;
 }
 
 .delete-confirm {

@@ -335,6 +335,7 @@ export default class Items extends Component {
   render() {
     return (
       <div className="items-div">
+        
         {this.context.generalItemsForUser.map(item => this.renderItems(item))}
 
         {this.renderItemForm()}

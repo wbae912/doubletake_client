@@ -10,23 +10,24 @@
   height: 35px;
   border-radius: 30px;
   width: 140px;
-  border: 1px solid rgb(34, 189, 34);
-  background-color: rgb(34, 189, 34);
+  border: 1px solid #b14ee6;
+  background-color: #b14ee6;
   color: white;
   cursor: pointer;
   margin-bottom: 1em;
+  transition: ease 0.4s;
 }
 
 #create-list-button:hover {
-  border: 1px solid rgb(31, 165, 31);
-  background-color: rgb(31, 165, 31);
+  border: 1px solid #9742c5;
+  background-color: #9742c5;
 }
 
 #create-list-button:active {
-  border: 1px solid rgb(31, 165, 31);
-  background-color: rgb(31, 165, 31);
+  border: 1px solid #9742c5;
+  background-color: #9742c5;
 }
-
+  
 .list-direct {
   margin: 0 0 0.8em 0;
   display: flex;
