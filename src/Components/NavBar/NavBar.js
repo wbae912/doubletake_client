@@ -34,6 +34,7 @@ class NavBar extends Component {
   
   handleLogoutClick = () => {
     TokenService.clearAuthToken();
+    sessionStorage.removeItem('alerted');
   }
 
   toggleMenuOn = e => {

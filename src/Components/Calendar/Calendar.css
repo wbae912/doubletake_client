@@ -51,72 +51,26 @@
   background-color: #A346A3 !important;
 }
 
-/* .rbc-today {
-  border-bottom: 0.5px solid #A346A3 !important;
-}
-
-.rbc-month-view {
-  border-radius: 3px;
-  border: 0.5px solid #A346A3 !important;
-}
-
-.rbc-month-row {
-  border-bottom: 0.5px solid #A346A3 !important;
-}
-
-#last-row {
-  border-bottom: none !important;
-}
-
-.rbc-header {
-  border-left: 0.5px solid #A346A3 !important;
-  border-bottom: 0.5px solid #A346A3 !important;
-}
-
-#sunday {
-  border-left: none !important;
-}
-
-.rbc-day-bg + .rbc-day-bg {
-  border-left: 0.5px solid #A346A3 !important;
-}
-
- */
-
-/* @media only screen and (min-width: 750px) {
-  .rbc-toolbar-label {
-    font-size: 2em;
-  }
-  .rbc-toolbar {
-    font-size: 1em;
-    flex-wrap: nowrap;
-  }
-  .rbc-toolbar button {
-    padding: .375rem 1rem !important;
-  }
-} */
-
 @media only screen and (min-width: 650px) {
   .CalenderContainer {
     width: 580px;
   }
 }
 
+@media only screen and (min-width: 750px) {
+  .rbc-toolbar-label {
+    font-size: 20px;
+  }
+}
+
 @media only screen and (min-width: 950px) {
   .CalenderContainer {
-    /* width: 650px; */
     width: 100%;
   }
 }
 
-/* @media only screen and (min-width: 1150px) {
-  .CalenderContainer {
-    width: 700px;
+@media only screen and (min-width: 1200px) {
+  .rbc-toolbar-label {
+    font-size: 26px;
   }
-} */
-
-/* @media only screen and (min-width: 1350px) {
-  .CalenderContainer {
-
-  }
-} */
+}
