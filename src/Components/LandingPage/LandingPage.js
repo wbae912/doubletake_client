@@ -39,7 +39,7 @@ export default class LandingPage extends Component {
         <hr className="landing-underline" />
 
         <section className="feature-section">
-          <div className="feature-div">
+          <div className="feature-div" id="first-feature">
             <img alt="home-page" src={calendarimg} />
             <div className="feature-description">
               <h2 className="feature-title">Home Dashboard</h2>
@@ -52,7 +52,7 @@ export default class LandingPage extends Component {
 
           <hr className="landing-underline" />
 
-          <div className="feature-div">
+          <div className="feature-div" id="second-feature">
             <img alt="general-list" src={generalimg} />
             <div className="feature-description">
               <h2 className="feature-title">General Lists</h2>
