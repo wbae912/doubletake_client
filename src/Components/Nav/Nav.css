@@ -23,6 +23,7 @@
 }
 
 .nav-title {
+  font-family: 'Karla', sans-serif;
   display: inline-block;
   cursor: pointer;
   color: white;
