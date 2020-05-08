@@ -13,6 +13,7 @@
 /* STYLING FOR UPCOMING EVENT */
 #upcoming-home-div {
   margin-bottom: 1.5em;
+  height: 170px;
 }
 
 .upcoming-event-div {
@@ -337,7 +338,7 @@
     display: flex;
     flex-direction: column;
     width: 40%;
-    height: 70vh;
+    /* height: 70vh; */
   }
 
   .upcoming-event-div, #container {

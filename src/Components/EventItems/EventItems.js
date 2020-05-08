@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import ItemContext from '../../Context/ItemContext';
 import ItemForm from '../ItemForm/ItemForm';
 import EditEventItemForm from '../EditEventItemForm/EditEventItemForm';
@@ -7,8 +8,9 @@ import EventItemsService from '../../Utils/eventItems-service';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
+import './EventItems.css';
 
-export default class EventItems extends Component {
+class EventItems extends Component {
   static contextType = ItemContext;
 
   constructor(props) {
@@ -121,6 +123,8 @@ export default class EventItems extends Component {
   }
 
   renderItemForm = () => {
+    let className = this.props.match.path === '/elist/:id' ? 'add-item-button-individual' : 'add-item-button';
+
     if(this.state.addClicked) {
       return (
         <div className="item-form-div">
@@ -136,7 +140,7 @@ export default class EventItems extends Component {
         <>
           <FontAwesomeIcon 
             icon={faPlusSquare}
-            className="add-item-button"
+            className={className}
             onClick={this.handleAddClicked}
           />
         </>
@@ -224,11 +228,14 @@ export default class EventItems extends Component {
   }
   
   render() {
+    let className = this.props.match.path === '/elist/:id' ? 'items-div-individual-event' : 'items-div';
     return (
-      <div className="items-div">
+      <div className={className}>
         {this.context.eventItemsForUser.map(item => this.renderItems(item))}
         {this.renderItemForm()}
       </div>
     )
   }
 }
+
+export default withRouter(EventItems);

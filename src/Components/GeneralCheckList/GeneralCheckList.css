@@ -55,6 +55,12 @@
   background-color: white;
 }
 
+.search-h4 {
+  display: inline-block;
+  text-decoration: underline;
+  margin-top: 0.4em;
+}
+
 @media only screen and (min-width: 750px) {
   #create-list-button {
     margin-bottom: 1.8em;

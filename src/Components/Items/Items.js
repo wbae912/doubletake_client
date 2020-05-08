@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import ItemContext from '../../Context/ItemContext';
 import ItemForm from '../ItemForm/ItemForm';
 import EditItemForm from '../EditItemForm/EditItemForm';
@@ -9,7 +10,7 @@ import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 import './Items.css'
 
-export default class Items extends Component {
+class Items extends Component {
   static contextType = ItemContext;
 
   constructor(props) {
@@ -175,6 +176,8 @@ export default class Items extends Component {
   }
 
   renderItemForm = () => {
+    let className = this.props.match.path === '/glist/:id' ? 'add-item-button-individual' : 'add-item-button';
+
     if(this.state.addClicked) {
       return (
         <div className="item-form-div">
@@ -190,7 +193,7 @@ export default class Items extends Component {
         <>
           <FontAwesomeIcon 
             icon={faPlusSquare}
-            className="add-item-button"
+            className={className}
             onClick={this.handleAddClicked}
           />
         </>
@@ -333,8 +336,9 @@ export default class Items extends Component {
   }
   
   render() {
+    let className = this.props.match.path === '/glist/:id' ? 'items-div-individual' : 'items-div';
     return (
-      <div className="items-div">
+      <div className={className}>
         
         {this.context.generalItemsForUser.map(item => this.renderItems(item))}
 
@@ -343,3 +347,5 @@ export default class Items extends Component {
     )
   }
 }
+
+export default withRouter(Items);

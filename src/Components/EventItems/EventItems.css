@@ -1,0 +1,6 @@
+.items-div-individual-event {
+  max-height: 240px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}

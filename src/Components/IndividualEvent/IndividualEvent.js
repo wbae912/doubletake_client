@@ -1,7 +1,7 @@
 /* eslint-disable array-callback-return */
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import List from '../List/List';
+import IndividualList from '../IndividualList/IndividualList';
 import EventService from '../../Utils/event-service'; 
 import ListContext from '../../Context/ListContext';
 import './IndividualEvent.css';
@@ -41,9 +41,7 @@ class IndividualEvent extends Component {
 
   renderLink = () => {
     return (
-      <Link 
-        to="/home"
-      >
+      <Link to="/home">
         <h4 className="search-h4">← Back to home</h4>
       </Link>
     )
@@ -60,7 +58,7 @@ class IndividualEvent extends Component {
         {eventLists.map(list => {
           if(list.id === this.state.list.id) {
             return (
-              <List
+              <IndividualList
                 key={list.id}
                 list={list}
               />
