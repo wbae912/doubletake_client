@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
+import LandingPage from '../LandingPage/LandingPage';
 import Login from '../../Components/Login/Login';
 import Register from '../../Components/Register/Register';
 import GeneralCheckList from '../../Components/GeneralCheckList/GeneralCheckList';
@@ -49,6 +50,10 @@ export default class App extends Component {
       <div className="App">
         {this.state.isLoggedIn ? <NavBar toggleLoggedOff={this.toggleLoggedOff} /> : <Nav />}
         <Switch>
+          <Route 
+            exact path={'/'}
+            component={LandingPage}
+          />
           <Route 
             path={'/register'}
             component={Register}

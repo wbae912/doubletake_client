@@ -361,7 +361,7 @@
 
   .general-ul {
     margin-bottom: 2em;
-    height: 50vh;
+    height: 370px;
   }
   
   .title-div-event {
@@ -372,11 +372,5 @@
     width: 60%;
     margin: 0;
     margin-right: 5%;
-  }
-}
-
-@media only screen and (min-width: 1500px) {
-  .general-ul {
-    height: 50.5vh;
   }
 }

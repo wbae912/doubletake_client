@@ -77,7 +77,7 @@ class Calender extends Component {
           onSelectEvent={this.handleSelectEvent}
           localizer={localizer}
           resizable
-          style={{ height: '80vh', width: '90%', margin: 'auto' }}
+          style={{ height: '585px', width: '90%', margin: 'auto' }}
         />
       </div>
     );
@@ -86,3 +86,5 @@ class Calender extends Component {
 
 
 export default withRouter(Calender);
+
+//80vh

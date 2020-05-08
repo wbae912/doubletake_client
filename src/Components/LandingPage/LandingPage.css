@@ -1,0 +1,246 @@
+/* LOGO STYLING */
+.landing-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 1200px;
+  height: calc(100vh - 100px);
+}
+
+#app-name {
+  color: white;
+  margin-top: 6rem;
+  font-size: 4rem;
+  font-weight: bolder;
+  margin-bottom: 2rem;
+}
+
+#tagline {
+  color: white;
+  font-size: 2rem;
+  font-weight: 300;
+}
+
+.landing-signup-a {
+  border: 1px solid white;
+  border-radius: 1.2rem;
+  color: white;
+  font-size: 2rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.5em 0.6em;
+  cursor: pointer;
+  transition: ease 0.5s;
+}
+
+.landing-signup-a:hover {
+  color: rgba(0, 0, 0, 0.8);
+  background-color: white;
+}
+
+.landing-to-about {
+  color: white;
+  font-size: 2rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: ease 0.3s;
+}
+
+.landing-to-about:hover {
+  color: #A34643;
+}
+/* END OF LOGO STYLING */
+
+
+/* ABOUT STYLING */
+.about-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-description {
+  width: 85%;
+  line-height: 1.7em;
+  font-size: 16px;
+  text-align: center;
+}
+/* END OF ABOUT STYLING */
+
+
+/* FEATURES STYLING */
+img {
+  width: 90%;
+}
+
+.feature-title {
+  margin-top: 0;
+}
+
+.feature-p {
+  width: 96%;
+  margin: auto;
+  font-size: 14px;
+  line-height: 1.4em;
+}
+/* END OF FEATURES STYLING */
+
+
+
+
+
+
+
+
+#filler {
+  height: 60px;
+}
+
+.landing-underline {
+  margin: 5% 4%;
+  border: 0.5px solid rgba(163, 70, 67, 0.258);
+  background-color: rgba(163, 70, 67, 0.258);
+}
+
+.landing-page-bg {
+  background-image: url("https://i.imgur.com/Qg3cEoS.jpg");
+  filter: blur(3px);
+  -webkit-filter: blur(3px);
+  background-color: rgb(97, 97, 97);
+  background-blend-mode: multiply;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  position: absolute;
+  top: -10px;
+  z-index: -10;
+  padding: 0;
+  width: 100%;
+  height: calc(100vh - 60px);
+}
+
+
+
+
+/* 
+.feature-section {
+  padding-bottom: 15px;
+  display: flex;
+  flex-flow: column-reverse wrap;
+  justify-content: space-between;
+  padding: 0;
+  margin: 1.5rem auto;
+  width: 100%;
+}
+
+img {
+  width: 100%;
+}
+
+.img-container {
+  margin: 0 auto;
+  width: 100%;
+  max-height: 350px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.img-container > img {
+  margin: 0 auto;
+  max-height: 110%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+
+.feature-description {
+  padding: 0.8rem 0.8rem;
+  display: flex;
+  flex: 1 1 50%;
+  flex-direction: column;
+  line-height: 1.5rem;
+  text-align: left;
+}
+
+.feature-description > h2 {
+  font-size: 20px;
+  margin: 0.5rem 0;
+}
+
+.feature-description > p {
+  margin: 0.5rem 0;
+}
+
+
+
+@media screen and (min-width: 540px) {
+  .feature-section {
+    flex-flow: row nowrap;
+    margin: 1.5rem 0;
+    height: 100%;
+    align-items: center;
+  }
+  .feature-section:nth-child(odd) {
+    flex-flow: row-reverse nowrap;
+  }
+  .feature-section img {
+    width: 50%;
+  }
+  .img-container {
+    max-height: 350px;
+    height: auto;
+    width: 50%;
+    margin: 0 2rem;
+  }
+  .img-cotainer > img {
+    width: 100%;
+  }
+  .feature-section--filter {
+    flex-flow: column-reverse nowrap;
+    align-items: initial;
+  }
+  .feature-section--filter > img {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .feature-section {
+    padding: 1rem 1rem;
+  }
+  .feature-section > img {
+    max-height: 350px;
+    width: auto;
+  }
+  .feature-section--filter > img {
+    width: 100%;
+  }
+  .feature-section--about {
+    margin: 0 auto;
+    padding: 1rem 10%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .feature-section {
+    padding: 1.2rem 10vw;
+    justify-content: space-around;
+  }
+  .feature-section img {
+    margin: 0 2rem;
+  }
+  .feature-section--about {
+    margin: 0 auto;
+    padding: 1rem 20%;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .feature-section {
+    padding: 1.5rem 20vw;
+  }
+} */
