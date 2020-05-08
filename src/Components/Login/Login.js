@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import TokenService from '../../services/token-service';
 import AuthApiService from '../../services/auth-api-service';
 import UserContext from '../../Context/UserContext';
 import './Login.css';
 
-export default class Login extends Component {
+class Login extends Component {
   static contextType = UserContext;
 
   constructor(props) {
@@ -17,6 +17,14 @@ export default class Login extends Component {
         password: '',
         error: null
       }
+    }
+  }
+
+  componentDidMount() {
+    if(TokenService.getAuthToken()) {
+      this.props.callbackFromParent(true);
+    } else {
+      this.props.callbackFromParent(false);
     }
   }
 
@@ -95,3 +103,5 @@ export default class Login extends Component {
     )
   }
 }
+
+export default withRouter(Login);

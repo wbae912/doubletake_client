@@ -55,11 +55,11 @@ export default class App extends Component {
           />
           <Route
             path={'/login'}
-            component={Login}
+            render={() => <Login callbackFromParent={this.callbackIsLoggedIn} />}
           />
           <Route
             path={'/home'}
-            render={() => <Home callbackFromParent={this.callbackIsLoggedIn}/>}
+            render={() => <Home callbackFromParent={this.callbackIsLoggedIn} />}
           />
           <Route 
             path={'/general'}
