@@ -132,14 +132,34 @@ export default class Register extends Component {
       return (
       <>
         <FontAwesomeIcon icon={faEyeSlash} id="hide-icon" onClick={this.toggleShowPassword} />
-        <span className="show-span">Hide Password</span>
+        <span className="show-span" onClick={this.toggleShowPassword}>Hide Password</span>
       </>
       )
     } else {
       return (
         <>
           <FontAwesomeIcon icon={faEye} id="show-icon" onClick={this.toggleShowPassword} />
-          <span className="show-span">Show Password</span>
+          <span className="show-span" onClick={this.toggleShowPassword}>Show Password</span>
+        </>
+      )
+    }
+  }
+
+  renderCheckmark = () => {
+    if(!this.validatePassword()) {
+      return (
+        <>
+          <span className="password-good">&#10004;</span>
+        </>
+      )
+    }
+  }
+
+  renderCheckmarkAgain = () => {
+    if(this.state.credentials.password === this.state.passwordVerify && this.state.credentials.password) {
+      return (
+        <>
+          <span className="password-good">&#10004;</span>
         </>
       )
     }
@@ -186,26 +206,32 @@ export default class Register extends Component {
               />
               {this.state.touched.username && <FormValidation message={usernameError} />}
               <label className="register-label" htmlFor="password">Password</label>
-              <input 
-                type="password"
-                name="password"
-                className="register-input"
-                id="password"
-                autoComplete="off"
-                required
-                onChange={(e) => {this.handleCredentialsChange(e); this.handleTouchedChange(e); this.validatePassword();}}
-              />
+              <div className="password-div">
+                <input 
+                  type="password"
+                  name="password"
+                  className="register-input password-test"
+                  id="password"
+                  autoComplete="off"
+                  required
+                  onChange={(e) => {this.handleCredentialsChange(e); this.handleTouchedChange(e); this.validatePassword();}}
+                />
+                {this.renderCheckmark()}
+              </div>
               {this.state.touched.password && <FormValidation message={passwordError} />}
               <label className="register-label" htmlFor="password-again">Re-Enter Password</label>
-              <input 
-                type="password"
-                name="passwordVerify"
-                className="register-input" 
-                id="password-again"
-                autoComplete="off"
-                required
-                onChange={(e) => {this.handleNonNestedChange(e); this.handleTouchedChange(e)}}
-              />
+              <div className="password-div">
+                <input 
+                  type="password"
+                  name="passwordVerify"
+                  className="register-input" 
+                  id="password-again"
+                  autoComplete="off"
+                  required
+                  onChange={(e) => {this.handleNonNestedChange(e); this.handleTouchedChange(e)}}
+                />
+                {this.renderCheckmarkAgain()}
+              </div>
               {this.state.touched.passwordVerify && <FormValidation message={passwordVerifyError} />}
             </div>
           : <div className="register_inputs-labels">
@@ -232,24 +258,30 @@ export default class Register extends Component {
             />
             {this.state.touched.username && <FormValidation message={usernameError} />}
             <label className="register-label" htmlFor="password">Password</label>
-            <input 
-              type="text"
-              name="password"
-              className="register-input"
-              id="password"
-              required
-              onChange={(e) => {this.handleCredentialsChange(e); this.handleTouchedChange(e); this.validatePassword();}}
-            />
+            <div className="password-div">
+              <input 
+                type="text"
+                name="password"
+                className="register-input"
+                id="password"
+                required
+                onChange={(e) => {this.handleCredentialsChange(e); this.handleTouchedChange(e); this.validatePassword();}}
+              />
+              {this.renderCheckmark()}
+            </div>
             {this.state.touched.password && <FormValidation message={passwordError} />}
             <label className="register-label" htmlFor="password-again">Re-Enter Password</label>
-            <input 
-              type="text"
-              name="passwordVerify"
-              className="register-input" 
-              id="password-again"
-              required
-              onChange={(e) => {this.handleNonNestedChange(e); this.handleTouchedChange(e)}}
-            />
+            <div className="password-div">
+              <input 
+                type="text"
+                name="passwordVerify"
+                className="register-input" 
+                id="password-again"
+                required
+                onChange={(e) => {this.handleNonNestedChange(e); this.handleTouchedChange(e)}}
+              />
+              {this.renderCheckmarkAgain()}
+            </div>
             {this.state.touched.passwordVerify && <FormValidation message={passwordVerifyError} />}
             </div>
           }
