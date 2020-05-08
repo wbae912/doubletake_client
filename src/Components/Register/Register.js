@@ -152,7 +152,7 @@ export default class Register extends Component {
     let passwordVerifyError = this.validatePasswordVerify();
 
     return (
-      <>
+      <div className="login-register-div">
         <div className="top-div-register">
           {this.state.error && <p className='red'>{this.state.error}</p>}
         </div>
@@ -264,7 +264,7 @@ export default class Register extends Component {
             </div>
           </form>
         </section>
-      </>
+      </div>
     )
   }
 }

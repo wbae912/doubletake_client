@@ -8,7 +8,7 @@
   left: 0;
   right: 0;
   z-index: 10;
-  height: 70px;
+  height: 60px;
 }
 
 .appnav-logo-header {
@@ -158,8 +158,8 @@
   /* DROPDOWN MENU STYLING */
   #dropdown-li {
     display: inline-block;
-    height: 70px;
-    line-height: 70px;
+    height: 60px;
+    line-height: 60px;
   }
 
   .dropbtn {
@@ -196,7 +196,7 @@
   .dropdown-link {
     color: rgb(129, 22, 129);
     width: 92px;
-    height: 71.4px;
+    height: 61.4px;
     text-decoration: none;
     display: block;
     transition: all 0.3s ease 0s;

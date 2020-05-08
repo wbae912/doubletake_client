@@ -1,5 +1,5 @@
 .top-div-register {
-  margin-top: 120px;
+  margin-top: 95px;
 }
 
 .red {
@@ -9,7 +9,7 @@
 }
 
 .login-section {
-  width: 320px;
+  width: 300px;
   text-align: center;
   margin: auto;
   border: 0.5px solid rgb(107, 107, 107);
@@ -62,7 +62,7 @@
 }
 
 .login-buttons {
-  width: 319.6px;
+  width: 299.6px;
   height: 70px;
   margin-top: 1em;
   background-color: #392061;
@@ -93,4 +93,19 @@
 .login-button:hover {
   background-color: black;
   font-size: 17.5px;
+}
+
+@media only screen and (min-width: 400px) {
+  .login-section {
+    width: 320px;
+  }
+  .login-buttons {
+    width: 319.6px;
+  }
+}
+
+@media only screen and (min-width: 500px) {
+  .top-div-register {
+    margin-top: 120px;
+  }  
 }

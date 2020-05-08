@@ -9,9 +9,9 @@
 }
 
 .landing-page-bg {
-  background-image: url("https://i.imgur.com/Qg3cEoS.jpg");
-  filter: blur(3px);
-  -webkit-filter: blur(3px);
+  background-image: url("../../images/BackgroundImage.jfif");
+  filter: blur(1px);
+  -webkit-filter: blur(1px);
   background-color: rgb(97, 97, 97);
   background-blend-mode: multiply;
   -webkit-background-size: cover;
@@ -23,7 +23,7 @@
   z-index: -10;
   padding: 0;
   width: 100%;
-  height: calc(100vh - 50px);
+  height: calc(100vh - 20px);
 }
 
 /* LOGO STYLING */
@@ -34,21 +34,22 @@
   justify-content: space-between;
   width: 100%;
   height: 1200px;
-  height: calc(100vh - 90px);
+  height: calc(100vh - 50px);
 }
 
 #app-name {
   color: white;
-  margin-top: 6rem;
-  font-size: 4rem;
+  margin-top: 10rem;
+  font-size: 3.2rem;
   font-weight: bolder;
   margin-bottom: 2rem;
 }
 
 #tagline {
   color: white;
-  font-size: 2rem;
+  font-size: 1.25rem;
   font-weight: 300;
+  margin-bottom: 0;
 }
 
 .landing-signup-a {
@@ -122,6 +123,12 @@ img {
 /* END OF FEATURES STYLING */
 
 @media only screen and (min-width: 600px) {
+  #app-name {
+    font-size: 3.4rem;
+  }
+  #tagline {
+    font-size: 1.3rem;
+  }
   #first-feature {
     display: flex;
     flex-direction: row;
@@ -155,6 +162,12 @@ img {
 }
 
 @media only screen and (min-width: 750px) {
+  #app-name {
+    font-size: 3.5rem;
+  }
+  #tagline {
+    font-size: 1.35rem;
+  }
   .about-description {
     font-size: 17.5px;
   }
@@ -165,6 +178,12 @@ img {
 }
 
 @media only screen and (min-width: 900px) {
+  #app-name {
+    font-size: 3.6rem;
+  }
+  #tagline {
+    font-size: 1.4rem;
+  }
   .about-description {
     font-size: 17.5px;
   }
@@ -178,6 +197,9 @@ img {
 }
 
 @media only screen and (min-width: 1200px) {
+  #app-name {
+    font-size: 3.75rem;
+  }
   .about-description {
     width: 70%;
     font-size: 21px;
@@ -193,6 +215,9 @@ img {
 }
 
 @media only screen and (min-width: 1350px) {
+  #app-name {
+    font-size: 3.8rem;
+  }
   .about-description {
     width: 70%;
     font-size: 24px;
@@ -208,6 +233,12 @@ img {
 }
 
 @media only screen and (min-width: 1500px) {
+  #app-name {
+    font-size: 4rem;
+  }
+  #tagline {
+    font-size: 1.5rem;
+  }
   .about-description {
     width: 65%;
     font-size: 26.5px;

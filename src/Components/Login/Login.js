@@ -60,7 +60,7 @@ class Login extends Component {
   
   render() {
     return (
-      <>
+      <div className="login-register-div">
         <div className="top-div">
           {this.state.error && <p className='red'>{this.state.error}</p>}
         </div>
@@ -99,7 +99,7 @@ class Login extends Component {
             </div>
           </form>
         </section>
-      </>
+      </div>
     )
   }
 }

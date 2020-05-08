@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link as LinkRouter } from 'react-router-dom';
+import { Link } from 'react-scroll';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDoubleDown } from '@fortawesome/free-solid-svg-icons';
 import generalimg from '../../images/GeneralList.PNG';
@@ -14,12 +15,12 @@ export default class LandingPage extends Component {
         <section className="landing-page">
           <div className="landing-page-headings">
             <h2 id="app-name">Doubletake</h2>
-            <h3 id="tagline">Double back and keep track.</h3>
+            <h3 id="tagline">Keep track and double back.</h3>
           </div>
-          <Link to="/register" className="landing-signup-a">Sign up</Link>
-          <a href="#about-container" className="landing-to-about">
+          <LinkRouter to="/register" className="landing-signup-a">Sign up</LinkRouter>
+          <Link className="landing-to-about" to="about-container" smooth={true} duration={800} offset={-98}>
             <FontAwesomeIcon icon={faAngleDoubleDown} id="icon" />
-          </a>
+          </Link>
         </section>
 
         <section id="filler"></section>
