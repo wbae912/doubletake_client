@@ -175,6 +175,25 @@ class Items extends Component {
     })
   }
 
+  // hoverToggle = () => {
+  //   this.setState({
+  //     hovered: true
+  //   })
+  // }
+
+  // onBlur = () => {
+  //   this.setState({
+  //     hovered: false
+  //   })
+  // }
+
+  // renderText = () => {
+  //   if(this.state.hovered)
+  //   return(
+  //     <span onClick={this.handleAddClicked}>Add Item</span>
+  //   )
+  // }
+
   renderItemForm = () => {
     let className = this.props.match.path === '/glist/:id' ? 'add-item-button-individual' : 'add-item-button';
 

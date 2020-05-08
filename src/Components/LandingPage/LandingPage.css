@@ -4,8 +4,8 @@
 
 .landing-underline {
   margin: 5% 4%;
-  border: 0.5px solid rgba(163, 70, 67, 0.258);
-  background-color: rgba(163, 70, 67, 0.258);
+  border: 0.5px solid #a346a355;
+  border: 0.5px solid #a346a355;
 }
 
 .landing-page-bg {
@@ -78,7 +78,7 @@
 }
 
 .landing-to-about:hover {
-  color: #A34643;
+  color: #a346a3;
 }
 /* END OF LOGO STYLING */
 
@@ -121,6 +121,41 @@ img {
   margin-bottom: 3em;
 }
 /* END OF FEATURES STYLING */
+
+/* SCROLL TO TOP STYLING */
+.scroll-div {
+  border: 2.5px solid #a346a3;
+  border-radius: 12px;
+  padding: 12px 5px;
+  background-color: white;
+  opacity: 0.85;
+  position: fixed;
+  bottom: 50px;
+  right: 17px;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: ease 0.2s;
+}
+
+.scroll-div:hover {
+  box-shadow: 0 0 10px black;
+}
+
+.scroll-p {
+  color: #a346a3;
+  font-weight: bold;
+  margin: 7px 0px;
+}
+
+.scroll-top-button {
+  color: #a346a3;
+  font-weight: bolder;
+  font-size: 19px;
+}
+/* END OF SCROLL TO TOP */
 
 @media only screen and (min-width: 600px) {
   #app-name {

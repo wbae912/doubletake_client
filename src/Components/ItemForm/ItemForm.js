@@ -83,7 +83,7 @@ class ItemForm extends Component {
           name="addClicked"
           onClick={this.props.handleAddCancel}
         >  
-        Back</button>
+        Cancel</button>
       </form>
     )
   }

@@ -85,7 +85,7 @@ class NavBar extends Component {
             <li className="appnav-li appnav-li-first" onClick={(e) => {this.props.history.push('/home'); this.toggleMenuOffAfterSelection(e)}}>Home</li>
             <li className="appnav-li" onClick={(e) => {this.props.history.push('/general'); this.toggleMenuOffAfterSelection(e)}}>Lists</li>
             <li className="appnav-li appnav-li-last" 
-              onClick={() => {this.handleLogoutClick(); this.props.toggleLoggedOff(); this.props.history.push('/login')}}>
+              onClick={() => {this.handleLogoutClick(); this.props.toggleLoggedOff(); this.props.history.push('/')}}>
               Logout
             </li>    
           </ul>
@@ -114,7 +114,7 @@ class NavBar extends Component {
                 </div>
               </div>
             </div>
-            <Link to='/login'>
+            <Link to='/'>
               <p className="appnav-li" id="logout-menu" onClick={this.handleLogoutClick}>Logout</p>
             </Link>
           </div>

@@ -25,6 +25,11 @@
   text-decoration: none;
   font-size: 20px;
   margin-left: 0.3em;
+  transition: all 0.3s ease 0s;
+}
+
+.appnav-title:hover {
+  color: rgb(129, 22, 129);
 }
 
 .appnav {

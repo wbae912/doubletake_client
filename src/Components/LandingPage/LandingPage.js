@@ -1,17 +1,68 @@
 import React, { Component } from 'react';
 import { Link as LinkRouter } from 'react-router-dom';
-import { Link } from 'react-scroll';
+import { Link, animateScroll } from 'react-scroll';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDoubleDown } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDoubleDown, faAngleDoubleUp } from '@fortawesome/free-solid-svg-icons';
+import TokenService from '../../services/token-service';
 import generalimg from '../../images/GeneralList.PNG';
 import eventimg from '../../images/EventList.PNG';
 import calendarimg from '../../images/Calendar.PNG';
 import './LandingPage.css';
 
 export default class LandingPage extends Component {
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+       scrolled: false
+    }
+  }
+  
+
+  componentDidMount() {
+    if(TokenService.getAuthToken()) {
+      this.props.callbackFromParent(true);
+    } else {
+      this.props.callbackFromParent(false);
+    }
+    window.addEventListener('scroll', this.handleScroll);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+
+  handleScroll = () => {
+    let isTop = window.scrollY < 100;
+    if(!isTop) {
+      this.setState({
+        scrolled: true
+      })
+    } else {
+      this.setState({
+        scrolled: false
+      })
+    }
+  }
+
+  renderScrollToTop = () => {
+    let options = {
+      duration: 400
+    };
+
+    if(this.state.scrolled) {
+      return (
+        <div className="scroll-div" onClick={() => animateScroll.scrollToTop(options)}>
+          <p className="scroll-p">To Top</p>
+          <FontAwesomeIcon icon={faAngleDoubleUp} className="scroll-top-button" />
+        </div>
+      )
+    }
+  }
+
   render() {
     return (
-      <>
+      <div className="landing-div">
         <section className="landing-page">
           <div className="landing-page-headings">
             <h2 id="app-name">Doubletake</h2>
@@ -79,7 +130,8 @@ export default class LandingPage extends Component {
         </section>
 
         <div className="landing-page-bg"></div>
-      </>
+        {this.renderScrollToTop()}
+      </div>
     );
   }
 }

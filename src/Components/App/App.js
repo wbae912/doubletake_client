@@ -52,7 +52,7 @@ export default class App extends Component {
         <Switch>
           <Route 
             exact path={'/'}
-            component={LandingPage}
+            render={() => <LandingPage callbackFromParent={this.callbackIsLoggedIn} />}
           />
           <Route 
             path={'/register'}
