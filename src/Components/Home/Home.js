@@ -22,9 +22,9 @@ class Home extends Component {
   }
 
   componentDidMount() { 
-    if(TokenService.getAuthToken()) {
-      this.props.callbackFromParent(true);
-    }
+      if(TokenService.getAuthToken()) {
+        this.props.callbackFromParent(true);
+      }
 
     GeneralService.getLists()
       .then(data => {

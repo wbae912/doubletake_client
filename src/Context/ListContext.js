@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TokenService from '../services/token-service';
 
 const ListContext = React.createContext({
   generalLists: [],
@@ -11,6 +12,7 @@ const ListContext = React.createContext({
   eventSearched: false,
   searchTerm: '',
   error: null,
+  user: {},
   setGeneralLists: () => {},
   setEventLists: () => {},
   setSpecificGeneralList: () => {},
@@ -21,7 +23,10 @@ const ListContext = React.createContext({
   setEventSearched: () => {},
   setSearchTerm: () => {},
   setError: () => {},
-  clearError: () => {}
+  clearError: () => {},
+  setUser: () => {},
+  processLogin: () => {},
+  processLogout: () => {},
 });
 
 export default ListContext;
@@ -29,19 +34,31 @@ export default ListContext;
 export class ListProvider extends Component {
   constructor(props) {
     super(props)
-  
-    this.state = {
-       generalLists: [],
-       eventLists: [],
-       specificGeneralList: {}, // Response from GET request (':/id' endpoint)
-       specificEventList: {}, // Response from GET request (':/id' endpoint)
-       newGeneralList: {}, // Response from POST request
-       newEventList: {}, // Response from POST request,
-       generalSearched: false,
-       eventSearched: false,
-       searchTerm: '',
-       error: null
+
+    const state = {
+      generalLists: [],
+      eventLists: [],
+      specificGeneralList: {},
+      specificEventList: {},
+      newGeneralList: {},
+      newEventList: {},
+      generalSearched: false,
+      eventSearched: false,
+      searchTerm: '',
+      error: null,
+      user: {},
     }
+    
+    const jwtPayload = TokenService.parseAuthToken();
+
+    if(jwtPayload) {
+      state.user = {
+        id: jwtPayload.user_id,
+        username: jwtPayload.sub
+      }
+    }
+
+    this.state = state;
   }
 
   setGeneralLists = data => {
@@ -121,6 +138,23 @@ export class ListProvider extends Component {
       error: null
     })
   }
+
+  setUser = user => {
+    this.setState({user});
+  }
+
+  processLogin = () => {
+    const jwtPayload = TokenService.parseAuthToken();
+
+    this.setUser({
+      id: jwtPayload.user_id,
+      username: jwtPayload.sub
+    })
+  }
+
+  processLogout = () => {
+    this.setUser({});
+  }
   
   render() {
     const value = {
@@ -134,6 +168,7 @@ export class ListProvider extends Component {
       eventSearched: this.state.eventSearched,
       searchTerm: this.state.searchTerm,
       error: this.state.error,
+      user: this.state.user,
       setGeneralLists: this.setGeneralLists,
       setEventLists: this.setEventLists,
       setSpecificGeneralList: this.setSpecificGeneralList,
@@ -146,7 +181,10 @@ export class ListProvider extends Component {
       setEventSearchedToFalse: this.setEventSearchedToFalse,
       setSearchTerm: this.setSearchTerm,
       setError: this.setError,
-      clearError: this.clearError
+      clearError: this.clearError,
+      setUser: this.setUser,
+      processLogin: this.processLogin,
+      processLogout: this.processLogout,
     }
     return (
       <ListContext.Provider value={value}>

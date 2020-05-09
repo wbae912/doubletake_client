@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import { Link, NavLink, withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import ListContext from '../../Context/ListContext';
 import TokenService from '../../services/token-service';
 import './NavBar.css';
 
 class NavBar extends Component {
+  static contextType = ListContext;
+
   constructor(props) {
     super(props)
   
@@ -35,6 +38,7 @@ class NavBar extends Component {
   handleLogoutClick = () => {
     TokenService.clearAuthToken();
     sessionStorage.removeItem('alerted');
+    this.context.processLogout();
   }
 
   toggleMenuOn = e => {

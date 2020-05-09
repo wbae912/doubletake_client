@@ -10,7 +10,7 @@ ReactDOM.render(
   <BrowserRouter>
     <ListProvider>
       <ItemProvider>
-        <App />
+          <App />
       </ItemProvider>
     </ListProvider>
   </BrowserRouter>, document.getElementById('root'));

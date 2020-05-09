@@ -8,8 +8,11 @@ import generalimg from '../../images/GeneralList.PNG';
 import eventimg from '../../images/EventList.PNG';
 import calendarimg from '../../images/Calendar.PNG';
 import './LandingPage.css';
+import ListContext from '../../Context/ListContext';
 
 export default class LandingPage extends Component {
+  static contextType = ListContext;
+
   constructor(props) {
     super(props)
   
@@ -25,6 +28,7 @@ export default class LandingPage extends Component {
     } else {
       this.props.callbackFromParent(false);
     }
+
     window.addEventListener('scroll', this.handleScroll);
   }
 
@@ -61,6 +65,7 @@ export default class LandingPage extends Component {
   }
 
   render() {
+    console.log(this.state);
     return (
       <div className="landing-div">
         <section className="landing-page">

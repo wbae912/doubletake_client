@@ -14,6 +14,8 @@ import Home from '../Home/Home';
 import Footer from '../Footer/Footer';
 import TokenService from '../../services/token-service';
 import './App.css';
+import PrivateRoute from '../PrivateRoute/PrivateRoute';
+import PublicOnlyRoute from '../PublicOnlyRoute/PublicOnlyRoute';
 
 export default class App extends Component {
   constructor(props) {
@@ -50,35 +52,37 @@ export default class App extends Component {
       <div className="App">
         {this.state.isLoggedIn ? <NavBar toggleLoggedOff={this.toggleLoggedOff} /> : <Nav />}
         <Switch>
-          <Route 
+          <PublicOnlyRoute 
             exact path={'/'}
-            render={() => <LandingPage callbackFromParent={this.callbackIsLoggedIn} />}
+            component={LandingPage}
+            callbackFromParent={this.callbackIsLoggedIn}
           />
-          <Route 
+          <PublicOnlyRoute 
             path={'/register'}
             component={Register}
           />
-          <Route
+          <PublicOnlyRoute
             path={'/login'}
             component={Login}
           />
-          <Route
+          <PrivateRoute
             path={'/home'}
-            render={() => <Home callbackFromParent={this.callbackIsLoggedIn} />}
+            component={Home}
+            callbackFromParent={this.callbackIsLoggedIn}
           />
-          <Route 
+          <PrivateRoute 
             path={'/general'}
             component={GeneralCheckList}
           />
-          <Route
+          <PrivateRoute
             path={'/event'}
             component={EventCheckList}
           />
-          <Route 
+          <PrivateRoute 
             path={'/glist/:id'}
             component={IndividualGeneral}
           />
-          <Route 
+          <PrivateRoute 
             path={'/elist/:id'}
             component={IndividualEvent}
           />

@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import TokenService from '../../services/token-service';
 import AuthApiService from '../../services/auth-api-service';
-import UserContext from '../../Context/UserContext';
+import ListContext from '../../Context/ListContext';
 import './Login.css';
 
 class Login extends Component {
-  static contextType = UserContext;
+  static contextType = ListContext;
 
   constructor(props) {
     super(props)
@@ -41,6 +41,7 @@ class Login extends Component {
         username.value = '';
         password.value = '';
         TokenService.saveAuthToken(res.authToken);
+        this.context.processLogin();
         this.props.history.push('/home');
       })
       .catch(res => {

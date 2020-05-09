@@ -1,15 +1,11 @@
 /* eslint-disable no-useless-escape */
 import React, { Component } from 'react';
 import FormValidation from '../../Components/FormValidation/FormValidation';
-import UserContext from '../../Context/UserContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import './Register.css';
 
-export default class Register extends Component {
-
-  static contextType = UserContext;
-  
+export default class Register extends Component {  
   constructor(props) {
     super(props)
   
