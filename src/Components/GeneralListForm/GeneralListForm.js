@@ -71,6 +71,7 @@ export default class GeneralListForm extends Component {
         <div className="general-form-div">
           <form 
             className="general-form"
+            autoComplete="off"
             onSubmit={this.handleSubmit}
           >
             <div className="general-labels-inputs">

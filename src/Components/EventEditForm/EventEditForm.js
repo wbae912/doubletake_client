@@ -98,7 +98,7 @@ export default class EventEditForm extends Component {
         }}
       >
         <div className="event-edit">
-          <form className="edit-form" onSubmit={this.handleSubmit}>
+          <form className="edit-form" autoComplete="off" onSubmit={this.handleSubmit}>
             <div className="event-labels-inputs">
                 <label className="title-label" htmlFor="list-title">List Name<span className="required">*</span></label>
                 <input 

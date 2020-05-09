@@ -71,7 +71,6 @@ class ItemForm extends Component {
           type="text" 
           className="input-item"
           name="item"
-          autoComplete="off"
           placeholder="Enter an item"
           onChange={this.handleChange}
         />

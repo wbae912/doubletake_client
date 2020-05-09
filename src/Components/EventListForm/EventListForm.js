@@ -74,6 +74,7 @@ export default class EventListForm extends Component {
         <div className="event-form-div">
           <form 
             className="event-form"
+            autoComplete="off"
             onSubmit={this.handleSubmit}
           >
             <div className="event-labels-inputs">

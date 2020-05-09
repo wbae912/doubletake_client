@@ -158,6 +158,7 @@ export default class EditEventItemForm extends Component {
     return (
       <form 
         className="edit-item-form"
+        autoComplete="off"
         onSubmit={e => {this.editItem(e)}}
       >
         {this.renderInput()} 

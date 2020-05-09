@@ -229,6 +229,7 @@ class ItemQuantity extends Component {
           name="quantity"
           className="quantity-input"
           min="1"
+          autoComplete="off"
           id={`quantity-g${this.props.item.id}`}
           value={this.state.quantity}
           required
@@ -244,6 +245,7 @@ class ItemQuantity extends Component {
           name="quantity"
           className="quantity-input"
           min="1"
+          autoComplete="off"
           id={`quantity-e${this.props.item.id}`}
           value={this.state.quantity}
           required

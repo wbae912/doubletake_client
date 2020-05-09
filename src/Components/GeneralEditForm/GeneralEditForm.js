@@ -73,7 +73,7 @@ export default class GeneralEditForm extends Component {
         }}
       >
         <div className="general-edit">
-          <form className="edit-form" onSubmit={this.handleSubmit}>
+          <form className="edit-form" autoComplete="off" onSubmit={this.handleSubmit}>
             <div className="general-labels-inputs">
                 <label className="title-label" htmlFor="list-title">Edit List Name</label>
                 <input 

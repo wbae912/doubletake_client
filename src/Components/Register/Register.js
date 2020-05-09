@@ -180,7 +180,7 @@ export default class Register extends Component {
           <div className="header-div">
             <h2 className="register-h2">Doubletake</h2>
           </div>
-          <form className="register-form" onSubmit={this.handleSubmit}>
+          <form className="register-form" onSubmit={this.handleSubmit} autoComplete="off">
           {!this.state.showPassword 
           ? <div className="register_inputs-labels">
               <label className="register-label" htmlFor="email">Email</label>
@@ -212,7 +212,6 @@ export default class Register extends Component {
                   name="password"
                   className="register-input password-test"
                   id="password"
-                  autoComplete="off"
                   required
                   onChange={(e) => {this.handleCredentialsChange(e); this.handleTouchedChange(e); this.validatePassword();}}
                 />
@@ -226,7 +225,6 @@ export default class Register extends Component {
                   name="passwordVerify"
                   className="register-input" 
                   id="password-again"
-                  autoComplete="off"
                   required
                   onChange={(e) => {this.handleNonNestedChange(e); this.handleTouchedChange(e)}}
                 />
