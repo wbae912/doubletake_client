@@ -62,8 +62,9 @@ export default class EventListForm extends Component {
           },
           content: {
             margin: 0,
+            width: '310px',
             position: 'relative',
-            top: '35%',
+            top: '50%',
             bottom: '45%',
             left: '50%',
             transform: 'translate(-50%, -50%)'

@@ -63,6 +63,7 @@ export default class GeneralEditForm extends Component {
           },
           content: {
             margin: 0,
+            width: '310px',
             position: 'relative',
             top: '35%',
             left: '50%',

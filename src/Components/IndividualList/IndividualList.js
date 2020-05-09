@@ -106,6 +106,7 @@ class IndividualList extends Component {
             },
             content: {
               margin: 0,
+              width: '310px',
               position: 'relative',
               top: '35%',
               bottom: '45%',

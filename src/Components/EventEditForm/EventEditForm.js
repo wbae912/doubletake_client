@@ -88,8 +88,9 @@ export default class EventEditForm extends Component {
           },
           content: {
             margin: 0,
+            width: '310px',
             position: 'relative',
-            top: '35%',
+            top: '50%',
             left: '50%',
             bottom: '45%',
             transform: 'translate(-50%, -50%)'
