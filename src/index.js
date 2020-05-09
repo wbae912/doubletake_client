@@ -5,7 +5,6 @@ import { BrowserRouter } from 'react-router-dom';
 import { ListProvider } from '../src/Context/ListContext';
 import { ItemProvider } from '../src/Context/ItemContext';
 import './index.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
   <BrowserRouter>
