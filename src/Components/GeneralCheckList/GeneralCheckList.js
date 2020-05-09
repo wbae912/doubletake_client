@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import Modal from 'react-modal';
+import LoaderSpinner from '../LoaderSpinner/LoaderSpinner';
 import List from '../../Components/List/List';
 import GeneralListForm from '../../Components/GeneralListForm/GeneralListForm';
 import SearchBar from '../SearchBar/SearchBar';
@@ -16,17 +18,28 @@ class GeneralCheckList extends Component {
   
     this.state = {
        formClicked: false,
-       sortOption: ''
+       sortOption: '',
+       loading: false
     }
   }
 
   componentDidMount() {
+    this.setState({
+      loading: true
+    })
+
     GeneralService.getLists()
       .then(data => {
         this.context.setGeneralLists(data);
+        this.setState({
+          loading: false
+        })
       })
       .catch(res => {
-        return this.context.setError(res.error);
+        this.context.setError(res.error);
+        this.setState({
+          loading: false
+        })
       })
   }
 
@@ -112,6 +125,36 @@ class GeneralCheckList extends Component {
     }
   }
 
+  renderLoader = () => {
+    if(this.state.loading) {
+      return (
+        <div className="load-div">
+          <Modal
+            isOpen={this.state.loading}
+            style={{
+              overlay: {
+                backdropFilter: 'blur(3px)' 
+              },
+              content: {
+                margin: 0,
+                backgroundColor: 'transparent',
+                width: '100px',
+                border: 'none',
+                position: 'relative',
+                top: '40%',
+                bottom: '45%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)'
+              }
+            }}
+          >
+            <LoaderSpinner />
+          </Modal>
+        </div>
+      )
+    }
+  }
+
   render() {
     let generalLists = this.context.generalLists;
 
@@ -175,6 +218,8 @@ class GeneralCheckList extends Component {
             />
           )}
         </div>
+
+        {this.renderLoader()}
       </div>
     )
   }

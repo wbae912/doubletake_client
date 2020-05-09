@@ -17,23 +17,32 @@ class Home extends Component {
        generalLists: [],
        eventLists: [],
        upcomingList: {},
-       smallestDate: null
+       smallestDate: null,
+       loading: false
     }
   }
 
-  componentDidMount() { 
-      if(TokenService.getAuthToken()) {
-        this.props.callbackFromParent(true);
-      }
+  componentDidMount() {
+    this.setState({
+      loading: true
+    })
+
+    if(TokenService.getAuthToken()) {
+      this.props.callbackFromParent(true);
+    }
 
     GeneralService.getLists()
       .then(data => {
         this.setState({
-          generalLists: data
+          generalLists: data,
+          loading: false
         })
       })
       .catch(res => {
-        return this.context.setError(res.error);
+        this.context.setError(res.error);
+        this.setState({
+          loading: false
+        })
       })
 
     EventService.getLists()
@@ -100,9 +109,28 @@ class Home extends Component {
     let upcomingDate = new Date(this.state.upcomingList.date_of_event).toLocaleString();
     let dateArray = upcomingDate.split(',');
 
-    let date = !this.state.upcomingList.date_of_event ? 'Loading' : dateArray[0];
+    let date = '';
+    let upcomingTitle = '';
 
-    let upcomingTitle = !this.state.upcomingList.title ? 'Loading' : this.state.upcomingList.title;
+    if(this.state.loading) {
+      date = 'Loading';
+    }
+    if(!this.state.loading && !this.state.upcomingList.date_of_event) {
+      date = '';
+    }
+    if(!this.state.loading && this.state.upcomingList.date_of_event) {
+      date = dateArray[0];
+    }
+
+    if(this.state.loading) {
+      upcomingTitle = 'Loading';
+    }
+    if(!this.state.loading && !this.state.upcomingList.title) {
+      upcomingTitle = 'N/A';
+    }
+    if(!this.state.loading && this.state.upcomingList.title) {
+      upcomingTitle = this.state.upcomingList.title;
+    }
 
     if(todayDate.getTime() > dateOfEvent.getTime()) {
       return (
@@ -130,9 +158,17 @@ class Home extends Component {
   render() {
     let generalLists = [...this.state.generalLists];
 
+    let generalText = '';
+
+    if(this.state.loading) {
+      generalText = 'Loading...';
+    }
+    if(!this.state.loading && generalLists.length === 0) {
+      generalText = 'N/A';
+    }
+
     return (
       <div className="home-div">
-
         <div className="upcoming-general-container">
 
           <div id="upcoming-home-div">
@@ -148,7 +184,7 @@ class Home extends Component {
             </div>
             <ul className="general-ul">
               {(generalLists.length === 0)
-                ? <li className="loading-li" aria-live="polite">Loading...</li>
+                ? <li className="loading-li" aria-live="polite">{generalText}</li>
                 : generalLists.map(list =>
                 <div key={list.id} className="li-div" id={list.id} aria-live="polite" onClick={this.handleGeneralClick}>
                   <li className="general-li" id={list.id} onClick={this.handleGeneralClick}>{list.title}</li>

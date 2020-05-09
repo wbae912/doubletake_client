@@ -1,9 +1,13 @@
 /* eslint-disable no-useless-escape */
 import React, { Component } from 'react';
+import Modal from 'react-modal';
+import LoaderSpinner from '../LoaderSpinner/LoaderSpinner';
 import FormValidation from '../../Components/FormValidation/FormValidation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import './Register.css';
+
+Modal.setAppElement('#root');
 
 export default class Register extends Component {  
   constructor(props) {
@@ -23,7 +27,8 @@ export default class Register extends Component {
          passwordVerify: false,
        },
        showPassword: false,
-       error: null
+       error: null,
+       loading: false
     };
   }
 
@@ -98,6 +103,11 @@ export default class Register extends Component {
   
   handleSubmit = e => {
     e.preventDefault();
+
+    this.setState({
+      loading: true
+    })
+
     const credentials = this.state.credentials;
 
     fetch('http://localhost:8000/api/user/register', {
@@ -114,13 +124,19 @@ export default class Register extends Component {
       return res.json();
     })
     .then(() => {
+      this.setState({
+        loading: false
+      })
       this.props.history.push('/login');
     })
     .catch(res => {
       this.setState({
-        error: res.error
+        error: res.error,
+        loading: false
       })
     })
+
+
   }
 
   renderShowPassword = () => {
@@ -157,6 +173,36 @@ export default class Register extends Component {
         <>
           <span className="password-good" aria-live="polite">&#10004;</span>
         </>
+      )
+    }
+  }
+
+  renderLoader = () => {
+    if(this.state.loading) {
+      return (
+        <div className="load-div">
+          <Modal
+            isOpen={this.state.loading}
+            style={{
+              overlay: {
+                backdropFilter: 'blur(3px)' 
+              },
+              content: {
+                margin: 0,
+                width: '100px',
+                backgroundColor: 'transparent',
+                border: 'none',
+                position: 'relative',
+                top: '40%',
+                bottom: '45%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)'
+              }
+            }}
+          >
+            <LoaderSpinner />
+          </Modal>
+        </div>
       )
     }
   }
@@ -305,6 +351,7 @@ export default class Register extends Component {
             </div>
           </form>
         </section>
+        {this.renderLoader()}
       </div>
     )
   }

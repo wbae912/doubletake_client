@@ -12,10 +12,10 @@ import Nav from '../Nav/Nav';
 import NavBar from '../NavBar/NavBar';
 import Home from '../Home/Home';
 import Footer from '../Footer/Footer';
-import TokenService from '../../services/token-service';
-import './App.css';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import PublicOnlyRoute from '../PublicOnlyRoute/PublicOnlyRoute';
+import TokenService from '../../services/token-service';
+import './App.css';
 
 export default class App extends Component {
   constructor(props) {

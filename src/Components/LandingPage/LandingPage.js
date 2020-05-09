@@ -65,7 +65,6 @@ export default class LandingPage extends Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <div className="landing-div">
         <section className="landing-page">

@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import Modal from 'react-modal';
+import LoaderSpinner from '../LoaderSpinner/LoaderSpinner';
 import TokenService from '../../services/token-service';
 import AuthApiService from '../../services/auth-api-service';
 import ListContext from '../../Context/ListContext';
 import './Login.css';
+
+Modal.setAppElement('#root');
 
 class Login extends Component {
   static contextType = ListContext;
@@ -15,7 +19,8 @@ class Login extends Component {
       credentials: {
         username: '',
         password: '',
-        error: null
+        error: null,
+        loading: false
       }
     }
   }
@@ -34,6 +39,11 @@ class Login extends Component {
 
   handleSubmitJwtAuth = e => {
     e.preventDefault();
+
+    this.setState({
+      loading: true
+    })
+
     const { username, password } = e.target;
 
     AuthApiService.postLogin(this.state.credentials)
@@ -42,13 +52,47 @@ class Login extends Component {
         password.value = '';
         TokenService.saveAuthToken(res.authToken);
         this.context.processLogin();
+        this.setState({
+          loading: false
+        })
         this.props.history.push('/home');
       })
       .catch(res => {
         this.setState({
-          error: res.error
+          error: res.error,
+          loading: false
         });
       })
+  }
+
+  renderLoader = () => {
+    if(this.state.loading) {
+      return (
+        <div className="load-div">
+          <Modal
+            isOpen={this.state.loading}
+            style={{
+              overlay: {
+                backdropFilter: 'blur(3px)' 
+              },
+              content: {
+                margin: 0,
+                width: '100px',
+                backgroundColor: 'transparent',
+                border: 'none',
+                position: 'relative',
+                top: '40%',
+                bottom: '45%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)'
+              }
+            }}
+          >
+            <LoaderSpinner />
+          </Modal>
+        </div>
+      )
+    }
   }
   
   render() {
@@ -57,6 +101,7 @@ class Login extends Component {
         <div className="top-div">
           {this.state.error && <p className='red'>{this.state.error}</p>}
         </div>
+
         <section className="login-section">
           <div className="header-div">
             <h2 className="login-header">Doubletake</h2>
@@ -97,6 +142,8 @@ class Login extends Component {
             </div>
           </form>
         </section>
+
+        {this.renderLoader()}
       </div>
     )
   }
