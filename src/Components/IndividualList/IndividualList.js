@@ -347,7 +347,7 @@ class IndividualList extends Component {
 
           <h2 className="list-h2">{this.props.list.title}</h2>
         </div>
-        <hr className="underline" />
+        {/* <hr className="underline" /> */}
 
         {(this.props.list.hasOwnProperty('date_of_event') 
           ? <h3 className="list-date" id="event-date">{dateArray[0]}</h3>

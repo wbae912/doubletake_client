@@ -15,6 +15,23 @@
   overflow: auto;
   display: flex;
   flex-direction: column;
+  padding-top: 0.8em;
+  border: 1px solid black;
+  border-top: none;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.items-div-individual-event {
+  max-height: 450px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  padding-top: 0.8em;
+  border: 1px solid black;
+  border-top: none;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
 }
 
 /* STYLING FOR CHECKBOX INPUT */
