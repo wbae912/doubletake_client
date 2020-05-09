@@ -1,7 +1,6 @@
 .list-entry {
   width: 95%;
   border-radius: 12px;
-  border: 1px solid black;
   margin: auto;
   margin-bottom: 1.5em;
 }
@@ -12,18 +11,11 @@
   color: white;
 }
 
-.underline {
-  border: 0;
-  height: 2px;
-  border-top: 1.15px solid rgb(90, 90, 90);
-  margin-top: 0;
-  margin-bottom: 0.5em;
-}
-
 .color {
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
   background-color: rgb(12, 15, 77);
+  padding-bottom: 0.3em;
 }
 
 .menu-ellipsis {
@@ -43,7 +35,6 @@
 }
 
 #delete-list-button {
-  border: 1px solid rgb(209, 1, 1);
   background-color: rgb(209, 2, 2);
   color: white;
   margin-right: 0.5em;
@@ -54,7 +45,11 @@
 }
 
 #event-date {
-  margin: 0 0 0.3em 0;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+  margin: 0;
+  padding-top: 0.4em;
+  padding-bottom: 0.3em;
   font-size: 24px;
 }
 

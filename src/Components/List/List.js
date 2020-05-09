@@ -172,7 +172,7 @@ class List extends Component {
           listId={this.props.list.id}
           // Created this callback method and passed down to child component. Child will then "call" the callback prop to pass data from child to parent.
           callbackFromParent={this.callbackGeneralItems}
-          ref={this.child}
+          refs={this.child}
         />
       )
     } else if(this.props.match.path === '/event' || this.props.match.path === '/elist/:id') {
@@ -182,7 +182,7 @@ class List extends Component {
           listId={this.props.list.id}
           // Created this callback method and passed down to child component. Child will then "call" the callback prop to pass data from child to parent.
           callbackFromParent={this.callbackEventItems}
-          ref={this.child}
+          refs={this.child}
         />
       )
     }
@@ -347,7 +347,6 @@ class List extends Component {
 
           <h2 className="list-h2">{this.props.list.title}</h2>
         </div>
-        <hr className="underline" />
 
         {(this.props.list.hasOwnProperty('date_of_event') 
           ? <h3 className="list-date" id="event-date">{dateArray[0]}</h3>

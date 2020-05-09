@@ -18,5 +18,10 @@
 }
 
 .add-button {
+  background-color: rgb(43, 184, 36);
+  color: white;
+}
+
+.add-button {
   margin-right: 0.2em;
 }

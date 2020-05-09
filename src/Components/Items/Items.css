@@ -3,6 +3,11 @@
   overflow: auto;
   display: flex;
   flex-direction: column;
+  padding-top: 0.8em;
+  border: 1px solid black;
+  border-top: none;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
 }
 
 .items-div-individual {
@@ -68,10 +73,6 @@
   cursor: pointer;
   flex-basis: 5%;
 }
-
-/* .test {
-  margin: auto 0 0.3em 0;
-} */
 
 .add-item-button {
   color: rgb(43, 184, 36);

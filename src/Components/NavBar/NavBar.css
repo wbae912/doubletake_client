@@ -64,8 +64,8 @@
 /* HAMBURGER MENU STYLING */
 .hamburger {
   color: white;
-  height: 70px;
-  line-height: 70px;
+  height: 60px;
+  line-height: 60px;
   width: 19px;
   margin-right: 1em;
 }
@@ -83,7 +83,7 @@
 }
 
 #menu-close {
-  color: rgb(129, 22, 129);;
+  color: rgb(129, 22, 129);
   font-size: 18px;
 }
 
@@ -100,7 +100,7 @@
   color: rgb(129, 22, 129);
   text-decoration: none;
   width: 80px;
-  height: 65px;
+  height: 60px;
   margin: 0;
   float: right;
   font-size: 14px;
