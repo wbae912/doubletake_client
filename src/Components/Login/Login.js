@@ -20,14 +20,6 @@ class Login extends Component {
     }
   }
 
-  componentDidMount() {
-    if(TokenService.getAuthToken()) {
-      this.props.callbackFromParent(true);
-    } else {
-      this.props.callbackFromParent(false);
-    }
-  }
-
   handleInputChange = e => {
     const name = e.target.name;
     const value = e.target.value;
@@ -95,7 +87,6 @@ class Login extends Component {
             </div>
             <div className="login-buttons">
               <button type="submit" className="login-button">LOGIN ></button>
-              {/* <button type="button" className="back-button">Back</button> */}
             </div>
           </form>
         </section>

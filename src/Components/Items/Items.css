@@ -34,6 +34,7 @@
   border-bottom-right-radius: 12px;
 }
 
+
 /* STYLING FOR CHECKBOX INPUT */
 .item-div {
   position: relative;
@@ -83,8 +84,8 @@
 }
 /* END OF CHECKBOX STYLING */
 
+
 .delete-item-button {
-  /* margin-left: 0.5em; */
   margin-right: 3%;
   color: red;
   cursor: pointer;
@@ -110,18 +111,6 @@
 .item-checkbox {
   flex-basis: 10%;
 }
-
-/* .expand {
-  text-align: right;
-} */
-
-/* .react-expand-collapse__button {
-  position: absolute;
-  right: 12.5em;
-  color: blue;
-  font-size: 12px;
-  text-decoration: underline;
-} */
 
 @media only screen and (min-width: 500px) {
   .item-div label {

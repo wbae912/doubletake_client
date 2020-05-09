@@ -81,7 +81,7 @@ export default class EditItemForm extends Component {
         this.context.setGeneralItems(updatedGeneralItems);
 
         this.props.callbackFromParent(updatedGeneralItems);
-        this.handleEditCancel(e); // CHECK TO SEE IF WE NEED THIS
+        this.handleEditCancel(e);
       })
       .catch(res => {
         this.context.setError(res.error);
@@ -107,7 +107,7 @@ export default class EditItemForm extends Component {
       this.context.setGeneralItems(updatedGeneralItems);
 
       this.props.callbackFromParent(updatedGeneralItems);
-      this.handleEditCancel(e); // CHECK TO SEE IF WE NEED
+      this.handleEditCancel(e);
     })
     .catch(res => {
       this.context.setError(res.error);
@@ -162,31 +162,7 @@ export default class EditItemForm extends Component {
         className="edit-item-form"
         onSubmit={e => {this.editItem(e)}}
       >
-
-
         {this.renderInput()}
-
-        {/* <input
-          type="text"
-          className="input-item"
-          id={`edit-item-input-g${this.props.itemId}`}
-          name="itemName"
-          value={this.state.item}
-          onChange={this.handleChange}
-          onKeyPress={this.handleKeyPress}
-          onBlur={this.handleBlur}
-        /> */}
-
-
-
-        {/* <button type="submit" className="edit-button">Edit</button>
-        <button
-          type="button"
-          className="cancel-button"
-          name="editClicked"
-          onClick={this.props.handleEditCancel}
-        >
-        X</button> */}
       </form>
     )
   }

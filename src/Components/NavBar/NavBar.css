@@ -61,6 +61,7 @@
   display: none;
 }
 
+
 /* HAMBURGER MENU STYLING */
 .hamburger {
   color: white;
@@ -142,6 +143,7 @@
 
 /* END HAMBURGER MENU STYLING */
 
+
 @media only screen and (min-width: 750px) {
   .appnav-title {
     font-size: 24px;
@@ -160,6 +162,7 @@
   #logout-menu {
     padding-left: 0;
   }
+
 
   /* DROPDOWN MENU STYLING */
   #dropdown-li {
@@ -236,6 +239,7 @@
   }
   /* END DROPDOWN MENU STYLING */
 
+  
   .appnav {
     display: inline-block;
   }

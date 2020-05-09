@@ -104,7 +104,6 @@ class NavBar extends Component {
         <nav className="appnav">
           <div className="appnav-links">
             <NavLink to='/home' activeClassName="selected" className="appnav-li" id="home-menu">Home</NavLink>
-            {/* <NavLink to='/general' activeClassName="selected" className="appnav-li">Lists</NavLink> */}
             <div className="appnav-li" id="dropdown-li">
               <div className="dropdown">
                 <button className="dropbtn">Lists</button>

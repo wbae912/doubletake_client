@@ -135,18 +135,8 @@ class GeneralCheckList extends Component {
       generalLists = generalLists.sort((a,b) => a.id - b.id)
     }
 
-    let colorStack = [
-      'rgb(70, 220, 70)', // Light green
-      'rgb(255, 112, 112)', // Light red
-      'rgb(241, 77, 241)', // Light purple
-      'rgb(160, 160, 245)', // Light blue
-      'orange',
-      'yellow',
-    ];
-
     return (
       <div className="general-lists">
-        {/* <h1 className="general-h1">General</h1> */}
         <div className="list-direct">
           <p
             className="general-direct"
@@ -170,7 +160,6 @@ class GeneralCheckList extends Component {
         <div className="list-render-div">
           {generalLists.map(list => 
             <List 
-              color={colorStack[Math.floor(Math.random() * colorStack.length)]}
               key={list.id}
               list={list}
             />

@@ -111,7 +111,7 @@ export default class EventEditForm extends Component {
                   value={this.state.title}
                   onChange={this.handleChange}
                 />
-                <label className="date-label" htmlFor="list-date">List Date<span className="required">*</span></label>
+                <label className="date-label" htmlFor="list-date">Date of Event<span className="required">*</span></label>
                 <input 
                   type="date"
                   name="date_of_event"

@@ -292,7 +292,6 @@ export default class Register extends Component {
 
             <div className="register-buttons">
               <button type="submit" className="register-button" disabled={emailError || usernameError || passwordError || passwordVerifyError}>SIGN UP</button>
-              {/* <button type="button" className="back-button">Back</button> */}
             </div>
           </form>
         </section>

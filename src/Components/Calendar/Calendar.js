@@ -86,5 +86,3 @@ class Calender extends Component {
 
 
 export default withRouter(Calender);
-
-//80vh

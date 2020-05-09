@@ -58,7 +58,6 @@ class ItemForm extends Component {
         this.context.setError(res.error);
       }
     }
-    // e.target.item.value = '';
   }
     
   render() {

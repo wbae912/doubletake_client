@@ -26,6 +26,7 @@
   height: calc(100vh - 20px);
 }
 
+
 /* LOGO STYLING */
 .landing-page {
   display: flex;
@@ -123,6 +124,7 @@ img {
 }
 /* END OF FEATURES STYLING */
 
+
 /* SCROLL TO TOP STYLING */
 .scroll-div {
   border: 2.5px solid #a346a3;
@@ -157,6 +159,7 @@ img {
   font-size: 19px;
 }
 /* END OF SCROLL TO TOP */
+
 
 @media only screen and (min-width: 600px) {
   #app-name {

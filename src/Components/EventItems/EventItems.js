@@ -55,7 +55,7 @@ class EventItems extends Component {
 
           <ItemQuantity 
             item={item}
-            callbackFromParent={this.props.callbackFromParent} // CHECK IF THIS BELONGS HERE
+            callbackFromParent={this.props.callbackFromParent}
           />
   
           <FontAwesomeIcon 
@@ -86,7 +86,7 @@ class EventItems extends Component {
 
             <ItemQuantity 
               item={item}
-              callbackFromParent={this.props.callbackFromParent} // CHECK IF THIS BELONGS HERE
+              callbackFromParent={this.props.callbackFromParent}
             />
 
             <FontAwesomeIcon 
@@ -163,44 +163,6 @@ class EventItems extends Component {
       this.context.setError(res.error);
     }
   }
-
-  // renderEditForm = (item) => {
-  //   if(this.state.editClicked === item.id) {
-  //     return (
-  //       <>
-  //         <EditEventItemForm 
-  //           listId={item.list_id}
-  //           itemId={item.id}
-  //           handleEditCancel={this.handleEditCancel} // CHECK TO SEE IF WE NEED
-  //           callbackFromParent={this.props.callbackFromParent}
-  //         />
-  //       </>
-  //     )} else {
-  //     return (
-  //       <>
-  //         <input 
-  //           type="text"
-  //           name="editClicked"
-  //           className="item-input"
-  //           value={item.item}
-  //           id={item.id}
-  //           readOnly={true}
-  //         />
-  //       </>
-  //     )}
-  // }
-
-  // handleEditClicked = itemId => {
-  //   this.setState({
-  //     editClicked: itemId
-  //   })
-  // }
-
-  // handleEditCancel = e => {
-  //   this.setState({
-  //     editClicked: false
-  //   })
-  // }
 
   toggleChecked = async item => {
     item.checked = !item.checked;

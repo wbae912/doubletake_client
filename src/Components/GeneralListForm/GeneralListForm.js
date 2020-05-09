@@ -26,7 +26,6 @@ export default class GeneralListForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    // Spread operator to copy state into new object
     const newList = {...this.state};
 
     GeneralService.postList(newList)

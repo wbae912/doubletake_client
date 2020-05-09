@@ -142,19 +142,9 @@ class EventCheckList extends Component {
     if(this.state.sortOption === '6') {
       eventLists = eventLists.sort((a,b) => new Date(b.date_of_event) - new Date(a.date_of_event));
     }
-
-    let colorStack = [
-      'rgb(70, 220, 70)',
-      'rgb(255, 112, 112)',
-      'rgb(241, 77, 241)',
-      'rgb(160, 160, 245)',
-      'orange',
-      'yellow',
-    ];
   
     return (
       <div className="event-lists">
-        {/* <h1 className="event-h1">Events</h1> */}
         <div className="list-direct">
           <p
             className="direct-general"
@@ -178,7 +168,6 @@ class EventCheckList extends Component {
         <div className="list-render-div">
         {eventLists.map(list => 
           <List
-            color={colorStack[Math.floor(Math.random() * colorStack.length)]}
             key={list.id}
             list={list}
           />

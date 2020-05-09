@@ -61,32 +61,11 @@ class Items extends Component {
             callbackFromParent={this.props.callbackFromParent}
           />
 
-
-
-
-
-          {/* {this.renderEditForm(item)} */}
-          {/* {(this.state.editClicked === item.id)
-            ? this.renderEditForm(item)
-            : <input 
-                type="text"
-                className="item-input"
-                value={item.item}
-                readOnly={true}
-                onClick={() => {this.handleEditClicked(item.id);}}
-             />
-          } */}
-
-          {/* <label className="list-input" htmlFor={`item - ${item.id}`}>{item.item}</label> */}
-
           <ItemQuantity 
             item={item}
-            callbackFromParent={this.props.callbackFromParent} // CHECK IF THIS BELONGS HERE
+            callbackFromParent={this.props.callbackFromParent}
           />
   
-          {/* {this.renderEditForm(item)} */}
-
-
           <FontAwesomeIcon 
             icon={faTrashAlt} 
             className="delete-item-button"
@@ -124,24 +103,11 @@ class Items extends Component {
               callbackFromParent={this.props.callbackFromParent}
             />
 
-
-
-
-
-
-
-
-
-            {/* {this.renderEditForm(item)} */}
-            {/* <label className="list-input-strikethrough" htmlFor={`item - ${item.id}`}>{item.item}</label> */}
-
             <ItemQuantity 
               item={item}
-              callbackFromParent={this.props.callbackFromParent} // CHECK IF THIS BELONGS HERE
+              callbackFromParent={this.props.callbackFromParent}
             />
-    
-            {/* {this.renderEditForm(item)} */}
-        
+            
             <FontAwesomeIcon 
               icon={faTrashAlt} 
               className="delete-item-button"
@@ -174,25 +140,6 @@ class Items extends Component {
       [e.target.name]: false
     })
   }
-
-  // hoverToggle = () => {
-  //   this.setState({
-  //     hovered: true
-  //   })
-  // }
-
-  // onBlur = () => {
-  //   this.setState({
-  //     hovered: false
-  //   })
-  // }
-
-  // renderText = () => {
-  //   if(this.state.hovered)
-  //   return(
-  //     <span onClick={this.handleAddClicked}>Add Item</span>
-  //   )
-  // }
 
   renderItemForm = () => {
     let className = this.props.match.path === '/glist/:id' ? 'add-item-button-individual' : 'add-item-button';
@@ -236,52 +183,6 @@ class Items extends Component {
       this.context.setError(res.error);
     })
   }
-
-  // renderEditForm = item => {
-  //   if(this.state.edit === item.id) {
-  //     return (
-  //       <>
-  //         <EditItemForm 
-  //           listId={item.list_id}
-  //           itemId={item.id}
-  //           handleEditCancel={this.handleEditCancel} // CHECK TO SEE IF WE NEED
-  //           callbackFromParent={this.props.callbackFromParent}
-  //         />
-  //       </>
-  //     )} else {
-  //       return (
-  //       <input 
-  //         type="text"
-  //         name="editClicked"
-  //         className="item-input"
-  //         value={item.item}
-  //         id={item.id}
-  //         readOnly={true}
-  //         onClick={(e) => this.handleEditClicked(e, item)}
-  //       />
-  //       )}
-  //     // else {
-  //     // return (
-  //     //   <>
-  //     //     <button
-  //     //       type="button"
-  //     //       className="edit-item-button"
-  //     //       name="editClicked"
-  //     //       onClick={() => {this.handleEditClicked(item.id);}}
-  //     //     >
-  //     //     Edit Item</button>
-  //     // </>
-  //     // )}
-  // }
-
-  // handleEditClicked = itemId => {
-  //   if(!this.state.editClicked) {
-  //     this.setState({
-  //       editClicked: itemId
-  //     })
-  //   }
-  // }
-
 
   toggleChecked = (item) => {
     item.checked = !item.checked;

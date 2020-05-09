@@ -245,9 +245,11 @@ class List extends Component {
     }
   }
 
-  // This method was added specifically to change the checkbox input elements to show as "unchecked" in the DOM.
-  // Previously, resetItems would work and un-strikethrough all items in a list, but the checkboxes would not uncheck because the component did not re-render
-  // Therefore, this method is implemented to ensure that the checkboxes are unchecked as well after the reset button is clicked
+  /* 
+    This method was added specifically to change the checkbox input elements to show as "unchecked" in the DOM.
+    Previously, resetItems would work and un-strikethrough all items in a list, but the checkboxes would not uncheck because the component did not re-render
+    Therefore, this method is implemented to ensure that the checkboxes are unchecked as well after the reset button is clicked
+  */
   revertCheckboxOnDOM = (listId) => {
     if(this.props.match.path === '/general' || this.props.match.path === '/glist/:id') {
       let checkboxes = document.getElementsByClassName(`list-input_g${listId}`);
@@ -293,9 +295,6 @@ class List extends Component {
         <div className='dropdown-list' ref={this.node}>
           <button className='dropbtn-list'onClick={this.toggleMenuOn}>
             <FontAwesomeIcon icon={faEllipsisH} className="menu-ellipsis" />
-            {/* <svg className="octicon octicon-kebab-horizontal" viewBox="0 0 13 16" version="1.1" width="13" height="16" aria-hidden="true">
-              <path fillRule="evenodd" d="M1.5 9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm5 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM13 7.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"></path>
-            </svg> */}
           </button>
         </div>
       )} else {
@@ -369,5 +368,3 @@ class List extends Component {
 }
 
 export default withRouter(List);
-
-// style={{backgroundColor: this.props.color}}

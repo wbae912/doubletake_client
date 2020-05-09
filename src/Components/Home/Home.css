@@ -10,6 +10,7 @@
   margin-top: 1em;
 }
 
+
 /* STYLING FOR UPCOMING EVENT */
 #upcoming-home-div {
   margin-bottom: 1.5em;
@@ -263,6 +264,7 @@
 }
 /* END OF EVENT LISTS */
 
+
 @media only screen and (min-width: 650px) {
   .upcoming-event-div {
     width: 580px;
@@ -338,7 +340,6 @@
     display: flex;
     flex-direction: column;
     width: 40%;
-    /* height: 70vh; */
   }
 
   .upcoming-event-div, #container {

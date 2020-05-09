@@ -53,6 +53,7 @@
   font-size: 24px;
 }
 
+
 /* DROPDOWN MENU STYLING */
 .dropdown-list {
   height: 20px;
@@ -127,6 +128,7 @@
   color: red;
 }
 /* END OF DROPDOWN MENU STYLING */
+
 
 @media only screen and (min-width: 550px) {
   .list-entry {

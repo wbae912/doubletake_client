@@ -156,7 +156,6 @@ export default class Weather extends Component {
               <div className="weather-flex-main">
                 <div className="weather-summary-div">
                   <p className="weather-main-p">{this.state.weather_main}</p>
-                  {/* <p id="weather-icon" style={{backgroundImage: `url(${weatherIconImage})`}}></p> */}
                   <img src={weatherIconImage} alt="weather-icon" id="weather-icon"></img>
                 </div>
                 {this.renderTemperature()}
