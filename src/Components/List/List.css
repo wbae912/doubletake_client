@@ -94,7 +94,7 @@
 }
 
 .dropdown-btn-list:hover {
-  background-color: rgb(50, 50, 255);
+  background-color: rgb(27, 103, 255);
 }
 
 #dropdown-edit {
@@ -109,10 +109,12 @@
 
 #delete-button, #edit-button, #reset-button {
   width: 100%;
+  line-height: 23px;
   border: none;
   background-color: transparent;
   font-size: 14px;
   text-align: right;
+  cursor: pointer;
 }
 
 #delete-button:focus, #edit-button:focus, #reset-button:focus {

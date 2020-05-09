@@ -155,15 +155,25 @@ class EventCheckList extends Component {
             onClick={this.handleEvent}
           >Events</p>
         </div>
-        <SearchBar />
-        <SortOptions 
-          handleSortChange={this.handleSortChange}
-        />
+
+        {!this.context.eventSearched   
+          ?
+          <>    
+            <SearchBar />
+            <SortOptions 
+              handleSortChange={this.handleSortChange}
+            />
+    
+            {this.renderForm()}
+          </>
+          :
+          <>
+            <SearchBar />
+          </>
+        }
 
         {this.renderLink()}
         {this.renderNoResults()}
-
-        {this.renderForm()}
 
         <div className="list-render-div">
         {eventLists.map(list => 
