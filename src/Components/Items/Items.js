@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 import ItemContext from '../../Context/ItemContext';
 import ItemForm from '../ItemForm/ItemForm';
 import EditItemForm from '../EditItemForm/EditItemForm';
@@ -10,7 +9,7 @@ import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 import './Items.css'
 
-class Items extends Component {
+export default class Items extends Component {
   static contextType = ItemContext;
 
   constructor(props) {
@@ -52,8 +51,6 @@ class Items extends Component {
           />
           <label htmlFor={`item - ${item.id}`}></label>
           
-
-
           <EditItemForm
             item={item} 
             listId={item.list_id}
@@ -142,7 +139,7 @@ class Items extends Component {
   }
 
   renderItemForm = () => {
-    let className = this.props.match.path === '/glist/:id' ? 'add-item-button-individual' : 'add-item-button';
+    let className = this.props.pathName === '/glist/:id' ? 'add-item-button-individual' : 'add-item-button';
 
     if(this.state.addClicked) {
       return (
@@ -256,7 +253,7 @@ class Items extends Component {
   }
   
   render() {
-    let className = this.props.match.path === '/glist/:id' ? 'items-div-individual' : 'items-div';
+    let className = this.props.pathName === '/glist/:id' ? 'items-div-individual' : 'items-div';
     return (
       <div className={className}>
         
@@ -267,5 +264,3 @@ class Items extends Component {
     )
   }
 }
-
-export default withRouter(Items);

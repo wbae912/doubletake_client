@@ -169,6 +169,7 @@ class IndividualList extends Component {
     if(this.props.match.path === '/general' || this.props.match.path === '/glist/:id') {
       return (
         <Items 
+          pathName={this.props.match.path} 
           userId={this.props.list.user_id}
           listId={this.props.list.id}
           // Created this callback method and passed down to child component. Child will then "call" the callback prop to pass data from child to parent.
@@ -179,6 +180,7 @@ class IndividualList extends Component {
     } else if(this.props.match.path === '/event' || this.props.match.path === '/elist/:id') {
       return (
         <EventItems 
+          pathName={this.props.match.path} 
           userId={this.props.list.user_id}
           listId={this.props.list.id}
           // Created this callback method and passed down to child component. Child will then "call" the callback prop to pass data from child to parent.

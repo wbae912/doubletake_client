@@ -31,7 +31,8 @@ class List extends Component {
        menuClicked: false
     }
     // "ref" was created in order to access methods from child components (Items + EventItems). Typically, not best practice/design, but good to know/practice.
-    this.child = React.createRef();
+    this.general = React.createRef();
+    this.event = React.createRef();
     this.node = React.createRef();
   }
 
@@ -57,7 +58,8 @@ class List extends Component {
             deleteClicked: false
           })
 
-          /* The steps below trigger the page to re-render when a list is successfully deleted. Otherwise, you would need to refresh the page to see that the list was 
+          /* 
+            The steps below trigger the page to re-render when a list is successfully deleted. Otherwise, you would need to refresh the page to see that the list was 
             deleted, which is not what is intended.
 
             ADDITIONAL NOTES: setState for deleteClicked and yesClicked have to come BEFORE "resetting" the generalLists in context. Otherwise, a warning is received
@@ -168,22 +170,24 @@ class List extends Component {
   renderItems = () => {
     if(this.props.match.path === '/general' || this.props.match.path === '/glist/:id') {
       return (
-        <Items 
+        <Items
+          pathName={this.props.match.path} 
           userId={this.props.list.user_id}
           listId={this.props.list.id}
           // Created this callback method and passed down to child component. Child will then "call" the callback prop to pass data from child to parent.
           callbackFromParent={this.callbackGeneralItems}
-          refs={this.child}
+          ref={this.general}
         />
       )
     } else if(this.props.match.path === '/event' || this.props.match.path === '/elist/:id') {
       return (
-        <EventItems 
+        <EventItems
+          pathName={this.props.match.path} 
           userId={this.props.list.user_id}
           listId={this.props.list.id}
           // Created this callback method and passed down to child component. Child will then "call" the callback prop to pass data from child to parent.
           callbackFromParent={this.callbackEventItems}
-          refs={this.child}
+          ref={this.event}
         />
       )
     }
@@ -219,7 +223,7 @@ class List extends Component {
             }
           }
         }
-        this.child.current.updateGeneralItems(generalItems);
+        this.general.current.updateGeneralItems(generalItems);
         this.revertCheckboxOnDOM(listId);
       });
     } else if(this.props.match.path === '/event' || this.props.match.path === '/elist/:id') {
@@ -239,7 +243,7 @@ class List extends Component {
             }
           }
         }
-        this.child.current.updateEventItems(eventItems);
+        this.event.current.updateEventItems(eventItems);
         this.revertCheckboxOnDOM(listId);
       })
     }
