@@ -69,7 +69,7 @@ export default class Weather extends Component {
   renderTemperature = () => {
     if(this.state.fahrenheit && this.state.fahrenheitDisplay) {
       return (
-        <div className="temperature-div">
+        <div className="temperature-div" aria-live="polite">
           <h2 className="temperature-h2">{this.state.fahrenheit}
             <span className="temp-degree">&#176;</span>
             <span className="temp-notation">F</span>
@@ -94,7 +94,7 @@ export default class Weather extends Component {
       )
     } else if(this.state.celsius && this.state.celsiusDisplay) {
       return (
-        <div className="temperature-div">
+        <div className="temperature-div" aria-live="polite">
           <h2 className="temperature-h2">{this.state.celsius}
             <span className="temp-degree">&#176;</span>
             <span className="temp-notation">C</span>
@@ -148,7 +148,7 @@ export default class Weather extends Component {
 
         {(location === '') 
           ? <>
-              <h3 className="location-h3">Location: N/A</h3>
+              <h3 className="location-h3" aria-live="polite">Location: N/A</h3>
             </>
           :
             <>

@@ -85,6 +85,7 @@ export default class EventListForm extends Component {
                 className="event-input"
                 id="list-title"
                 placeholder="Enter a name"
+                aria-required="true"
                 required
                 onChange={this.handleChange}
               />
@@ -95,6 +96,7 @@ export default class EventListForm extends Component {
                 className="event-input"
                 id="list-date"
                 placeholder="mm/dd/yyyy"
+                aria-required="true"
                 required
                 onChange={this.handleChange}
               />

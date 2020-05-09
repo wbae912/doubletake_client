@@ -107,6 +107,7 @@ export default class EventEditForm extends Component {
                   className="list-title"
                   id="list-title"
                   placeholder="Enter a name"
+                  aria-required="true"
                   required
                   value={this.state.title}
                   onChange={this.handleChange}
@@ -118,6 +119,7 @@ export default class EventEditForm extends Component {
                   className="list-date"
                   id="list-date"
                   placeholder="mm/dd/yyyy"
+                  aria-required="true"
                   required
                   value={this.state.date_of_event}
                   onChange={this.handleChange}

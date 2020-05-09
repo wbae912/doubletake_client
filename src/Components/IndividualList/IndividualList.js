@@ -115,7 +115,7 @@ class IndividualList extends Component {
             }
           }}
         >
-          <div className="delete-confirm">
+          <div className="delete-confirm" aria-live="polite">
             <h3 className="delete-h3">Delete List?</h3>
             <div className="delete-confirm-buttons">
               <button 
@@ -294,14 +294,14 @@ class IndividualList extends Component {
   renderMenu = () => {
     if(!this.state.menuClicked) {
       return (
-        <div className='dropdown-list' ref={this.node}>
+        <div className='dropdown-list' ref={this.node} aria-live="polite">
           <button className='dropbtn-list'onClick={this.toggleMenuOn}>
             <FontAwesomeIcon icon={faEllipsisH} className="menu-ellipsis" />
           </button>
         </div>
       )} else {
         return (
-          <div className='dropdown-list' ref={this.node}>
+          <div className='dropdown-list' ref={this.node} aria-live="polite">
             <button onClick={this.toggleMenuOff} className='dropbtn-list'>
               <FontAwesomeIcon icon={faTimes} className="times-icon"/>
             </button>
@@ -351,7 +351,7 @@ class IndividualList extends Component {
         </div>
 
         {(this.props.list.hasOwnProperty('date_of_event') 
-          ? <h3 className="list-date" id="event-date">{dateArray[0]}</h3>
+          ? <h3 className="list-date" id="event-date" aria-live="polite">{dateArray[0]}</h3>
           : null
         )}
 

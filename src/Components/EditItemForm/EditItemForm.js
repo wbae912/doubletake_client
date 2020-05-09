@@ -131,10 +131,14 @@ export default class EditItemForm extends Component {
       return (
         <input
           type="text"
+          aria-live="polite"
+          aria-label="item-edit-form"
           className={`input-item-checked-${this.props.item.checked}`}
           id={`edit-item-input-g${this.props.itemId}`}
           name="itemName"
           placeholder="Enter an item"
+          aria-required="true"
+          required
           value={this.state.item}
           onChange={this.handleChange}
           onKeyPress={this.handleKeyPress}
@@ -145,6 +149,8 @@ export default class EditItemForm extends Component {
       return (
         <input
           type="text"
+          aria-live="polite"
+          aria-label="item-form__read-only"
           className={`input-item-checked-${this.props.item.checked} read-only`}
           id={`edit-item-input-g${this.props.itemId}`}
           name="itemName"

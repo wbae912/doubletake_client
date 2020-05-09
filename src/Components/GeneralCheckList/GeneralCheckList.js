@@ -45,7 +45,7 @@ class GeneralCheckList extends Component {
   renderForm = () => {
     if(!this.state.formClicked) {
       return (
-        <div className="list-form-div">
+        <div className="list-form-div" aria-live="polite">
           <button
             type="button" 
             className="list-form-button"

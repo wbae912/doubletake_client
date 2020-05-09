@@ -52,7 +52,7 @@ export default class LandingPage extends Component {
 
     if(this.state.scrolled) {
       return (
-        <div className="scroll-div" onClick={() => animateScroll.scrollToTop(options)}>
+        <div className="scroll-div" aria-live="polite" onClick={() => animateScroll.scrollToTop(options)}>
           <p className="scroll-p">To Top</p>
           <FontAwesomeIcon icon={faAngleDoubleUp} className="scroll-top-button" />
         </div>

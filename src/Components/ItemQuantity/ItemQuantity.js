@@ -232,6 +232,8 @@ class ItemQuantity extends Component {
           autoComplete="off"
           id={`quantity-g${this.props.item.id}`}
           value={this.state.quantity}
+          aria-label="item-quantity"
+          aria-required="true"
           required
           onChange={this.handleChange}
           onKeyPress={(e) => this.handleKeyPress(e, this.props.item)}
@@ -248,6 +250,8 @@ class ItemQuantity extends Component {
           autoComplete="off"
           id={`quantity-e${this.props.item.id}`}
           value={this.state.quantity}
+          aria-label="item-quantity"
+          aria-required="true"
           required
           onChange={this.handleChange}
           onKeyPress={(e) => this.handleKeyPress(e, this.props.item)}

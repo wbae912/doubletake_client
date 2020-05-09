@@ -82,6 +82,7 @@ export default class GeneralEditForm extends Component {
                   className="list-title"
                   id="list-title"
                   placeholder="Enter a name"
+                  aria-required="true"
                   required
                   value={this.state.title}
                   onChange={this.handleChange}

@@ -68,6 +68,9 @@ class Login extends Component {
                 name="username"
                 className="login-input" 
                 id="login-username" 
+                aria-required="true"
+                aria-invalid="true"
+                required
                 onChange={this.handleInputChange}
               />
               <label className="login-label" htmlFor="password">Password</label>
@@ -77,6 +80,9 @@ class Login extends Component {
                 autoComplete="on" 
                 className="login-input" 
                 id="password-login" 
+                aria-required="true"
+                aria-invalid="true"
+                required
                 onChange={this.handleInputChange}
               />
             </div>

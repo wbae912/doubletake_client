@@ -45,7 +45,7 @@ class EventCheckList extends Component {
   renderForm = () => {
     if(!this.state.formClicked) {
       return (
-        <div className="list-form-div">
+        <div className="list-form-div" aria-live="polite">
           <button
             type="button" 
             className="list-form-button"
@@ -89,7 +89,7 @@ class EventCheckList extends Component {
   renderNoResults = () => {
     if(this.context.eventSearched && this.context.eventLists.length === 0) {
       return (
-      <p className="no-results-p">No results found for '{this.context.searchTerm}'</p>
+      <p className="no-results-p" aria-live="polite">No results found for '{this.context.searchTerm}'</p>
       )
     }
   }

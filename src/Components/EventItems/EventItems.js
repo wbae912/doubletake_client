@@ -35,10 +35,11 @@ export default class EventItems extends Component {
   renderItems = item => {
     if(item.list_id === this.props.listId && !item.checked) {
       return (  
-        <div className="item-div" key={item.id}>
+        <div className="item-div" key={item.id} aria-live="polite">
           <input
             type="checkbox"
             name="itemChecked"
+            aria-label="event-item-checkbox"
             className={`list-input_e${this.props.listId} item-checkbox`}
             id={`item - ${item.id}`}
             onClick={() => this.toggleChecked(item)}
@@ -65,10 +66,11 @@ export default class EventItems extends Component {
         </div>
       )} else if(item.list_id === this.props.listId && item.checked) {
         return (
-          <div className="item-div" key={item.id}>
+          <div className="item-div" key={item.id} aria-live="polite">
             <input
               type="checkbox"
               name="itemChecked"
+              aria-label="event-item-checkbox"
               className={`list-input_e${this.props.listId} item-checkbox`}
               id={`item - ${item.id}`}
               onChange={() => this.toggleChecked(item)}
@@ -126,7 +128,7 @@ export default class EventItems extends Component {
 
     if(this.state.addClicked) {
       return (
-        <div className="item-form-div">
+        <div className="item-form-div" aria-live="polite">
           <ItemForm 
             handleAddCancel={this.handleAddCancel}
             listId={this.props.listId}
@@ -140,6 +142,7 @@ export default class EventItems extends Component {
           <FontAwesomeIcon 
             icon={faPlusSquare}
             className={className}
+            aria-live="polite"
             onClick={this.handleAddClicked}
           />
         </>
@@ -191,7 +194,7 @@ export default class EventItems extends Component {
   render() {
     let className = this.props.pathName === '/elist/:id' ? 'items-div-individual-event' : 'items-div';
     return (
-      <div className={className}>
+      <div className={className} aria-live="polite">
         {this.context.eventItemsForUser.map(item => this.renderItems(item))}
         {this.renderItemForm()}
       </div>

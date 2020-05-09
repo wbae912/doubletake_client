@@ -106,13 +106,13 @@ class Home extends Component {
 
     if(todayDate.getTime() > dateOfEvent.getTime()) {
       return (
-        <div id="container">
+        <div id="container" aria-live="polite">
           <p className="no-event">No Upcoming Event</p>
         </div>
       )
     } else {
       return (
-        <div id="container">
+        <div id="container" aria-live="polite">
           <div className="upcoming-div" id={this.state.upcomingList.id} onClick={this.handleEventClick}>
             <div id="upcoming-container">
               <p className="upcoming-title" id={this.state.upcomingList.id} onClick={this.handleEventClick}>{upcomingTitle}</p>
@@ -148,9 +148,9 @@ class Home extends Component {
             </div>
             <ul className="general-ul">
               {(generalLists.length === 0)
-                ? <li className="loading-li">Loading...</li>
+                ? <li className="loading-li" aria-live="polite">Loading...</li>
                 : generalLists.map(list =>
-                <div key={list.id} className="li-div" id={list.id} onClick={this.handleGeneralClick}>
+                <div key={list.id} className="li-div" id={list.id} aria-live="polite" onClick={this.handleGeneralClick}>
                   <li className="general-li" id={list.id} onClick={this.handleGeneralClick}>{list.title}</li>
                   <p className="go-to-general" id={list.id} onClick={this.handleGeneralClick}>>></p>
                 </div>

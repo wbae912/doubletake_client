@@ -131,14 +131,14 @@ export default class Register extends Component {
     if(this.state.showPassword) {
       return (
       <>
-        <FontAwesomeIcon icon={faEyeSlash} id="hide-icon" onClick={this.toggleShowPassword} />
+        <FontAwesomeIcon icon={faEyeSlash} aria-live="polite" id="hide-icon" onClick={this.toggleShowPassword} />
         <span className="show-span" onClick={this.toggleShowPassword}>Hide Password</span>
       </>
       )
     } else {
       return (
         <>
-          <FontAwesomeIcon icon={faEye} id="show-icon" onClick={this.toggleShowPassword} />
+          <FontAwesomeIcon icon={faEye} aria-live="polite" id="show-icon" onClick={this.toggleShowPassword} />
           <span className="show-span" onClick={this.toggleShowPassword}>Show Password</span>
         </>
       )
@@ -149,7 +149,7 @@ export default class Register extends Component {
     if(!this.validatePassword()) {
       return (
         <>
-          <span className="password-good">&#10004;</span>
+          <span className="password-good" aria-live="polite">&#10004;</span>
         </>
       )
     }
@@ -159,7 +159,7 @@ export default class Register extends Component {
     if(this.state.credentials.password === this.state.passwordVerify && this.state.credentials.password) {
       return (
         <>
-          <span className="password-good">&#10004;</span>
+          <span className="password-good" aria-live="polite">&#10004;</span>
         </>
       )
     }
@@ -182,7 +182,7 @@ export default class Register extends Component {
           </div>
           <form className="register-form" onSubmit={this.handleSubmit} autoComplete="off">
           {!this.state.showPassword 
-          ? <div className="register_inputs-labels">
+          ? <div className="register_inputs-labels" aria-live="polite">
               <label className="register-label" htmlFor="email">Email</label>
               <input 
                 type="email" 
@@ -190,6 +190,8 @@ export default class Register extends Component {
                 className="register-input" 
                 id="email" 
                 placeholder="example@email.com"
+                aria-required="true"
+                aria-invalid="true"
                 required
                 onChange={(e) => {this.handleCredentialsChange(e); this.handleTouchedChange(e);}}
               />
@@ -201,6 +203,8 @@ export default class Register extends Component {
                 className="register-input"
                 id="username"
                 placeholder="user123"
+                aria-required="true"
+                aria-invalid="true"
                 required
                 onChange={(e) => {this.handleCredentialsChange(e); this.handleTouchedChange(e)}}
               />
@@ -212,6 +216,8 @@ export default class Register extends Component {
                   name="password"
                   className="register-input password-test"
                   id="password"
+                  aria-required="true"
+                  aria-invalid="true"
                   required
                   onChange={(e) => {this.handleCredentialsChange(e); this.handleTouchedChange(e); this.validatePassword();}}
                 />
@@ -225,6 +231,8 @@ export default class Register extends Component {
                   name="passwordVerify"
                   className="register-input" 
                   id="password-again"
+                  aria-required="true"
+                  aria-invalid="true"
                   required
                   onChange={(e) => {this.handleNonNestedChange(e); this.handleTouchedChange(e)}}
                 />
@@ -232,7 +240,7 @@ export default class Register extends Component {
               </div>
               {this.state.touched.passwordVerify && <FormValidation message={passwordVerifyError} />}
             </div>
-          : <div className="register_inputs-labels">
+          : <div className="register_inputs-labels" aria-live="polite">
             <label className="register-label" htmlFor="email">Email</label>
             <input 
               type="email" 
@@ -240,6 +248,8 @@ export default class Register extends Component {
               className="register-input" 
               id="email" 
               placeholder="example@email.com"
+              aria-required="true"
+              aria-invalid="true"
               required
               onChange={(e) => {this.handleCredentialsChange(e); this.handleTouchedChange(e);}}
             />
@@ -251,6 +261,8 @@ export default class Register extends Component {
               className="register-input"
               id="username"
               placeholder="user123"
+              aria-required="true"
+              aria-invalid="true"
               required
               onChange={(e) => {this.handleCredentialsChange(e); this.handleTouchedChange(e)}}
             />
@@ -262,6 +274,8 @@ export default class Register extends Component {
                 name="password"
                 className="register-input"
                 id="password"
+                aria-required="true"
+                aria-invalid="true"
                 required
                 onChange={(e) => {this.handleCredentialsChange(e); this.handleTouchedChange(e); this.validatePassword();}}
               />
@@ -275,6 +289,8 @@ export default class Register extends Component {
                 name="passwordVerify"
                 className="register-input" 
                 id="password-again"
+                aria-required="true"
+                aria-invalid="true"
                 required
                 onChange={(e) => {this.handleNonNestedChange(e); this.handleTouchedChange(e)}}
               />

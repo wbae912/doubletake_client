@@ -82,6 +82,7 @@ export default class GeneralListForm extends Component {
                 className="list-title"
                 id="general-title-input"
                 placeholder="Enter a name"
+                aria-required="true"
                 required
                 onChange={this.handleChange}
               />

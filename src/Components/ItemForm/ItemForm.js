@@ -72,6 +72,8 @@ class ItemForm extends Component {
           className="input-item"
           name="item"
           placeholder="Enter an item"
+          aria-required="true"
+          required
           onChange={this.handleChange}
         />
         <button type="submit" className="add-button">Add</button>
