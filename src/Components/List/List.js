@@ -346,8 +346,18 @@ class List extends Component {
   }
 
   render() {
-    let date = new Date(this.props.list.date_of_event).toLocaleString();
-    let dateArray = date.split(',');
+    /*
+     When app is deployed (not on localhost) the date shows as 1 day behind. For example, the database would have the correct date stored (e.g. 2020-05-15).
+     However, what is displayed on the application would be 2020-05-14. The reason behind this is UTC timezone issues. If I were to set timezone to somewhere in Asia, for instance,
+     the date would appear correctly, since technically they are a day ahead. Although this is a quick band-aid fix, I decided to add a day to the date retrieved from the database.
+     That way we add one day, and once displayed it gets set 1 day behind, to the "correct date". This works in all US timezones, which is better suited for the needs and audience of this application.
+    */
+   
+    let dateAltered = new Date(this.props.list.date_of_event);
+    dateAltered.setDate(dateAltered.getDate() + 1);
+
+    let datePlusOne = dateAltered.toLocaleString();
+    let dateArray = datePlusOne.split(',');
 
     return (
       <div className="list-entry">
