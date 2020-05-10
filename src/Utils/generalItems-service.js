@@ -2,7 +2,7 @@ import TokenService from '../services/token-service';
 
 const GeneralItemsService = {
   getItems() {
-    return fetch('http://localhost:8000/api/generalItems/', {
+    return fetch('https://doubletake-william.herokuapp.com/api/generalItems/', {
       headers: {
         'authorization': `bearer ${TokenService.getAuthToken()}`
       }
@@ -16,7 +16,7 @@ const GeneralItemsService = {
   },
 
   postItem(newItem, listId) {
-    return fetch(`http://localhost:8000/api/generalItems/${listId}`, {
+    return fetch(`https://doubletake-william.herokuapp.com/api/generalItems/${listId}`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
@@ -33,7 +33,7 @@ const GeneralItemsService = {
   },
 
   getSpecificItem(listId, itemId) {
-    return fetch(`http://localhost:8000/api/generalItems/${listId}/${itemId}`, {
+    return fetch(`https://doubletake-william.herokuapp.com/api/generalItems/${listId}/${itemId}`, {
       headers: {
         'authorization': `bearer ${TokenService.getAuthToken()}`
       }
@@ -45,7 +45,7 @@ const GeneralItemsService = {
   },
 
   deleteItem(listId, itemId) {
-    return fetch(`http://localhost:8000/api/generalItems/${listId}/${itemId}`, {
+    return fetch(`https://doubletake-william.herokuapp.com/api/generalItems/${listId}/${itemId}`, {
       method: 'DELETE',
       headers: {
         'authorization': `bearer ${TokenService.getAuthToken()}`
@@ -59,7 +59,7 @@ const GeneralItemsService = {
   },
 
   editItem(listId, itemId, editItem) {
-    return fetch(`http://localhost:8000/api/generalItems/${listId}/${itemId}`, {
+    return fetch(`https://doubletake-william.herokuapp.com/api/generalItems/${listId}/${itemId}`, {
       method: 'PATCH',
       headers: {
         'content-type': 'application/json',

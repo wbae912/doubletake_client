@@ -31,7 +31,7 @@ export default class Weather extends Component {
         loading: true
       })
 
-      fetch(`http://localhost:8000/api/weather?city=${this.props.list.city}&state=${this.props.list.state}&country=${this.props.list.country}`, {
+      fetch(`https://doubletake-william.herokuapp.com/api/weather?city=${this.props.list.city}&state=${this.props.list.state}&country=${this.props.list.country}`, {
         headers: {
           'authorization': `bearer ${TokenService.getAuthToken()}`
         }

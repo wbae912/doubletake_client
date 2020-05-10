@@ -2,7 +2,7 @@ import TokenService from '../services/token-service';
 
 const EventItemsService = {
   getItems() {
-    return fetch('http://localhost:8000/api/eventItems/', {
+    return fetch('https://doubletake-william.herokuapp.com/api/eventItems/', {
       headers: {
         'authorization': `bearer ${TokenService.getAuthToken()}`
       }
@@ -16,7 +16,7 @@ const EventItemsService = {
   },
 
   postItem(newItem, listId) {
-    return fetch(`http://localhost:8000/api/eventItems/${listId}`, {
+    return fetch(`https://doubletake-william.herokuapp.com/api/eventItems/${listId}`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
@@ -33,7 +33,7 @@ const EventItemsService = {
   },
 
   getSpecificItem(listId, itemId) {
-    return fetch(`http://localhost:8000/api/eventItems/${listId}/${itemId}`, {
+    return fetch(`https://doubletake-william.herokuapp.com/api/eventItems/${listId}/${itemId}`, {
       headers: {
         'authorization': `bearer ${TokenService.getAuthToken()}`
       }
@@ -45,7 +45,7 @@ const EventItemsService = {
   },
 
   deleteItem(listId, itemId) {
-    return fetch(`http://localhost:8000/api/eventItems/${listId}/${itemId}`, {
+    return fetch(`https://doubletake-william.herokuapp.com/api/eventItems/${listId}/${itemId}`, {
       method: 'DELETE',
       headers: {
         'authorization': `bearer ${TokenService.getAuthToken()}`
@@ -59,7 +59,7 @@ const EventItemsService = {
   },
 
   editItem(listId, itemId, editItem) {
-    return fetch(`http://localhost:8000/api/eventItems/${listId}/${itemId}`, {
+    return fetch(`https://doubletake-william.herokuapp.com/api/eventItems/${listId}/${itemId}`, {
       method: 'PATCH',
       headers: {
         'content-type': 'application/json',

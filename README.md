@@ -1,68 +1,53 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Doubletake
 
-## Available Scripts
+* Live version: 
+  * Demo username: testuser
+  * Demo password: Password1!
+ 
+* Link to API repository:
+  * GitHub: https://github.com/wbae912/doubletake_server
+  * Live link: 
+  
+  
+## Getting Started
+* Clone the repository and install dependencies using ```npm install```
+* Start the development server using ```npm start```
+  
+  
+## Description
+Doubletake is a React application that serves as an item manager for users. Users are able to create two types of lists: 'General' or 'Event'. 'General lists' are used on a more regular basis, whereas 'Event lists' are for one-off occasions. Both lists allow users to add items and check them off as they pack their belongings. Additionally, users are able to toggle the quantity of items. This application also includes helpful features such as a search bar, sort options, and ability to edit, delete, or create new lists & items. The home page provides a snapshot view of all the user's lists in a convenient manner.
 
-In the project directory, you can run:
 
-### `npm start`
+## Screenshots
+#### Landing Page
+![](public/images/LandingPage.PNG)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### Registration Page (Once user successfully creates an account they are directed to Login page)
+![](public/images/Registration.PNG)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+#### Login Page (Once user successfully logs in they are directed to the Home page)
+![](public/images/Login.PNG)
 
-### `npm test`
+#### Home
+![](public/images/Home.PNG)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### General Lists
+![](public/images/General.PNG)
 
-### `npm run build`
+#### Event Lists
+![](public/images/Event.PNG)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Technologies
+* HTML5
+* CSS3
+* ReactJS
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## Dependencies Used:
+* react-big-calendar
+* react-loader-spinner
+* react-modal
+* react-scroll
+* font-awesome (including @fortawesome libraries)
+* moment
+* jwt-decode

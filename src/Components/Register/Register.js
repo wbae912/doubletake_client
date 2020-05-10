@@ -110,7 +110,7 @@ export default class Register extends Component {
 
     const credentials = this.state.credentials;
 
-    fetch('http://localhost:8000/api/user/register', {
+    fetch('https://doubletake-william.herokuapp.com/api/user/register', {
       method: 'POST',
       headers: {
         'content-type': 'application/json'

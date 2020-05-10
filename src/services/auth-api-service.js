@@ -1,6 +1,6 @@
 const AuthApiService = {
   postLogin(credentials) {
-    return fetch('http://localhost:8000/api/auth/login', {
+    return fetch('https://doubletake-william.herokuapp.com/api/auth/login', {
       method: 'POST',
       headers: {
         'content-type': 'application/json'

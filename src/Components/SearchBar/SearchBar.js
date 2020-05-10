@@ -25,7 +25,7 @@ class SearchBar extends Component {
     e.preventDefault();
     let listType = this.props.match.path.slice(1);
 
-    fetch(`http://localhost:8000/api/search/${listType}?searchTerm=${this.state.searchTerm}`, {
+    fetch(`https://doubletake-william.herokuapp.com/api/search/${listType}?searchTerm=${this.state.searchTerm}`, {
       headers: {
         'authorization': `bearer ${TokenService.getAuthToken()}`
       }
