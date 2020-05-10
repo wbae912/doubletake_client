@@ -1,12 +1,12 @@
 # Doubletake
 
-* Live version: 
+* Link to live application: 
   * Demo username: testuser
   * Demo password: Password1!
  
 * Link to API repository:
   * GitHub: https://github.com/wbae912/doubletake_server
-  * Live link: 
+  * Live link: https://doubletake-william.herokuapp.com/
   
   
 ## Getting Started
