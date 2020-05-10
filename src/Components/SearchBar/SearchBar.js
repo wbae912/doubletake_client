@@ -11,7 +11,8 @@ class SearchBar extends Component {
     super(props)
   
     this.state = {
-       searchTerm: ''
+       searchTerm: '',
+       error: null
     }
   }
 
@@ -51,7 +52,9 @@ class SearchBar extends Component {
         })
       })
       .catch(res => {
-        this.context.setError(res.error);
+        this.setState({
+          error: res.error
+        })
       })
   }
 

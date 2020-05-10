@@ -11,7 +11,8 @@ class ItemForm extends Component {
     super(props)
   
     this.state = {
-       item: ''
+       item: '',
+       error: null
     }
   }
 
@@ -40,7 +41,9 @@ class ItemForm extends Component {
         this.props.handleAddCancel(e);
       })
       .catch(res => {
-        this.context.setError(res.error);
+        this.setState({
+          error: res.error
+        })
       })
     } else if(this.props.match.path === '/event' || this.props.match.path === '/elist/:id') {
       try {
@@ -55,7 +58,9 @@ class ItemForm extends Component {
 
         this.props.handleAddCancel(e);
       } catch(res) {
-        this.context.setError(res.error);
+        this.setState({
+          error: res.error
+        })
       }
     }
   }

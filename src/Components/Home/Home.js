@@ -18,7 +18,8 @@ class Home extends Component {
        eventLists: [],
        upcomingList: {},
        smallestDate: null,
-       loading: false
+       loading: false,
+       error: null
     }
   }
 
@@ -39,8 +40,8 @@ class Home extends Component {
         })
       })
       .catch(res => {
-        this.context.setError(res.error);
         this.setState({
+          error: res.error,
           loading: false
         })
       })
@@ -75,7 +76,9 @@ class Home extends Component {
       this.renderAlert();
     })
     .catch(res => {
-      return this.context.setError(res.error);
+      this.setState({
+        error: res.error
+      })    
     })
   }
 

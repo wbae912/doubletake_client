@@ -17,7 +17,8 @@ export default class EventEditForm extends Component {
        date_of_event: '',
        city: '',
        state: '',
-       country: ''
+       country: '',
+       error: null
     }
   }
   
@@ -34,6 +35,11 @@ export default class EventEditForm extends Component {
           city: data.city,
           state: data.state,
           country: data.country
+        })
+      })
+      .catch(err => {
+        this.setState({
+          error: err
         })
       })
   }
@@ -73,7 +79,9 @@ export default class EventEditForm extends Component {
       this.props.handleCancel(e)
     })
     .catch(res => {
-      this.context.setError(res.error);
+      this.setState({
+        error: res.error
+      })
     })
 }
 

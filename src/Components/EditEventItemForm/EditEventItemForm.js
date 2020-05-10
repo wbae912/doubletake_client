@@ -11,7 +11,8 @@ export default class EditEventItemForm extends Component {
     this.state = {
        item: '',
        itemObject: {},
-       editClicked: false
+       editClicked: false,
+       error: null
     }
   }
 
@@ -29,7 +30,9 @@ export default class EditEventItemForm extends Component {
       
       this.context.setSpecificEventItem(itemObject); 
     } catch(res) {
-      this.context.setError(res.error);
+      this.setState({
+        error: res.error
+      })
     }
   }
 
@@ -59,7 +62,9 @@ export default class EditEventItemForm extends Component {
 
       this.props.handleEditCancel(e);
     } catch(res) {
-      this.context.setError(res.error);
+      this.setState({
+        error: res.error
+      })
     }
   }
 
@@ -82,7 +87,9 @@ export default class EditEventItemForm extends Component {
         this.handleEditCancel(e);
       })
       .catch(res => {
-        this.context.setError(res.error);
+        this.setState({
+          error: res.error
+        })
       })
       // After the user presses "Enter" key, we do not want to focus on the input element anymore. That is why we use the "blur()" method to remove focus
       let inputElement = document.getElementById(`edit-item-input-e${this.props.itemId}`);
@@ -108,7 +115,9 @@ export default class EditEventItemForm extends Component {
       this.handleEditCancel(e);
     })
     .catch(res => {
-      this.context.setError(res.error);
+      this.setState({
+        error: res.error
+      })
     })
   }
 
@@ -162,13 +171,15 @@ export default class EditEventItemForm extends Component {
   
   render() {
     return (
-      <form 
-        className="edit-item-form"
-        autoComplete="off"
-        onSubmit={e => {this.editItem(e)}}
-      >
-        {this.renderInput()} 
-      </form>
+      <>
+        <form 
+          className="edit-item-form"
+          autoComplete="off"
+          onSubmit={e => {this.editItem(e)}}
+        >
+          {this.renderInput()} 
+        </form>
+      </>
     )
   }
 }

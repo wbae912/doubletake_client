@@ -18,7 +18,8 @@ export default class Weather extends Component {
        celsius: null,
        fahrenheitDisplay: true,
        celsiusDisplay: false,
-       loading: false
+       loading: false,
+       error: null
     }
   }
   
@@ -55,8 +56,8 @@ export default class Weather extends Component {
       })
     })
     .catch(res => {
-      this.context.setError(res.error);
       this.setState({
+        error: res.error,
         loading: false
       })
     })

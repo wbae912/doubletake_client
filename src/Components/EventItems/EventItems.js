@@ -17,7 +17,8 @@ export default class EventItems extends Component {
   
     this.state = {
        addClicked: false,
-       editClicked: null
+       editClicked: null,
+       error: null
     }
   }
   
@@ -28,7 +29,9 @@ export default class EventItems extends Component {
       // Callback method sent from "List" component. This is a trick for Child components to send generalItems to Parent component...Needs to be used on all HTTP requests
       this.props.callbackFromParent(eventItems);
     } catch(res) {
-      this.context.setError(res.error);
+      this.setState({
+        error: res.error
+      })
     }
   }
 
@@ -162,7 +165,9 @@ export default class EventItems extends Component {
       // Callback method sent from "List" component. This is a trick for Child components to send generalItems to Parent component...Needs to be used on all HTTP requests
       this.props.callbackFromParent(filteredEventItems);
     } catch(res) {
-      this.context.setError(res.error);
+      this.setState({
+        error: res.error
+      })
     }
   }
 
@@ -182,7 +187,9 @@ export default class EventItems extends Component {
       // Callback method sent from "List" component. This is a trick for Child components to send generalItems to Parent component...Needs to be used on all HTTP requests
       this.props.callbackFromParent(updatedEventItems);
     } catch(res) {
-      this.context.setError(res.error);
+      this.setState({
+        error: res.error
+      })
     }
   }
 

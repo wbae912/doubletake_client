@@ -13,7 +13,8 @@ export default class GeneralListForm extends Component {
     super(props)
   
     this.state = {
-       title: ''
+       title: '',
+       error: null
     }
   }
   
@@ -41,7 +42,9 @@ export default class GeneralListForm extends Component {
         this.props.handleCancel(e);
       })
       .catch(res => {
-        this.context.setError(res.error);
+        this.setState({
+          error: res.error
+        })
       })
     
     // Resets the values of the input fields after Submit

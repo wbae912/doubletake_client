@@ -12,7 +12,8 @@ class ItemQuantity extends Component {
     super(props)
   
     this.state = {
-       quantity: this.props.item.quantity
+       quantity: this.props.item.quantity,
+       error: null
     }
   }
   
@@ -45,7 +46,9 @@ class ItemQuantity extends Component {
         this.props.callbackFromParent(updatedGeneralItems);
       })
       .catch(res => {
-        this.context.setError(res.error);
+        this.setState({
+          error: res.error
+        })
       })
     } else if(this.props.match.path === '/event' || this.props.match.path === '/elist/:id') {
       item.quantity--;
@@ -69,7 +72,9 @@ class ItemQuantity extends Component {
         this.props.callbackFromParent(updatedEventItems);
       })
       .catch(res => {
-        this.context.setError(res.error);
+        this.setState({
+          error: res.error
+        })
       })
     }
   }
@@ -97,7 +102,9 @@ class ItemQuantity extends Component {
         this.props.callbackFromParent(updatedGeneralItems);
       })
       .catch(res => {
-        this.context.setError(res.error);
+        this.setState({
+          error: res.error
+        })
       })
     } else if(this.props.match.path === '/event' || this.props.match.path === '/elist/:id') {
       item.quantity++;
@@ -121,7 +128,9 @@ class ItemQuantity extends Component {
         this.props.callbackFromParent(updatedEventItems);
       })
       .catch(res => {
-        this.context.setError(res.error);
+        this.setState({
+          error: res.error
+        })
       })
     }
   }
@@ -146,7 +155,9 @@ class ItemQuantity extends Component {
           this.props.callbackFromParent(updatedGeneralItems);
         })
         .catch(res => {
-          this.context.setError(res.error);
+          this.setState({
+            error: res.error
+          })
         })
         // After the user presses "Enter" key, we do not want to focus on the input element anymore. That is why we use the "blur()" method to remove focus
         let inputElement = document.getElementById(`quantity-g${item.id}`);
@@ -170,7 +181,9 @@ class ItemQuantity extends Component {
           this.props.callbackFromParent(updatedEventItems);
         })
         .catch(res => {
-          this.context.setError(res.error);
+          this.setState({
+            error: res.error
+          })
         })
         let inputElement = document.getElementById(`quantity-e${item.id}`);
         inputElement.blur();
@@ -197,7 +210,9 @@ class ItemQuantity extends Component {
         this.props.callbackFromParent(updatedGeneralItems);
       })
       .catch(res => {
-        this.context.setError(res.error);
+        this.setState({
+          error: res.error
+        })
       })
   } else if(this.props.match.path === '/event' || this.props.match.path === '/elist/:id') {
       let quantity = this.state.quantity;
@@ -216,7 +231,9 @@ class ItemQuantity extends Component {
         this.props.callbackFromParent(updatedEventItems);
       })
       .catch(res => {
-        this.context.setError(res.error);
+        this.setState({
+          error: res.error
+        })
       })
   }
 }

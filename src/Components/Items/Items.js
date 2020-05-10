@@ -19,7 +19,8 @@ export default class Items extends Component {
        addClicked: false,
        editClicked: null,
        generalItems: [],
-       quantity: null
+       quantity: null,
+       error: null
     }
   }
   
@@ -34,7 +35,9 @@ export default class Items extends Component {
         this.props.callbackFromParent(data);
       })
       .catch(res => {
-        this.context.setError(res.error);
+        this.setState({
+          error: res.error
+        })
       })
   }
 
@@ -180,7 +183,9 @@ export default class Items extends Component {
       this.props.callbackFromParent(filteredGeneralItems);
     })
     .catch(res => {
-      this.context.setError(res.error);
+      this.setState({
+        error: res.error
+      })
     })
   }
 
@@ -202,7 +207,9 @@ export default class Items extends Component {
       this.props.callbackFromParent(updatedGeneralItems);
     })
     .catch(res => {
-      this.context.setError(res.error);
+      this.setState({
+        error: res.error
+      })
     })
   }
 
@@ -229,7 +236,9 @@ export default class Items extends Component {
       this.props.callbackFromParent(updatedGeneralItems);
     })
     .catch(res => {
-      this.context.setError(res.error);
+      this.setState({
+        error: res.error
+      })
     })
   }
 
@@ -251,7 +260,9 @@ export default class Items extends Component {
       this.props.callbackFromParent(updatedGeneralItems);
     })
     .catch(res => {
-      this.context.setError(res.error);
+      this.setState({
+        error: res.error
+      })
     })
   }
   

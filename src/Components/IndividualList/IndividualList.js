@@ -28,7 +28,8 @@ class IndividualList extends Component {
        editClicked: false,
        generalItems: [],
        eventItems: [],
-       menuClicked: false
+       menuClicked: false,
+       error: null
     }
     // "ref" was created in order to access methods from child components (Items + EventItems). Typically, not best practice/design, but good to know/practice.
     this.child = React.createRef();
@@ -69,7 +70,9 @@ class IndividualList extends Component {
           this.context.setGeneralLists(filteredGeneralList);
         })
         .catch(res => {
-          this.context.setError(res.error);
+          this.setState({
+            error: res.error
+          })        
         })
       } else {
         EventService.deleteList(this.props.list.id)
@@ -83,7 +86,9 @@ class IndividualList extends Component {
             this.context.setEventLists(filteredEventList);
           })
           .catch(res => {
-            this.context.setError(res.error);
+            this.setState({
+              error: res.error
+            })
           })
     }
   }

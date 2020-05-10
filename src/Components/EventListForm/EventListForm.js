@@ -17,7 +17,8 @@ export default class EventListForm extends Component {
        date_of_event: '',
        city: '',
        state: '',
-       country: ''
+       country: '',
+       error: null
     }
   }
   
@@ -45,7 +46,9 @@ export default class EventListForm extends Component {
       this.props.handleCancel(e);
     })
     .catch(res => {
-      this.context.setError(res.error);
+      this.setState({
+        error: res.error
+      })
     })
     // Resets the values of the input fields after Submit
     e.target.title.value = '';

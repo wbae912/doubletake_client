@@ -13,7 +13,8 @@ class IndividualGeneral extends Component {
     super(props)
   
     this.state = {
-       list: {}
+       list: {},
+       error: null
     }
   }
 
@@ -35,7 +36,9 @@ class IndividualGeneral extends Component {
         })
       })
       .catch(res => {
-        this.context.setError(res.error);
+        this.setState({
+          error: res.error
+        })      
       })
   }
 

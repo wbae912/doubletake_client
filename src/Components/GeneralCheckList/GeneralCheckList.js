@@ -19,7 +19,8 @@ class GeneralCheckList extends Component {
     this.state = {
        formClicked: false,
        sortOption: '',
-       loading: false
+       loading: false,
+       error: null
     }
   }
 
@@ -36,8 +37,8 @@ class GeneralCheckList extends Component {
         })
       })
       .catch(res => {
-        this.context.setError(res.error);
         this.setState({
+          error: res.error,
           loading: false
         })
       })
@@ -95,7 +96,9 @@ class GeneralCheckList extends Component {
       this.context.setGeneralLists(generalLists);
       this.context.setGeneralSearchedToFalse();
     } catch(res) {
-      this.context.setError(res.error);
+      this.setState({
+        error: res.error
+      })    
     }
   }
 

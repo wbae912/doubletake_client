@@ -14,7 +14,8 @@ export default class GeneralEditForm extends Component {
   
     this.state = {
        id: null,
-       title: ''
+       title: '',
+       error: null
     }
   }
   
@@ -25,6 +26,11 @@ export default class GeneralEditForm extends Component {
         this.setState({
           id: data.id,
           title: data.title
+        })
+      })
+      .catch(res => {
+        this.setState({
+          error: res.error
         })
       })
   }
@@ -48,7 +54,9 @@ export default class GeneralEditForm extends Component {
         this.props.handleCancel(e)
       })
       .catch(res => {
-        this.context.setError(res.error);
+        this.setState({
+          error: res.error
+        })
       })
   }
 
