@@ -23,44 +23,48 @@ export default class Weather extends Component {
     }
   }
   
-  componentDidMount() {
-    this.setState({
-      loading: true
-    })
-
-    fetch(`http://localhost:8000/api/weather?city=${this.props.list.city}&state=${this.props.list.state}&country=${this.props.list.country}`, {
-      headers: {
-        'authorization': `bearer ${TokenService.getAuthToken()}`
-      }
-    })
-    .then(res => {
-      if(!res.ok) {
-        return res.json().then(err => Promise.reject(err));
-      }
-      return res.json();
-    })
-    .then(data => {
-      let fahrenheit = data.main.temp;
-      fahrenheit = fahrenheit.toFixed(1);
-
-      let celsius = (fahrenheit - 32) * (5/9);
-      celsius = celsius.toFixed(1);
-
+  componentDidMount() {    
+    let location = `${this.props.list.city}${this.props.list.state}${this.props.list.country}`;
+    
+    if(location) {
       this.setState({
-        weather_main: data.weather[0].main,
-        weather_description: data.weather[0].description,
-        weather_icon: data.weather[0].icon,
-        fahrenheit,
-        celsius,
-        loading: false
+        loading: true
       })
-    })
-    .catch(res => {
-      this.setState({
-        error: res.error,
-        loading: false
+
+      fetch(`http://localhost:8000/api/weather?city=${this.props.list.city}&state=${this.props.list.state}&country=${this.props.list.country}`, {
+        headers: {
+          'authorization': `bearer ${TokenService.getAuthToken()}`
+        }
       })
-    })
+      .then(res => {
+        if(!res.ok) {
+          return res.json().then(err => Promise.reject(err));
+        }
+        return res.json();
+      })
+      .then(data => {
+        let fahrenheit = data.main.temp;
+        fahrenheit = fahrenheit.toFixed(1);
+
+        let celsius = (fahrenheit - 32) * (5/9);
+        celsius = celsius.toFixed(1);
+
+        this.setState({
+          weather_main: data.weather[0].main,
+          weather_description: data.weather[0].description,
+          weather_icon: data.weather[0].icon,
+          fahrenheit,
+          celsius,
+          loading: false
+        })
+      })
+      .catch(res => {
+        this.setState({
+          error: res.error,
+          loading: false
+        })
+      })
+    }
   }
 
   convertFahrenheit = () => {

@@ -143,6 +143,12 @@ class Login extends Component {
           </form>
         </section>
 
+        <div className="demo-div">
+          <h3 className="demo-h3">Demo Account:</h3>
+          <p className="demo-p">Username: testuser</p>
+          <p className="demo-p">Password: Password1!</p>
+        </div>
+
         {this.renderLoader()}
       </div>
     )
