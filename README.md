@@ -15,7 +15,7 @@
   
   
 ## Description
-Doubletake is a React application that serves as an item manager for users. Users are able to create two types of lists: 'General' or 'Event'. 'General lists' are used on a more regular basis, whereas 'Event lists' are for one-off occasions. Both lists allow users to add items and check them off as they pack their belongings. Additionally, users are able to toggle the quantity of items. This application also includes helpful features such as a search bar, sort options, and ability to edit, delete, or create new lists & items. The home page provides a snapshot view of all the user's lists in a convenient manner.
+Doubletake is a React application that serves as an item manager for users. Users are able to create two types of lists: 'General' or 'Event'. 'General lists' are used on a more regular basis, whereas 'Event lists' are for one-off occasions. Both lists allow users to add items and check them off as they pack their belongings. Additionally, users are able to edit the quantity of each item. This application also includes helpful features such as a search bar, sort options, and ability to edit, delete, or create new lists & items. The home page provides a snapshot view of all the user's lists in a convenient fashion.
 
 
 ## Screenshots
