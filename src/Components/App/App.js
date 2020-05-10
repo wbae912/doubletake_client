@@ -52,10 +52,9 @@ export default class App extends Component {
       <div className="App">
         {this.state.isLoggedIn ? <NavBar toggleLoggedOff={this.toggleLoggedOff} /> : <Nav />}
         <Switch>
-          <PublicOnlyRoute 
+          <Route 
             exact path={'/'}
-            component={LandingPage}
-            callbackFromParent={this.callbackIsLoggedIn}
+            render={() => <LandingPage callbackFromParent={this.callbackIsLoggedIn} />}
           />
           <PublicOnlyRoute 
             path={'/register'}

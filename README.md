@@ -1,6 +1,6 @@
 # Doubletake
 
-* Link to live application: 
+* Link to live application: https://doubletake.now.sh/
   * Demo username: testuser
   * Demo password: Password1!
  
