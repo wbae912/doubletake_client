@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import LoaderSpinner from '../LoaderSpinner/LoaderSpinner';
+import { withRouter } from 'react-router-dom';
+import Loader from 'react-loader-spinner';
 import TokenService from '../../services/token-service';
 import ListContext from '../../Context/ListContext';
 import './Weather.css';
 
-export default class Weather extends Component {
+class Weather extends Component {
   static contextType = ListContext;
 
   constructor(props) {
@@ -158,11 +159,23 @@ export default class Weather extends Component {
     let weatherIconCode = this.state.weather_icon;
     let weatherIconImage = `http://openweathermap.org/img/wn/${weatherIconCode}@2x.png`;
 
+    let className = '';
+    if(this.props.match.path === '/event') {
+      className = 'spin-load-div';
+    } else if(this.props.match.path === '/elist/:id') {
+      className = 'spin-load-div-individual'
+    }
+
     if(this.state.loading) {
       return (
-        <>
-          <LoaderSpinner />
-        </>
+        <div className={className}>
+          <Loader
+            type="TailSpin"
+            color="#A346A3"
+            height={100}
+            width={100}
+          />
+        </div>
       )
     } else {
       return (
@@ -199,3 +212,5 @@ export default class Weather extends Component {
     )
   }
 }
+
+export default withRouter(Weather);

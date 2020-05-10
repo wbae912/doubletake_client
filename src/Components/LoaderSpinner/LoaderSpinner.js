@@ -4,16 +4,10 @@ import Loader from 'react-loader-spinner';
 
 class LoaderSpinner extends Component { 
   render() {
-    let color = '';
-    if(this.props.match.path === '/event' || this.props.match.path === '/elist/:id') {
-      color = '#A346A3';
-    } else {
-      color = "#392061";
-    }
     return(
      <Loader
         type="ThreeDots"
-        color={color}
+        color="#392061"
         height={100}
         width={100}
      />

@@ -87,3 +87,11 @@
   background-color: rgb(85, 85, 85);
   color: white;
 }
+
+.spin-load-div {
+  padding-top: 4em;
+}
+
+.spin-load-div-individual {
+  padding-top: 1.3em;
+}
