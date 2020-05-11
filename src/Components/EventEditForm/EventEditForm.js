@@ -76,7 +76,8 @@ export default class EventEditForm extends Component {
       const updatedLists = eventLists.map(list => (list.id === editList.id) ? editList : list);
       this.context.setEventLists(updatedLists);
 
-      this.props.handleCancel(e)
+      this.props.handleCancel(e);
+      window.location.reload();
     })
     .catch(res => {
       this.setState({
