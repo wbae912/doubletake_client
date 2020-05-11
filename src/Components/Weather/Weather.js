@@ -157,7 +157,7 @@ class Weather extends Component {
     }
 
     let weatherIconCode = this.state.weather_icon;
-    let weatherIconImage = `http://openweathermap.org/img/wn/${weatherIconCode}@2x.png`;
+    let weatherIconImage = `https://openweathermap.org/img/wn/${weatherIconCode}@2x.png`;
 
     let className = '';
     if(this.props.match.path === '/event') {
