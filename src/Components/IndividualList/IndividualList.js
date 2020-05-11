@@ -344,8 +344,11 @@ class IndividualList extends Component {
   }
 
   render() {
-    let date = new Date(this.props.list.date_of_event).toLocaleString();
-    let dateArray = date.split(',');
+    let dateAltered = new Date(this.props.list.date_of_event);
+    dateAltered.setDate(dateAltered.getDate() + 1);
+
+    let datePlusOne = dateAltered.toLocaleString();
+    let dateArray = datePlusOne.split(',');
 
     return (
       <div className="list-entry-single">

@@ -49,9 +49,12 @@ class Calender extends Component {
     let eventLists = [...this.state.eventLists];
 
     let newEvents = eventLists.map(list => {
+      let dateAltered = new Date(list.date_of_event);
+      dateAltered.setDate(dateAltered.getDate() + 1);
+  
       return {
-        start: new Date(list.date_of_event),
-        end: new Date(list.date_of_event),
+        start: dateAltered,
+        end: dateAltered,
         title: list.title,
         id: list.id
       }

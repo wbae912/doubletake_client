@@ -109,8 +109,11 @@ class Home extends Component {
     let dateOfEvent = new Date(this.state.upcomingList.date_of_event);
     let todayDate = new Date();
 
-    let upcomingDate = new Date(this.state.upcomingList.date_of_event).toLocaleString();
-    let dateArray = upcomingDate.split(',');
+    let dateAltered = new Date(this.state.upcomingList.date_of_event);
+    dateAltered.setDate(dateAltered.getDate() + 1);
+
+    let datePlusOne = dateAltered.toLocaleString();
+    let dateArray = datePlusOne.split(',');
 
     let date = '';
     let upcomingTitle = '';
